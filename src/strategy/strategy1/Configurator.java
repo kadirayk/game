@@ -29,7 +29,7 @@ public class Configurator {
 		return videoSpecificBitrate.get(binaryString);
 	}
 
-	public static void createConfigurationFile(String filePath, byte[] config) {
+	public static void createConfigurationFile(String filePath, byte[] config, String populationSize) {
 		String bitrate = getVideoSpecificBitrate(ByteUtil.arrayToString(config));
 		Properties props = new Properties();
 
@@ -44,6 +44,7 @@ public class Configurator {
 			output = new FileOutputStream(confFile);
 
 			props.setProperty("video-specific[b]", bitrate);
+			props.setProperty("populationSize", populationSize);
 
 			props.store(output, null);
 
