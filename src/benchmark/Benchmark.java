@@ -16,9 +16,10 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.zeroturnaround.zip.ZipUtil;
 
-import model.FileUtil;
+import model.Command;
 import model.Interview;
 import strategy.strategy1.SerializationUtil;
+import util.FileUtil;
 
 public class Benchmark {
 
@@ -31,6 +32,8 @@ public class Benchmark {
 	static String port;
 
 	private static Properties generalGameProp;
+
+	private static String gameSelection;
 
 	public static void main(String[] args) throws InterruptedException {
 		File populationDir = new File("population/");
@@ -119,9 +122,9 @@ public class Benchmark {
 
 	private static void setupGroundingRoutine(String fileName, String bitrate) throws InterruptedException {
 		File testBed = copyExecutionFilesToTestBed(fileName);
-		if (port == null) {
+//		if (port == null) {
 			port = getRandomAvailablePort();
-		}
+//		}
 		changeServerPort(testBed, port);
 
 		changeClientPort(testBed, port);
@@ -131,6 +134,7 @@ public class Benchmark {
 		Interview interview = SerializationUtil.readAsJSON(testBed.getAbsolutePath() + "/interview_data/");
 
 		String gameSelection = interview.getQuestionByPath("step1.q1").getAnswer();
+		Benchmark.gameSelection = gameSelection;
 
 		System.out.println("Game selection: " + gameSelection);
 		createGroundingRoutine(testBed, gameSelection);
@@ -167,8 +171,51 @@ public class Benchmark {
 		} catch (final IOException e1) {
 			e1.printStackTrace();
 		}
-		System.out.println("DONE.");
 
+		stopGameOnServerSide();
+
+		Double score = calculateScore(testBed);
+
+		writeScore(testBed, score);
+
+		System.out.println("\n grounding process in benchmark DONE.");
+
+	}
+
+	private static void writeScore(File testBed, Double score) {
+		String[] nameArray = testBed.getName().split("_");
+		String timeStamp = nameArray[nameArray.length - 1];
+		File individualFile = new File(testBed.getAbsoluteFile() + File.separator + ".." + File.separator + "population"
+				+ File.separator + "individual_" + timeStamp);
+
+		writeConfValue(individualFile, "score", String.valueOf(score));
+	}
+
+	private static void stopGameOnServerSide() {
+		String gameWindowTitle = generalGameProp.getProperty(gameSelection + ".window");
+		String killCommand = "taskkill /F /FI \"WindowTitle eq " + gameWindowTitle + "\" /T";
+		try {
+			Runtime.getRuntime().exec(killCommand);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static Double calculateScore(File testBed) {
+		String responseTimeFile = testBed.getAbsoluteFile() + File.separator + "src" + File.separator
+				+ "responseTime.json";
+		List<Command> commandList = SerializationUtil.readResponseTimes(responseTimeFile);
+		Double totalDelay = 0.0;
+		int numberOfCommandsWithReceiveTime = 0;
+		for (Command c : commandList) {
+			if (c.getReceivetimeStamp() != null && c.getReceivetimeStamp() > 0) {
+				totalDelay += c.getDelay();
+				numberOfCommandsWithReceiveTime++;
+			}
+		}
+
+		return totalDelay / numberOfCommandsWithReceiveTime;
 	}
 
 	public static void writeConfValue(File file, String key, String value) {
@@ -327,6 +374,9 @@ public class Benchmark {
 		}
 
 		content.append(gameServer).append(" config/").append(gameConf).append("\n");
+		content.append("timeout /t 30 /nobreak\n");
+		content.append("ga-client ").append("config/client.abs.conf ").append("rtsp://127.0.0.1:").append(port)
+				.append("/desktop");
 
 		FileUtil.writeToFile(testbed + "/groundingroutine.bat", content.toString());
 	}

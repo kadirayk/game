@@ -10,8 +10,8 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 
-import model.FileUtil;
 import model.Interview;
+import util.FileUtil;
 
 public class StrategyRunner {
 

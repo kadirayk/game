@@ -7,11 +7,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
+import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import model.Command;
 import model.Interview;
-
 
 /**
  * Serialization utility class
@@ -46,6 +51,18 @@ public class SerializationUtil {
 			e.printStackTrace();
 		}
 		return interview;
+	}
+
+	public static List<Command> readResponseTimes(String path) {
+		List<Command> commandList = null;
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			Command[] commands = mapper.readValue(new File(path), Command[].class);
+			commandList = Arrays.asList(commands);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return commandList;
 	}
 
 	public static void write(String path, Interview interview) {
