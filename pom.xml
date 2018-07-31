@@ -62,7 +62,7 @@
 			<artifactId>commonmark</artifactId>
 			<version>0.11.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.atlassian.commonmark</groupId>
 			<artifactId>commonmark-ext-gfm-tables</artifactId>
@@ -76,6 +76,14 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.ini4j/ini4j -->
+		<dependency>
+			<groupId>org.ini4j</groupId>
+			<artifactId>ini4j</artifactId>
+			<version>0.5.4</version>
+		</dependency>
+
 
 
 	</dependencies>
