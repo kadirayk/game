@@ -6,13 +6,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 public class Configurator {
 
-	private static Map<String, String> videoSpecificBitrate = new HashMap<>();
+	public static Map<String, String> videoSpecificBitrate = new HashMap<>();
+	public static Map<String, String> videoFps = new HashMap<>();
+	public static Map<String, String> videoSpecificMethod = new HashMap<>();
+	public static Map<String, String> videoEncoder = new HashMap<>();
+	public static Map<String, String> videoSpecificRange = new HashMap<>();
+	public static Map<String, String> videoRenderer = new HashMap<>();
+	public static Map<String, String> videoSpecificIntraRefresh = new HashMap<>();
+	public static Map<String, String> videoDecoder = new HashMap<>();
+	public static Map<String, String> videoSpecificRefs = new HashMap<>();
+
+	public static final int CHROMOSOME_LENGTH = 15;
+
+	public static final int POPULATION_SIZE = 8;
 
 	static {
 		videoSpecificBitrate.put("000", "250000");
@@ -23,12 +36,123 @@ public class Configurator {
 		videoSpecificBitrate.put("101", "4000000");
 		videoSpecificBitrate.put("110", "5000000");
 		videoSpecificBitrate.put("111", "6000000");
+
+		videoFps.put("000", "8");
+		videoFps.put("001", "16");
+		videoFps.put("010", "24");
+		videoFps.put("011", "32");
+		videoFps.put("100", "40");
+		videoFps.put("101", "48");
+		videoFps.put("110", "56");
+		videoFps.put("111", "60");
+
+		videoSpecificMethod.put("0000", "dia");
+		videoSpecificMethod.put("0001", "zero");
+		videoSpecificMethod.put("0010", "full");
+		videoSpecificMethod.put("0011", "epzs");
+		videoSpecificMethod.put("0100", "esa");
+		videoSpecificMethod.put("0101", "log");
+		videoSpecificMethod.put("0110", "phods");
+		videoSpecificMethod.put("0111", "X1");
+		videoSpecificMethod.put("1000", "hex");
+		videoSpecificMethod.put("1001", "umh");
+		videoSpecificMethod.put("1010", "iter");
+
+		// videoEncoder
+		// videoDecoder
+
+		videoSpecificRange.put("00", "4");
+		videoSpecificRange.put("01", "8");
+		videoSpecificRange.put("10", "16");
+		videoSpecificRange.put("11", "24");
+
+		videoRenderer.put("0", "hardware");
+		videoRenderer.put("1", "software");
+
+		videoSpecificIntraRefresh.put("0", "0");
+		videoSpecificIntraRefresh.put("1", "1");
+
+		videoSpecificRefs.put("0", "0");
+		videoSpecificRefs.put("1", "1");
+
 	}
 
 	public static String getVideoSpecificBitrate(String binaryString) {
 		return videoSpecificBitrate.get(binaryString);
 	}
 
+	public static int getChromosomeSize() {
+		int size = videoSpecificBitrate.size() + videoFps.size() + videoSpecificMethod.size()
+				+ videoSpecificRange.size() + videoRenderer.size() + videoSpecificIntraRefresh.size()
+				+ videoSpecificRefs.size();
+		return size;
+	}
+
+	public static void createConfigurationFile(String filePath, Population population) {
+		String populationSize = String.valueOf(population.getSize());
+		String bitrateGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 0, 3));
+		String fpsGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 3, 6));
+		String methodGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 6, 10));
+		String rangeGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 10, 12));
+		String rendererGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 12, 13));
+		String intraRefreshGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 13, 14));
+		String refsGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 14, 15));
+		
+		String bitrate = videoSpecificBitrate.get(bitrateGenes);
+		String fps = videoFps.get(fpsGenes);
+		String method = videoSpecificMethod.get(methodGenes);
+		String range = videoSpecificRange.get(rangeGenes);
+		String renderer = videoRenderer.get(rendererGenes);
+		String intraRefresh = videoSpecificIntraRefresh.get(intraRefreshGenes);
+		String refs = videoSpecificRefs.get(refsGenes);
+		
+		Properties props = new Properties();
+
+		OutputStream output = null;
+
+		try {
+			File directory = new File(".");
+			filePath = directory.getCanonicalPath() + File.separator + filePath;
+			File confFile = new File(filePath);
+			confFile.getParentFile().mkdirs();
+			confFile.createNewFile();
+			output = new FileOutputStream(confFile);
+
+			props.setProperty("video-specific[b]", bitrate);
+			props.setProperty("video-fps", fps);
+			props.setProperty("video-specific[me_method]", method);
+			props.setProperty("video-specific[me_range]", range);
+			props.setProperty("video-renderer", renderer);
+			props.setProperty("video-specific[intra_refresh]", intraRefresh);
+			props.setProperty("video-specific[refs]", refs);
+			props.setProperty("populationSize", populationSize);
+			
+
+			props.store(output, null);
+
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		System.out.println("createConfigurationFile done for individual: " + population.getChromosomes()[0].toString());
+	}
+
+	private static String ConvertArrayToString(int[] array){
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < array.length; i++) {
+			str.append(String.valueOf(array[i]));
+		}
+		return str.toString();
+	}
+	
 	public static void createConfigurationFile(String filePath, byte[] config, String populationSize) {
 		String bitrate = getVideoSpecificBitrate(ByteUtil.arrayToString(config));
 		Properties props = new Properties();

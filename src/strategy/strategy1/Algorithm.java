@@ -1,86 +1,83 @@
 package strategy.strategy1;
 
+
 public class Algorithm {
 
-	/* GA parameters */
-	private static final double uniformRate = 0.5;
-	private static final double mutationRate = 0.015;
-	private static final int tournamentSize = 5;
-	private static final boolean elitism = true;
+	public static final int POPULATION_SIZE = 8;
+	public static final int[] TARGET_CHROMOSOME = { 1, 1, 0, 1, 0, 0, 1, 1, 1, 0 };
+	private static final double MUTATION_RATE = 0.25;
+	public static final int NUM_OF_ELITE_CHROMOSOMES = 1;
+	public static final int TURNAMENT_SELECTION_SIZE = 4;
 
-	/* Public methods */
-
-	// Evolve a population
-	public static Population evolvePopulation(Population pop) {
-		Population newPopulation = new Population(pop.size(), false);
-
-		// Keep our best individual
-		if (elitism) {
-			newPopulation.saveIndividual(0, pop.getFittest());
-		}
-
-		// Crossover population
-		int elitismOffset;
-		if (elitism) {
-			elitismOffset = 1;
-		} else {
-			elitismOffset = 0;
-		}
-		// Loop over the population size and create new individuals with
-		// crossover
-		for (int i = elitismOffset; i < pop.size(); i++) {
-			Individual indiv1 = tournamentSelection(pop);
-			Individual indiv2 = tournamentSelection(pop);
-			Individual newIndiv = crossover(indiv1, indiv2);
-			newPopulation.saveIndividual(i, newIndiv);
-		}
-
-		// Mutate population
-		for (int i = elitismOffset; i < newPopulation.size(); i++) {
-			mutate(newPopulation.getIndividual(i));
-		}
-
-		return newPopulation;
+	public Population evolve(Population population) {
+		return mutatePopulation(crossoverPopulation(population));
 	}
 
-	// Crossover individuals
-	private static Individual crossover(Individual indiv1, Individual indiv2) {
-		Individual newSol = new Individual();
-		// Loop through genes
-		for (int i = 0; i < indiv1.size(); i++) {
-			// Crossover
-			if (Math.random() <= uniformRate) {
-				newSol.setGene(i, indiv1.getGene(i));
+	private Population crossoverPopulation(Population population) {
+		Population crossoverPopulation = new Population(population.getChromosomes().length);
+		for (int i = 0; i < NUM_OF_ELITE_CHROMOSOMES; i++) {
+			crossoverPopulation.getChromosomes()[i] = population.getChromosomes()[i];
+		}
+		for (int i = NUM_OF_ELITE_CHROMOSOMES; i < population.getChromosomes().length; i++) {
+			Chromosome chromosome1 = selectTournamentPopulation(population).getChromosomes()[0];
+			Chromosome chromosome2 = selectTournamentPopulation(population).getChromosomes()[0];
+			crossoverPopulation.getChromosomes()[i] = crossoverChromosome(chromosome1, chromosome2);
+
+		}
+
+		return crossoverPopulation;
+	}
+
+	private Population mutatePopulation(Population population) {
+		Population mutatePopulation = new Population(population.getChromosomes().length);
+		for (int i = 0; i < NUM_OF_ELITE_CHROMOSOMES; i++) {
+			mutatePopulation.getChromosomes()[i] = population.getChromosomes()[i];
+		}
+		for (int i = NUM_OF_ELITE_CHROMOSOMES; i < population.getChromosomes().length; i++) {
+			mutatePopulation.getChromosomes()[i] = mutateChromosome(population.getChromosomes()[i]);
+		}
+		return mutatePopulation;
+	}
+
+	private Chromosome crossoverChromosome(Chromosome chromosome1, Chromosome chromosome2) {
+		Chromosome crossoverChromosome = new Chromosome(chromosome1.getGenes().length);
+		for (int i = 0; i < chromosome1.getGenes().length; i++) {
+			if (Math.random() < 0.5) {
+				crossoverChromosome.getGenes()[i] = chromosome1.getGenes()[i];
 			} else {
-				newSol.setGene(i, indiv2.getGene(i));
+				crossoverChromosome.getGenes()[i] = chromosome2.getGenes()[i];
 			}
 		}
-		return newSol;
+
+		return crossoverChromosome;
 	}
 
-	// Mutate an individual
-	private static void mutate(Individual indiv) {
-		// Loop through genes
-		for (int i = 0; i < indiv.size(); i++) {
-			if (Math.random() <= mutationRate) {
-				// Create random gene
-				byte gene = (byte) Math.round(Math.random());
-				indiv.setGene(i, gene);
+	private Chromosome mutateChromosome(Chromosome chromosome) {
+		Chromosome mutateChromosome = new Chromosome(chromosome.getGenes().length);
+
+		for (int i = 0; i < chromosome.getGenes().length; i++) {
+			if (Math.random() < MUTATION_RATE) {
+				if (Math.random() < 0.5) {
+					mutateChromosome.getGenes()[i] = 1;
+				} else {
+					mutateChromosome.getGenes()[i] = 0;
+				}
+			} else {
+				mutateChromosome.getGenes()[i] = chromosome.getGenes()[i];
 			}
 		}
+
+		return mutateChromosome;
+
 	}
 
-	// Select individuals for crossover
-	private static Individual tournamentSelection(Population pop) {
-		// Create a tournament population
-		Population tournament = new Population(tournamentSize, false);
-		// For each place in the tournament get a random individual
-		for (int i = 0; i < tournamentSize; i++) {
-			int randomId = (int) (Math.random() * pop.size());
-			tournament.saveIndividual(i, pop.getIndividual(randomId));
+	private Population selectTournamentPopulation(Population population) {
+		Population tournamentPopulatiton = new Population(TURNAMENT_SELECTION_SIZE);
+		for (int i = 0; i < TURNAMENT_SELECTION_SIZE; i++) {
+			tournamentPopulatiton.getChromosomes()[i] = population
+					.getChromosomes()[(int) (Math.random() * population.getChromosomes().length)];
 		}
-		// Get the fittest
-		Individual fittest = tournament.getFittest();
-		return fittest;
+		tournamentPopulatiton.sortChromosomeByFitness();
+		return tournamentPopulatiton;
 	}
 }

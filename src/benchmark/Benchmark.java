@@ -7,13 +7,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.ProcessBuilder.Redirect;
-import java.net.ServerSocket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.ini4j.Wini;
 import org.zeroturnaround.zip.ZipUtil;
 
 import model.Command;
@@ -53,7 +55,7 @@ public class Benchmark {
 					populationSize = Integer.parseInt(popSize);
 				}
 				System.out.println("running benchmark for " + currentFile.getName());
-				setupGroundingRoutine(currentFile.getAbsolutePath(), bitrate);
+				setupGroundingRoutine(currentFile);
 				processedPopulation.add(currentFile.getName());
 			}
 			Thread.sleep(2000);
@@ -119,15 +121,36 @@ public class Benchmark {
 		}
 		return testBed;
 	}
-
-	private static void setupGroundingRoutine(String fileName, String bitrate) throws InterruptedException {
+	
+	
+	private static void setupGroundingRoutine(File file) throws InterruptedException {
+		String fileName = file.getAbsolutePath();
+		String bitrate = getConfigValue(file, "video-specific[b]");
+		String fps = getConfigValue(file, "video-fps");
+		String method = getConfigValue(file, "video-specific[me_method]");
+		String range = getConfigValue(file, "video-specific[me_range]");
+		String renderer = getConfigValue(file, "video-renderer");
+		String intraRefresh = getConfigValue(file, "video-specific[intra_refresh]");
+		String refs = getConfigValue(file, "video-specific[refs]");
+		Map<String, String> config = new HashMap<>();
+		config.put("video-specific[b]", bitrate);
+		config.put("video-fps", fps);
+		config.put("video-specific[me_method]", method);
+		config.put("video-specific[me_range]", range);
+		config.put("video-renderer", renderer);
+		config.put("video-specific[intra_refresh]", intraRefresh);
+		config.put("video-specific[refs]", refs);
+		
+		
 		File testBed = copyExecutionFilesToTestBed(fileName);
-//		if (port == null) {
-			port = getRandomAvailablePort();
-//		}
+		// if (port == null) {
+		port = getRandomAvailablePort();
+		// }
 		changeServerPort(testBed, port);
 
 		changeClientPort(testBed, port);
+
+		changeVideoConfigValues(testBed, config);
 
 		loadConf(testBed);
 
@@ -137,6 +160,44 @@ public class Benchmark {
 		Benchmark.gameSelection = gameSelection;
 
 		System.out.println("Game selection: " + gameSelection);
+		writeGameSelection(testBed, gameSelection);
+		createGroundingRoutine(testBed, gameSelection);
+
+		File currentFile = new File(fileName);
+		System.out.println("configuration set:" + currentFile.getAbsolutePath());
+		writeConfValue(currentFile, "client", findClientPath(fileName));
+		executeGroundingRoutine(testBed);
+
+		String score = null;
+		while (score == null) {
+			score = getConfigValue(currentFile, "score");
+			Thread.sleep(2000);
+		}
+
+		System.out.println("Game will start on port: " + port);
+	}
+	
+
+	private static void setupGroundingRoutine(String fileName, String bitrate) throws InterruptedException {
+		File testBed = copyExecutionFilesToTestBed(fileName);
+		// if (port == null) {
+		port = getRandomAvailablePort();
+		// }
+		changeServerPort(testBed, port);
+
+		changeClientPort(testBed, port);
+
+		changeBitRate(testBed, bitrate);
+
+		loadConf(testBed);
+
+		Interview interview = SerializationUtil.readAsJSON(testBed.getAbsolutePath() + "/interview_data/");
+
+		String gameSelection = interview.getQuestionByPath("step1.q1").getAnswer();
+		Benchmark.gameSelection = gameSelection;
+
+		System.out.println("Game selection: " + gameSelection);
+		writeGameSelection(testBed, gameSelection);
 		createGroundingRoutine(testBed, gameSelection);
 
 		File currentFile = new File(fileName);
@@ -151,6 +212,33 @@ public class Benchmark {
 		}
 
 		System.out.println("Game will start on port: " + port);
+	}
+	
+	public static void changeVideoConfigValues(File testBed, Map<String, String> config) {
+		try {
+			File confFile = new File(testBed.getAbsolutePath() + "/src/config/common/video-x264-param.conf");
+			Wini ini = new Wini(confFile);
+			
+			for(Map.Entry<String, String> e: config.entrySet()){
+				ini.put("video", e.getKey(), e.getValue());
+			}
+			ini.store();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void changeBitRate(File testBed, String bitrate) {
+		try {
+			File confFile = new File(testBed.getAbsolutePath() + "/src/config/common/video-x264-param.conf");
+			Wini ini = new Wini(confFile);
+			ini.put("video", "video-specific[b]", bitrate);
+			ini.store();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static void executeGroundingRoutine(File testBed) {
@@ -190,6 +278,16 @@ public class Benchmark {
 
 		writeConfValue(individualFile, "score", String.valueOf(score));
 	}
+	
+	private static void writeGameSelection(File testBed, String gameSelection) {
+		String[] nameArray = testBed.getName().split("_");
+		String timeStamp = nameArray[nameArray.length - 1];
+		File individualFile = new File(testBed.getAbsoluteFile() + File.separator + ".." + File.separator + "population"
+				+ File.separator + "individual_" + timeStamp);
+
+		writeConfValue(individualFile, "gameSelection", String.valueOf(gameSelection));
+	}
+
 
 	private static void stopGameOnServerSide() {
 		String gameWindowTitle = generalGameProp.getProperty(gameSelection + ".window");
@@ -346,15 +444,16 @@ public class Benchmark {
 	}
 
 	private static String getRandomAvailablePort() {
-		String port = null;
-		try {
-			ServerSocket socket = new ServerSocket(0);
-			port = String.valueOf(socket.getLocalPort());
-			socket.close();
-			return port;
-		} catch (IOException e) {
-			return port;
-		}
+//		String port = null;
+//		try {
+//			ServerSocket socket = new ServerSocket(0);
+//			port = String.valueOf(socket.getLocalPort());
+//			socket.close();
+//			return port;
+//		} catch (IOException e) {
+//			return port;
+//		}
+		return "8554";
 	}
 
 	private static void createGroundingRoutine(File testbed, String gameSelection) {
@@ -374,8 +473,8 @@ public class Benchmark {
 		}
 
 		content.append(gameServer).append(" config/").append(gameConf).append("\n");
-		content.append("timeout /t 30 /nobreak\n");
-		content.append("ga-client ").append("config/client.abs.conf ").append("rtsp://127.0.0.1:").append(port)
+		content.append("waitfor WaitForServerToBeReady /t 5\n ");
+		content.append("ga-client ").append("config/client.abs.conf ").append("rtsp://localhost:").append(port)
 				.append("/desktop");
 
 		FileUtil.writeToFile(testbed + "/groundingroutine.bat", content.toString());
