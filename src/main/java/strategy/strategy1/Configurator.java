@@ -153,42 +153,7 @@ public class Configurator {
 		return str.toString();
 	}
 	
-	public static void createConfigurationFile(String filePath, byte[] config, String populationSize) {
-		String bitrate = getVideoSpecificBitrate(ByteUtil.arrayToString(config));
-		Properties props = new Properties();
-
-		OutputStream output = null;
-
-		try {
-			File directory = new File(".");
-			filePath = directory.getCanonicalPath() + File.separator + filePath;
-			File confFile = new File(filePath);
-			confFile.getParentFile().mkdirs();
-			confFile.createNewFile();
-			output = new FileOutputStream(confFile);
-
-			props.setProperty("video-specific[b]", bitrate);
-			props.setProperty("populationSize", populationSize);
-
-			props.store(output, null);
-
-		} catch (IOException io) {
-			io.printStackTrace();
-		} finally {
-			if (output != null) {
-				try {
-					output.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-
-		}
-
-	}
-
 	public static String getConfigValue(String filePath, String key) {
-		String value = null;
 		Properties props = new Properties();
 		InputStream input = null;
 
