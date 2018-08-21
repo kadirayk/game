@@ -1,4 +1,4 @@
-package test.benchmark;
+package benchmark;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;

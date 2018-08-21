@@ -1,4 +1,4 @@
-package test.util.hasco;
+package util.hasco;
 
 import org.junit.Test;
 
