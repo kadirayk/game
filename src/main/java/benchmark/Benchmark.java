@@ -42,11 +42,14 @@ public class Benchmark {
 
 		System.out.println("Benchmarks start");
 
-		while (processedPopulation.size() < populationSize) {
+		boolean no_more_improvements = false;
+
+		while (processedPopulation.size() < populationSize && !no_more_improvements) {
 			File currentFile = getNextFile(populationDir);
 			if (currentFile != null) {
 				String bitrate = getConfigValue(currentFile, "video-specific[b]");
 				String popSize = getConfigValue(currentFile, "populationSize");
+				no_more_improvements = Boolean.getBoolean(getConfigValue(currentFile, "no_more_improvements"));
 				if (bitrate == null || popSize == null) {
 					Thread.sleep(2000);
 					continue;
@@ -121,8 +124,7 @@ public class Benchmark {
 		}
 		return testBed;
 	}
-	
-	
+
 	private static void setupGroundingRoutine(File file) throws InterruptedException {
 		String fileName = file.getAbsolutePath();
 		String bitrate = getConfigValue(file, "video-specific[b]");
@@ -140,8 +142,7 @@ public class Benchmark {
 		config.put("video-renderer", renderer);
 		config.put("video-specific[intra_refresh]", intraRefresh);
 		config.put("video-specific[refs]", refs);
-		
-		
+
 		File testBed = copyExecutionFilesToTestBed(fileName);
 		// if (port == null) {
 		port = getRandomAvailablePort();
@@ -176,50 +177,13 @@ public class Benchmark {
 
 		System.out.println("Game will start on port: " + port);
 	}
-	
 
-	private static void setupGroundingRoutine(String fileName, String bitrate) throws InterruptedException {
-		File testBed = copyExecutionFilesToTestBed(fileName);
-		// if (port == null) {
-		port = getRandomAvailablePort();
-		// }
-		changeServerPort(testBed, port);
-
-		changeClientPort(testBed, port);
-
-		changeBitRate(testBed, bitrate);
-
-		loadConf(testBed);
-
-		Interview interview = SerializationUtil.readAsJSON(testBed.getAbsolutePath() + "/interview_data/");
-
-		String gameSelection = interview.getQuestionByPath("step1.q1").getAnswer();
-		Benchmark.gameSelection = gameSelection;
-
-		System.out.println("Game selection: " + gameSelection);
-		writeGameSelection(testBed, gameSelection);
-		createGroundingRoutine(testBed, gameSelection);
-
-		File currentFile = new File(fileName);
-		System.out.println("136:" + currentFile.getAbsolutePath());
-		writeConfValue(currentFile, "client", findClientPath(fileName));
-		executeGroundingRoutine(testBed);
-
-		String score = null;
-		while (score == null) {
-			score = getConfigValue(currentFile, "score");
-			Thread.sleep(2000);
-		}
-
-		System.out.println("Game will start on port: " + port);
-	}
-	
 	public static void changeVideoConfigValues(File testBed, Map<String, String> config) {
 		try {
 			File confFile = new File(testBed.getAbsolutePath() + "/src/config/common/video-x264-param.conf");
 			Wini ini = new Wini(confFile);
-			
-			for(Map.Entry<String, String> e: config.entrySet()){
+
+			for (Map.Entry<String, String> e : config.entrySet()) {
 				ini.put("video", e.getKey(), e.getValue());
 			}
 			ini.store();
@@ -278,7 +242,7 @@ public class Benchmark {
 
 		writeConfValue(individualFile, "score", String.valueOf(score));
 	}
-	
+
 	private static void writeGameSelection(File testBed, String gameSelection) {
 		String[] nameArray = testBed.getName().split("_");
 		String timeStamp = nameArray[nameArray.length - 1];
@@ -287,7 +251,6 @@ public class Benchmark {
 
 		writeConfValue(individualFile, "gameSelection", String.valueOf(gameSelection));
 	}
-
 
 	private static void stopGameOnServerSide() {
 		String gameWindowTitle = generalGameProp.getProperty(gameSelection + ".window");

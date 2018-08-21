@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -19,28 +16,26 @@ public class GAStrategyRunner {
 
 	private static Properties generalGameProp;
 
+	private static final int MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS = 3;
+
 	public static void main(String[] args) {
 
 		loadConf();
 
-		// List<byte[]> candidates = initiateCandidates();
-
-		Population population = new Population(Configurator.POPULATION_SIZE).initializePopulation();
-		Algorithm algorithm = new Algorithm();
+		Individual individual = new Individual(Configurator.BIT_LENGTH);
 
 		String score = null;
-		int i = 0;
-		while (i < 8) {
+		double min_score = Double.MAX_VALUE;
+		int num_iterations = 0;
+		int num_no_consequent_improvements = 0;
+		String filepath = null;
+		while (num_iterations < Configurator.MAX_INDIVIDUAL_COUNT
+				&& num_no_consequent_improvements < MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS) {
 			String time = String.valueOf(System.currentTimeMillis());
-			String filepath = "../../benchmarks/population/individual_" + time;
-			Configurator.createConfigurationFile(filepath, population);
+			filepath = "../../benchmarks/population/individual_" + time;
+			Configurator.createConfigurationFile(filepath, individual);
 
 			System.out.println("Calculating score for:" + filepath);
-
-			String path = new File(".").getAbsolutePath();
-			int startIndex = path.lastIndexOf("game-") + "game-".length();
-			int endIndex = startIndex + 10;
-			String id = path.substring(startIndex, endIndex);
 
 			while (score == null) {
 				score = Configurator.getConfigValue(filepath, "score");
@@ -52,55 +47,41 @@ public class GAStrategyRunner {
 				}
 			}
 
+			double tmp_score = Double.parseDouble(score);
+			if (tmp_score < min_score) {
+				min_score = tmp_score;
+				num_no_consequent_improvements = 0;
+			} else {
+				num_no_consequent_improvements++;
+			}
+
 			System.out.println("score: " + score);
 			score = null;
-			population = algorithm.evolve(population);
-			System.out.println("after evolution: " + population.getChromosomes()[0].getGenes().toString());
-			i++;
+			// new individual
+			individual = individual.changeOneBit();
+			System.out.println("new individual: " + individual.toString());
+			num_iterations++;
 
 		}
 
-		// String score = null;
-		// Collections.shuffle(candidates);
-		// int i = 0;
-		// while (i < candidates.size()) {
-		// String time = String.valueOf(System.currentTimeMillis());
-		// String filepath = "../../benchmarks/population/individual_" + time;
-		// Configurator.createConfigurationFile(filepath, candidates.get(i),
-		// String.valueOf(candidates.size()));
-		//
-		// System.out.println("Checking score for:" + filepath);
-		//
-		// String path = new File(".").getAbsolutePath();
-		// int startIndex = path.lastIndexOf("game-") + "game-".length();
-		// int endIndex = startIndex + 10;
-		// String id = path.substring(startIndex, endIndex);
-		//
-		// while (score == null) {
-		// score = Configurator.getConfigValue(filepath, "score");
-		// try {
-		// Thread.sleep(3000);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// }
-		//
-		// System.out.println("score: " + score);
-		// score = null;
-		//
-		// i++;
-		// }
+		if (num_iterations == Configurator.MAX_INDIVIDUAL_COUNT) {
+			System.out.println("reached number of max individual count.");
+		} else if (num_no_consequent_improvements == MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS) {
+			Configurator.setConfigValue(filepath, "no_more_improvements", "true");
+			System.out.println("no more improvements.");
+		}
 
 		String winningId = findWinningIndividual();
 		moveWinningIndividualToGroundingFolder(winningId);
 		createGroundingRoutineForWinningStrategy(winningId);
+		printWinningConfiguration(winningId);
 	}
 
-	private static List<byte[]> initiateCandidates() {
-		List<byte[]> candidates = new ArrayList<>();
-
-		return candidates;
+	private static void printWinningConfiguration(String winningId) {
+		File individualFile = new File("../../benchmarks/population/individual_" + winningId);
+		String content = FileUtil.readFile(individualFile.getAbsolutePath());
+		System.out.println("Winning Configuration: ");
+		System.out.println(content);
 	}
 
 	private static String findWinningIndividual() {
@@ -122,6 +103,7 @@ public class GAStrategyRunner {
 	}
 
 	private static void moveWinningIndividualToGroundingFolder(String winningId) {
+		System.out.println("moving winning individual " + winningId + " to grounding folder");
 		File individualFolder = new File("../../benchmarks/testbed_" + winningId);
 		File groundingFoler = new File("../../grounding");
 		// should be like this but MovePlaceholderFilesToSourceCommand does not
@@ -134,6 +116,7 @@ public class GAStrategyRunner {
 	}
 
 	private static void createGroundingRoutineForWinningStrategy(String winningId) {
+		System.out.println("create groundingroutine.bat for winning strategy");
 		String gameSelection = readGameSelection(winningId);
 		StringBuilder content = new StringBuilder();
 

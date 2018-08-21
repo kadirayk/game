@@ -23,9 +23,9 @@ public class Configurator {
 	public static Map<String, String> videoDecoder = new HashMap<>();
 	public static Map<String, String> videoSpecificRefs = new HashMap<>();
 
-	public static final int CHROMOSOME_LENGTH = 15;
+	public static final int BIT_LENGTH = 15;
 
-	public static final int POPULATION_SIZE = 8;
+	public static final int MAX_INDIVIDUAL_COUNT = 8;
 
 	static {
 		videoSpecificBitrate.put("000", "250000");
@@ -57,6 +57,11 @@ public class Configurator {
 		videoSpecificMethod.put("1000", "hex");
 		videoSpecificMethod.put("1001", "umh");
 		videoSpecificMethod.put("1010", "iter");
+		videoSpecificMethod.put("1011", "dia");
+		videoSpecificMethod.put("1100", "dia");
+		videoSpecificMethod.put("1101", "dia");
+		videoSpecificMethod.put("1110", "dia");
+		videoSpecificMethod.put("1111", "dia");
 
 		// videoEncoder
 		// videoDecoder
@@ -88,16 +93,15 @@ public class Configurator {
 		return size;
 	}
 
-	public static void createConfigurationFile(String filePath, Population population) {
-		String populationSize = String.valueOf(population.getSize());
-		String bitrateGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 0, 3));
-		String fpsGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 3, 6));
-		String methodGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 6, 10));
-		String rangeGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 10, 12));
-		String rendererGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 12, 13));
-		String intraRefreshGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 13, 14));
-		String refsGenes = ConvertArrayToString(Arrays.copyOfRange(population.getChromosomes()[0].getGenes(), 14, 15));
-		
+	public static void createConfigurationFile(String filePath, Individual individual) {
+		String bitrateGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 0, 3));
+		String fpsGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 3, 6));
+		String methodGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 6, 10));
+		String rangeGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 10, 12));
+		String rendererGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 12, 13));
+		String intraRefreshGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 13, 14));
+		String refsGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 14, 15));
+
 		String bitrate = videoSpecificBitrate.get(bitrateGenes);
 		String fps = videoFps.get(fpsGenes);
 		String method = videoSpecificMethod.get(methodGenes);
@@ -105,7 +109,7 @@ public class Configurator {
 		String renderer = videoRenderer.get(rendererGenes);
 		String intraRefresh = videoSpecificIntraRefresh.get(intraRefreshGenes);
 		String refs = videoSpecificRefs.get(refsGenes);
-		
+
 		Properties props = new Properties();
 
 		OutputStream output = null;
@@ -125,8 +129,7 @@ public class Configurator {
 			props.setProperty("video-renderer", renderer);
 			props.setProperty("video-specific[intra_refresh]", intraRefresh);
 			props.setProperty("video-specific[refs]", refs);
-			props.setProperty("populationSize", populationSize);
-			
+			props.setProperty("populationSize", String.valueOf(MAX_INDIVIDUAL_COUNT));
 
 			props.store(output, null);
 
@@ -142,17 +145,64 @@ public class Configurator {
 			}
 
 		}
-		System.out.println("createConfigurationFile done for individual: " + population.getChromosomes()[0].toString());
+		System.out.println("createConfigurationFile done for individual: " + individual.toString());
 	}
 
-	private static String ConvertArrayToString(int[] array){
+	private static String ConvertArrayToString(int[] array) {
 		StringBuilder str = new StringBuilder();
 		for (int i = 0; i < array.length; i++) {
 			str.append(String.valueOf(array[i]));
 		}
 		return str.toString();
 	}
-	
+
+	public static void setConfigValue(String filePath, String key, String value) {
+		Properties props = new Properties();
+		OutputStream output = null;
+		InputStream input = null;
+
+		try {
+
+			File directory = new File(".");
+			filePath = directory.getCanonicalPath() + File.separator + filePath;
+
+			input = new FileInputStream(filePath);
+
+			props.load(input);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		try {
+			output = new FileOutputStream(filePath);
+
+			props.setProperty(key, value);
+
+			props.store(output, null);
+
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+	}
+
 	public static String getConfigValue(String filePath, String key) {
 		Properties props = new Properties();
 		InputStream input = null;
