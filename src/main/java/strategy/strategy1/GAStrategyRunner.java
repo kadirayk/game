@@ -22,20 +22,22 @@ public class GAStrategyRunner {
 
 		loadConf();
 
-		Individual individual = new Individual(Configurator.BIT_LENGTH);
+		Individual bestIndividual = new Individual(Configurator.BIT_LENGTH);
 
 		String score = null;
-		double min_score = Double.MAX_VALUE;
+		double bestScore = calculateInitialScore(bestIndividual);
 		int num_iterations = 0;
 		int num_no_consequent_improvements = 0;
 		String filepath = null;
-		while (num_iterations < Configurator.MAX_INDIVIDUAL_COUNT
+		while (num_iterations < Configurator.MAX_INDIVIDUAL_COUNT - 1
 				&& num_no_consequent_improvements < MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS) {
+			Individual tmpIndividual = bestIndividual.changeOneBit();
+
 			String time = String.valueOf(System.currentTimeMillis());
 			filepath = "../../benchmarks/population/individual_" + time;
-			Configurator.createConfigurationFile(filepath, individual);
+			Configurator.createConfigurationFile(filepath, tmpIndividual);
 
-			System.out.println("Calculating score for:" + filepath);
+			System.out.println("Calculating score for:" + filepath + "bits: " + tmpIndividual.toString());
 
 			while (score == null) {
 				score = Configurator.getConfigValue(filepath, "score");
@@ -47,9 +49,10 @@ public class GAStrategyRunner {
 				}
 			}
 
-			double tmp_score = Double.parseDouble(score);
-			if (tmp_score < min_score) {
-				min_score = tmp_score;
+			double tmpScore = Double.parseDouble(score);
+			if (tmpScore < bestScore) {
+				bestScore = tmpScore;
+				bestIndividual = tmpIndividual;
 				num_no_consequent_improvements = 0;
 			} else {
 				num_no_consequent_improvements++;
@@ -57,17 +60,16 @@ public class GAStrategyRunner {
 
 			System.out.println("score: " + score);
 			score = null;
-			// new individual
-			individual = individual.changeOneBit();
-			System.out.println("new individual: " + individual.toString());
-			num_iterations++;
 
+			num_iterations++;
 		}
 
-		if (num_iterations == Configurator.MAX_INDIVIDUAL_COUNT) {
+		if (num_iterations == Configurator.MAX_INDIVIDUAL_COUNT - 1) {
 			System.out.println("reached number of max individual count.");
 		} else if (num_no_consequent_improvements == MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS) {
-			Configurator.setConfigValue(filepath, "no_more_improvements", "true");
+			String time = String.valueOf(System.currentTimeMillis());
+			filepath = "../../benchmarks/population/individual_" + time;
+			Configurator.informNoMoreImprovements(filepath);
 			System.out.println("no more improvements.");
 		}
 
@@ -75,6 +77,29 @@ public class GAStrategyRunner {
 		moveWinningIndividualToGroundingFolder(winningId);
 		createGroundingRoutineForWinningStrategy(winningId);
 		printWinningConfiguration(winningId);
+	}
+
+	private static double calculateInitialScore(Individual individual) {
+		String time = String.valueOf(System.currentTimeMillis());
+		String filepath = "../../benchmarks/population/individual_" + time;
+		Configurator.createConfigurationFile(filepath, individual);
+
+		System.out.println("Calculating score for initial configuration:" + filepath);
+		String score = null;
+		while (score == null) {
+			score = Configurator.getConfigValue(filepath, "score");
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println("score: " + score);
+
+		double tmp_score = Double.parseDouble(score);
+		return tmp_score;
 	}
 
 	private static void printWinningConfiguration(String winningId) {
@@ -90,10 +115,12 @@ public class GAStrategyRunner {
 		for (File individual : new File("../../benchmarks/population/").listFiles()) {
 			if (individual.getName().contains("individual_")) {
 				String scoreString = Benchmark.getConfigValue(individual, "score");
-				Double score = Double.parseDouble(scoreString);
-				if (score < bestScore) {
-					bestScore = score;
-					winningIndividual = individual.getName().split("_")[1];
+				if (scoreString != null) {
+					Double score = Double.parseDouble(scoreString);
+					if (score < bestScore) {
+						bestScore = score;
+						winningIndividual = individual.getName().split("_")[1];
+					}
 				}
 			}
 

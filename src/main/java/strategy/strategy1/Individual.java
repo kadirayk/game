@@ -39,9 +39,10 @@ public class Individual {
 		} else {
 			currentVal = 0;
 		}
-		bits[randomBitIndex] = currentVal;
+		int[] newBits = Arrays.copyOf(bits, bits.length);
+		newBits[randomBitIndex] = currentVal;
 		// return new object for immutability
-		return new Individual(bits);
+		return new Individual(newBits);
 	}
 
 }

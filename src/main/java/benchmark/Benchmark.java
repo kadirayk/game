@@ -42,14 +42,18 @@ public class Benchmark {
 
 		System.out.println("Benchmarks start");
 
-		boolean no_more_improvements = false;
-
-		while (processedPopulation.size() < populationSize && !no_more_improvements) {
+		while (processedPopulation.size() < populationSize) {
 			File currentFile = getNextFile(populationDir);
 			if (currentFile != null) {
 				String bitrate = getConfigValue(currentFile, "video-specific[b]");
 				String popSize = getConfigValue(currentFile, "populationSize");
-				no_more_improvements = Boolean.getBoolean(getConfigValue(currentFile, "no_more_improvements"));
+				boolean no_more_improvements = Boolean.valueOf(getConfigValue(currentFile, "no_more_improvements"));
+				System.out.println("No more improvement: " + no_more_improvements);
+				System.out.println("Config val: " + getConfigValue(currentFile, "no_more_improvements"));
+				System.out.println("currentfile: " + currentFile.getName());
+				if (no_more_improvements) {
+					break;
+				}
 				if (bitrate == null || popSize == null) {
 					Thread.sleep(2000);
 					continue;
@@ -60,6 +64,7 @@ public class Benchmark {
 				System.out.println("running benchmark for " + currentFile.getName());
 				setupGroundingRoutine(currentFile);
 				processedPopulation.add(currentFile.getName());
+				System.out.println("Processed:" + processedPopulation.size());
 			}
 			Thread.sleep(2000);
 		}

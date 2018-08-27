@@ -92,6 +92,37 @@ public class Configurator {
 				+ videoSpecificRefs.size();
 		return size;
 	}
+	
+	public static void informNoMoreImprovements(String filePath) {
+		Properties props = new Properties();
+
+		OutputStream output = null;
+
+		try {
+			File directory = new File(".");
+			filePath = directory.getCanonicalPath() + File.separator + filePath;
+			File confFile = new File(filePath);
+			confFile.getParentFile().mkdirs();
+			confFile.createNewFile();
+			output = new FileOutputStream(confFile);
+
+			props.setProperty("no_more_improvements", "true");
+
+			props.store(output, null);
+
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+	}
 
 	public static void createConfigurationFile(String filePath, Individual individual) {
 		String bitrateGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 0, 3));
@@ -145,7 +176,6 @@ public class Configurator {
 			}
 
 		}
-		System.out.println("createConfigurationFile done for individual: " + individual.toString());
 	}
 
 	private static String ConvertArrayToString(int[] array) {
