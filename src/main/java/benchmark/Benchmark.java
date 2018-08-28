@@ -440,7 +440,8 @@ public class Benchmark {
 			content.append(gameExe).append("\n").append("TIMEOUT /T 5\n");
 		}
 
-		content.append(gameServer).append(" config/").append(gameConf).append("\n");
+		content.append(gameServer).append(" config/").append(gameConf).append(" >> ")
+				.append("../../" + gameSelection + ".log 2>&1").append("\n");
 		content.append("waitfor WaitForServerToBeReady /t 5\n ");
 		content.append("ga-client ").append("config/client.abs.conf ").append("rtsp://localhost:").append(port)
 				.append("/desktop");
