@@ -84,7 +84,7 @@ public class GAStrategyRunner {
 		String filepath = "../../benchmarks/population/individual_" + time;
 		Configurator.createConfigurationFile(filepath, individual);
 
-		System.out.println("Calculating score for initial configuration:" + filepath);
+		System.out.println("Calculating score for initial:" + filepath + "bits: " + individual.toString());
 		String score = null;
 		while (score == null) {
 			score = Configurator.getConfigValue(filepath, "score");
