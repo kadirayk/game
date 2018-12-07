@@ -1,4 +1,4 @@
-package strategy.strategy1;
+package util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Command;
 import model.Interview;
+import model.InterviewFillout;
+import strategy.strategy1.Individual;
 
 /**
  * Serialization utility class
@@ -41,16 +43,28 @@ public class SerializationUtil {
 
 	}
 
-	public static Interview readAsJSON(String path) {
+	public static InterviewFillout readAsJSON(String path) {
 		String filePath = path + "interview_state.json";
-		Interview interview = null;
+		InterviewFillout interview = null;
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			interview = mapper.readValue(new File(filePath), Interview.class);
+			interview = mapper.readValue(new File(filePath), InterviewFillout.class);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return interview;
+	}
+
+	public static Individual readIndividual(String path) {
+		String filePath = path + "/winning_individual.json";
+		Individual individual = null;
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			individual = mapper.readValue(new File(filePath), Individual.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return individual;
 	}
 
 	public static List<Command> readResponseTimes(String path) {
@@ -91,6 +105,17 @@ public class SerializationUtil {
 			e.printStackTrace();
 		}
 		return interview;
+	}
+
+	public static void writeIndividual(String path, Individual bestIndividual) {
+		String filePath = path + "/winning_individual.json";
+		ObjectMapper mapper = new ObjectMapper();
+		File file = new File(filePath);
+		try {
+			mapper.writeValue(file, bestIndividual);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

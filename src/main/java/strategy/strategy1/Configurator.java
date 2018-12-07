@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import model.Interview;
+import rmi.ConfigurationData;
+import util.SerializationUtil;
+
 public class Configurator {
 
 	public static Map<String, String> videoSpecificBitrate = new HashMap<>();
@@ -92,7 +96,7 @@ public class Configurator {
 				+ videoSpecificRefs.size();
 		return size;
 	}
-	
+
 	public static void informNoMoreImprovements(String filePath) {
 		Properties props = new Properties();
 
@@ -122,6 +126,39 @@ public class Configurator {
 			}
 
 		}
+	}
+
+	public static Map<String, String> createConfiguration(Individual individual) {
+		String bitrateGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 0, 3));
+		String fpsGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 3, 6));
+		String methodGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 6, 10));
+		String rangeGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 10, 12));
+		String rendererGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 12, 13));
+		String intraRefreshGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 13, 14));
+		String refsGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 14, 15));
+
+		String bitrate = videoSpecificBitrate.get(bitrateGenes);
+		String fps = videoFps.get(fpsGenes);
+		String method = videoSpecificMethod.get(methodGenes);
+		String range = videoSpecificRange.get(rangeGenes);
+		String renderer = videoRenderer.get(rendererGenes);
+		String intraRefresh = videoSpecificIntraRefresh.get(intraRefreshGenes);
+		String refs = videoSpecificRefs.get(refsGenes);
+		
+
+		Map<String, String> configuration = new HashMap<>();
+
+		configuration.put("video-specific[b]", bitrate);
+		configuration.put("video-fps", fps);
+		configuration.put("video-specific[me_method]", method);
+		configuration.put("video-specific[me_range]", range);
+		configuration.put("video-renderer", renderer);
+		configuration.put("video-specific[intra_refresh]", intraRefresh);
+		configuration.put("video-specific[refs]", refs);
+		
+
+		return configuration;
+
 	}
 
 	public static void createConfigurationFile(String filePath, Individual individual) {

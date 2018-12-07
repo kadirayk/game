@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+
 /**
  * Question is the building block of Interview which consists of UI element,
  * question content, and answer
@@ -9,17 +10,15 @@ import java.io.Serializable;
  * @author kadirayk
  *
  */
+@SuppressWarnings("serial")
 public class Question implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7211131201645636546L;
 	private String id;
-	private String questionId;
 	private String content;
 	private UIElement uiElement;
-	private String answer;
 
 	public String getContent() {
 		return content;
@@ -37,14 +36,6 @@ public class Question implements Serializable {
 		this.uiElement = uiElement;
 	}
 
-	public String getAnswer() {
-		return answer;
-	}
-
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
-
 	public String getId() {
 		return id;
 	}
@@ -53,12 +44,45 @@ public class Question implements Serializable {
 		this.id = id;
 	}
 
-	public String getQuestionId() {
-		return questionId;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((uiElement == null) ? 0 : uiElement.hashCode());
+		return result;
 	}
 
-	public void setQuestionId(String questionId) {
-		this.questionId = questionId;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Question other = (Question) obj;
+		if (content == null) {
+			if (other.content != null)
+				return false;
+		} else if (!content.equals(other.content))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (uiElement == null) {
+			if (other.uiElement != null)
+				return false;
+		} else if (!uiElement.equals(other.uiElement))
+			return false;
+		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", content=" + content + ", uiElement=" + uiElement + "]";
+	}
 }

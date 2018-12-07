@@ -1,9 +1,12 @@
 package strategy.strategy1;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -18,14 +21,70 @@ public class GAStrategyRunner {
 
 	private static final int MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS = 3;
 
+	private static void executeBenchmark(String outputPath) throws Exception {
+		System.out.print("Boot up internal benchmark service...");
+
+		final File benchmarkExec = new File(outputPath + "/benchmarks/benchmarkService.bat");
+
+		System.out.println("run " + benchmarkExec.getPath());
+
+		final ProcessBuilder pb = new ProcessBuilder(benchmarkExec.getAbsolutePath()).redirectOutput(Redirect.INHERIT)
+				.redirectError(Redirect.INHERIT);
+
+		try {
+			Process internalBenchmarkService = pb.start();
+
+			try (BufferedReader br = new BufferedReader(
+					new InputStreamReader(internalBenchmarkService.getErrorStream()))) {
+				String line;
+				boolean serviceUpAndRunning = false;
+				while (!serviceUpAndRunning && ((line = br.readLine()) != null)) {
+					if (line.contains("Service up and running")) {
+						serviceUpAndRunning = true;
+					}
+				}
+			}
+			System.out.println("DONE.");
+
+		} catch (final IOException e) {
+			System.err.println("ERROR: Could not boot benchmark service.");
+			System.exit(1);
+		}
+
+	}
+
 	public static void main(String[] args) {
 
-		loadConf();
+		String executionCopyPath = args[2];
+
+		executionCopyPath += "../../";
+
+		File prototypeDir = new File("../../");
+		File executionDir = new File(executionCopyPath);
+		try {
+			FileUtils.copyDirectory(prototypeDir, executionDir);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		final String executionPath = args[2] + "/../";
+
+		new Thread(() -> {
+			try {
+				executeBenchmark(executionPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}).start();
+
+		loadConf(executionPath);
 
 		Individual bestIndividual = new Individual(Configurator.BIT_LENGTH);
 
 		String score = null;
-		double bestScore = calculateInitialScore(bestIndividual);
+		double bestScore = calculateInitialScore(executionPath, bestIndividual);
 		int num_iterations = 0;
 		int num_no_consequent_improvements = 0;
 		String filepath = null;
@@ -34,7 +93,7 @@ public class GAStrategyRunner {
 			Individual tmpIndividual = bestIndividual.changeOneBit();
 
 			String time = String.valueOf(System.currentTimeMillis());
-			filepath = "../../benchmarks/population/individual_" + time;
+			filepath = executionPath + "benchmarks/population/individual_" + time;
 			Configurator.createConfigurationFile(filepath, tmpIndividual);
 
 			System.out.println("Calculating score for:" + filepath + "bits: " + tmpIndividual.toString());
@@ -68,20 +127,20 @@ public class GAStrategyRunner {
 			System.out.println("reached number of max individual count.");
 		} else if (num_no_consequent_improvements == MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS) {
 			String time = String.valueOf(System.currentTimeMillis());
-			filepath = "../../benchmarks/population/individual_" + time;
+			filepath = executionPath + "benchmarks/population/individual_" + time;
 			Configurator.informNoMoreImprovements(filepath);
 			System.out.println("no more improvements.");
 		}
 
-		String winningId = findWinningIndividual();
-		moveWinningIndividualToGroundingFolder(winningId);
-		createGroundingRoutineForWinningStrategy(winningId);
-		printWinningConfiguration(winningId);
+		String winningId = findWinningIndividual(executionPath);
+		moveWinningIndividualToGroundingFolder(executionPath, winningId);
+		createGroundingRoutineForWinningStrategy(executionPath, winningId);
+		printWinningConfiguration(executionPath, winningId);
 	}
 
-	private static double calculateInitialScore(Individual individual) {
+	private static double calculateInitialScore(String executionPath, Individual individual) {
 		String time = String.valueOf(System.currentTimeMillis());
-		String filepath = "../../benchmarks/population/individual_" + time;
+		String filepath = executionPath + "benchmarks/population/individual_" + time;
 		Configurator.createConfigurationFile(filepath, individual);
 
 		System.out.println("Calculating score for initial:" + filepath + "bits: " + individual.toString());
@@ -102,17 +161,17 @@ public class GAStrategyRunner {
 		return tmp_score;
 	}
 
-	private static void printWinningConfiguration(String winningId) {
-		File individualFile = new File("../../benchmarks/population/individual_" + winningId);
+	private static void printWinningConfiguration(String executionPath, String winningId) {
+		File individualFile = new File(executionPath + "/benchmarks/population/individual_" + winningId);
 		String content = FileUtil.readFile(individualFile.getAbsolutePath());
 		System.out.println("Winning Configuration: ");
 		System.out.println(content);
 	}
 
-	private static String findWinningIndividual() {
+	private static String findWinningIndividual(String executionPath) {
 		Double bestScore = 10.0;
 		String winningIndividual = null;
-		for (File individual : new File("../../benchmarks/population/").listFiles()) {
+		for (File individual : new File(executionPath + "benchmarks/population/").listFiles()) {
 			if (individual.getName().contains("individual_")) {
 				String scoreString = Benchmark.getConfigValue(individual, "score");
 				if (scoreString != null) {
@@ -129,10 +188,10 @@ public class GAStrategyRunner {
 		return winningIndividual;
 	}
 
-	private static void moveWinningIndividualToGroundingFolder(String winningId) {
+	private static void moveWinningIndividualToGroundingFolder(String executionPath, String winningId) {
 		System.out.println("moving winning individual " + winningId + " to grounding folder");
-		File individualFolder = new File("../../benchmarks/testbed_" + winningId);
-		File groundingFoler = new File("../../grounding");
+		File individualFolder = new File(executionPath + "benchmarks/testbed_" + winningId);
+		File groundingFoler = new File(executionPath + "grounding");
 		// should be like this but MovePlaceholderFilesToSourceCommand does not
 		// copy folders only files: File groundingFoler = new File("./output");
 		try {
@@ -142,9 +201,9 @@ public class GAStrategyRunner {
 		}
 	}
 
-	private static void createGroundingRoutineForWinningStrategy(String winningId) {
+	private static void createGroundingRoutineForWinningStrategy(String executionPath, String winningId) {
 		System.out.println("create groundingroutine.bat for winning strategy");
-		String gameSelection = readGameSelection(winningId);
+		String gameSelection = readGameSelection(executionPath, winningId);
 		StringBuilder content = new StringBuilder();
 
 		content.append("@echo off\n");
@@ -162,12 +221,12 @@ public class GAStrategyRunner {
 
 		content.append(gameServer).append(" config/").append(gameConf);
 
-		FileUtil.writeToFile("../../groundingroutine.bat", content.toString());
+		FileUtil.writeToFile(executionPath + "groundingroutine.bat", content.toString());
 	}
 
-	private static String readGameSelection(String winningId) {
+	private static String readGameSelection(String executionPath, String winningId) {
 
-		File file = new File("../../benchmarks/population/individual_" + winningId);
+		File file = new File(executionPath + "benchmarks/population/individual_" + winningId);
 
 		Properties props = new Properties();
 		InputStream input = null;
@@ -193,12 +252,12 @@ public class GAStrategyRunner {
 
 	}
 
-	private static void loadConf() {
+	private static void loadConf(String executionPath) {
 		generalGameProp = new Properties();
 		InputStream input = null;
 		try {
 
-			input = new FileInputStream("../../conf/game.conf");
+			input = new FileInputStream(executionPath + "conf/game.conf");
 
 			generalGameProp.load(input);
 

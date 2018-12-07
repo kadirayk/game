@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import model.Interview;
 import util.FileUtil;
+import util.SerializationUtil;
 
 public class StrategyRunner {
 
@@ -30,12 +31,12 @@ public class StrategyRunner {
 
 		loadConf();
 
-		Interview interview = SerializationUtil.readAsJSON("../../interview_data/");
-
-		String gameSelection = interview.getQuestionByPath("step1.q1").getAnswer();
-
-		System.out.println("Game selection: " + gameSelection);
-		createGroundingRoutine(gameSelection);
+//		Interview interview = SerializationUtil.readAsJSON("../../interview_data/");
+//
+//		String gameSelection = interview.getQuestionByPath("step1.q1").getAnswer();
+//
+//		System.out.println("Game selection: " + gameSelection);
+//		createGroundingRoutine(gameSelection);
 
 		System.out.println("Strategy is ready");
 	}

@@ -3,8 +3,27 @@ package strategy.strategy1;
 import java.util.Arrays;
 import java.util.Random;
 
+import rmi.ConfigurationData;
+
 public class Individual {
 	private int[] bits;
+	ConfigurationData config;
+
+	public Individual() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setBits(int[] bits) {
+		this.bits = bits;
+	}
+
+	public ConfigurationData getConfig() {
+		return config;
+	}
+
+	public void setConfig(ConfigurationData config) {
+		this.config = config;
+	}
 
 	private Individual(int[] bits) {
 		this.bits = bits;

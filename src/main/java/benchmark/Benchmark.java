@@ -20,8 +20,8 @@ import org.zeroturnaround.zip.ZipUtil;
 
 import model.Command;
 import model.Interview;
-import strategy.strategy1.SerializationUtil;
 import util.FileUtil;
+import util.SerializationUtil;
 
 public class Benchmark {
 
@@ -44,6 +44,8 @@ public class Benchmark {
 
 		while (processedPopulation.size() < populationSize) {
 			File currentFile = getNextFile(populationDir);
+			System.out.println("popdir:" + populationDir.getPath());
+			System.out.println("currentFile:" + currentFile.getPath());
 			if (currentFile != null) {
 				String bitrate = getConfigValue(currentFile, "video-specific[b]");
 				String popSize = getConfigValue(currentFile, "populationSize");
@@ -160,9 +162,9 @@ public class Benchmark {
 
 		loadConf(testBed);
 
-		Interview interview = SerializationUtil.readAsJSON(testBed.getAbsolutePath() + "/interview_data/");
-
-		String gameSelection = interview.getQuestionByPath("step1.q1").getAnswer();
+//		Interview interview = SerializationUtil.readAsJSON(testBed.getAbsolutePath() + "/interview_data/");
+//
+//		String gameSelection = interview.getQuestionByPath("step1.q1").getAnswer();
 		Benchmark.gameSelection = gameSelection;
 
 		System.out.println("Game selection: " + gameSelection);
