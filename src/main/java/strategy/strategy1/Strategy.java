@@ -22,18 +22,18 @@ public class Strategy {
 	public static Properties commonGameProp;
 
 	public static void main(String[] args) {
-//		if (!isValidArgs(args)) {
-//			return;
-//		}
-//		String processDir = args[0];
-//		String inputsDir = args[1];
-//		String outputsDir = args[2];
-//		String timeout = args[3];
+		if (!isValidArgs(args)) {
+			return;
+		}
+		String processDir = args[0];
+		String inputsDir = args[1];
+		String outputsDir = args[2];
+		String timeout = args[3];
 
 		String rmiVmType = gamingPrototypeConfig.getRmiVmType();
 
-//		System.out.format("Running Gaming Strategy with processDir: %s\ninputsDir: %s\noutputsDir:%s\ntimeout:%s\n",
-//				processDir, inputsDir, outputsDir, timeout);
+		System.out.format("Running Gaming Strategy with processDir: %s\ninputsDir: %s\noutputsDir:%s\ntimeout:%s\n",
+				processDir, inputsDir, outputsDir, timeout);
 		System.out.format("With %s: %s:%s", args[6], gamingPrototypeConfig.getRmiServerIp(),
 				gamingPrototypeConfig.getRmiServerPort());
 
@@ -41,7 +41,7 @@ public class Strategy {
 
 		startVM(rmiVmType);
 
-//		runHillClimb(outputsDir, processDir);
+		runHillClimb(outputsDir, processDir);
 
 	}
 
