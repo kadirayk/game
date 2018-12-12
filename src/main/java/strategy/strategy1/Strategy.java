@@ -54,7 +54,8 @@ public class Strategy {
 		try {
 			// TODO: check for linux
 			// rt.exec("VBoxManage startvm \"win10-32\"");
-			rt.exec("\"C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe\" startvm win10_32");
+//			rt.exec("\"C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe\" startvm win10_32");
+			rt.exec("VBoxManage startvm win10_32");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,7 +103,7 @@ public class Strategy {
 		}
 
 		FileUtil.writeToFile(outputsDir + "/score", String.valueOf(bestScore));
-		SerializationUtil.writeIndividual(outputsDir+"/final", bestIndividual);
+		SerializationUtil.writeIndividual(outputsDir, bestIndividual);
 
 
 	}
@@ -116,7 +117,7 @@ public class Strategy {
 	}
 
 	public static Double configureAndEvaluate(String processDir, Individual individual) {
-		GaRmiClient rmiClient = new GaRmiClient("131.234.250.150", 1099);
+		GaRmiClient rmiClient = new GaRmiClient(ip, port);
 		
 		System.out.println("individual: " + individual.toString());
 		

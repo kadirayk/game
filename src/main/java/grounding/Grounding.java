@@ -14,6 +14,13 @@ public class Grounding {
 		int port = Integer.valueOf(args[4]);
 
 		System.out.println("Running grounding.jar");
+				
+		int index = outputsFinalDir.lastIndexOf("/");
+		
+		outputsFinalDir = outputsFinalDir.substring(0, index);
+		
+		outputsFinalDir += "/strategy1";
+				
 		
 		Individual winningIndividual = SerializationUtil.readIndividual(outputsFinalDir);
 

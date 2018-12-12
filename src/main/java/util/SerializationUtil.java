@@ -112,6 +112,12 @@ public class SerializationUtil {
 		ObjectMapper mapper = new ObjectMapper();
 		File file = new File(filePath);
 		try {
+			file.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
 			mapper.writeValue(file, bestIndividual);
 		} catch (IOException e) {
 			e.printStackTrace();
