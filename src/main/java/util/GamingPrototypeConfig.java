@@ -23,7 +23,7 @@ public interface GamingPrototypeConfig extends Mutable, Accessible {
 	public Integer getMaxNumNoConsequentImprovements();
 
 	@Key(RMI_SERVER_IP)
-	@DefaultValue("192.168.101.56") // default ip of VM
+	@DefaultValue("192.168.56.101") // default ip of VM
 	public String getRmiServerIp();
 
 	@Key(RMI_SERVER_PORT)
