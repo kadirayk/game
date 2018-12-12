@@ -17,7 +17,7 @@ import util.SerializationUtil;
 public class Strategy {
 
 	private static final GamingPrototypeConfig gamingPrototypeConfig = GamingPrototypeConfig
-			.get("gaming-prototype.properties");
+			.get("./conf/gaming-prototype.properties");
 
 	public static Properties commonGameProp;
 
