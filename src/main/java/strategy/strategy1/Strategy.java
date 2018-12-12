@@ -1,6 +1,5 @@
 package strategy.strategy1;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,51 +10,58 @@ import model.Question;
 import rmi.ConfigurationData;
 import rmi.client.GaRmiClient;
 import util.FileUtil;
+import util.GamingPrototypeConfig;
+import util.RmiVmType;
 import util.SerializationUtil;
 
 public class Strategy {
 
+	private static final GamingPrototypeConfig gamingPrototypeConfig = GamingPrototypeConfig
+			.get("gaming-prototype.properties");
+
 	public static Properties commonGameProp;
-	private static final int MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS = 3;
-	
-	private static String ip;
-	private static int  port;
 
 	public static void main(String[] args) {
-		if (!isValidArgs(args)) {
-			return;
-		}
-		String processDir = args[0];
-		String inputsDir = args[1];
-		String outputsDir = args[2];
-		String timeout = args[3];
-		ip = args[4];
-		port = Integer.valueOf(args[5]);
-		boolean isRemote = args[6].equals("remote") ? true : false;
-		
+//		if (!isValidArgs(args)) {
+//			return;
+//		}
+//		String processDir = args[0];
+//		String inputsDir = args[1];
+//		String outputsDir = args[2];
+//		String timeout = args[3];
 
-		System.out.format("Running Gaming Strategy with processDir: %s\ninputsDir: %s\noutputsDir:%s\ntimeout:%s\n",
-				processDir, inputsDir, outputsDir, timeout);
-		System.out.format("With %s: %s:%s", args[6], ip, port);
-		
-		
+		String rmiVmType = gamingPrototypeConfig.getRmiVmType();
+
+//		System.out.format("Running Gaming Strategy with processDir: %s\ninputsDir: %s\noutputsDir:%s\ntimeout:%s\n",
+//				processDir, inputsDir, outputsDir, timeout);
+		System.out.format("With %s: %s:%s", args[6], gamingPrototypeConfig.getRmiServerIp(),
+				gamingPrototypeConfig.getRmiServerPort());
+
 		loadCommonGameProp();
-		
-		if(!isRemote) {
-			startVM();
-		}
 
-		runHillClimb(outputsDir, processDir);
+		startVM(rmiVmType);
+
+//		runHillClimb(outputsDir, processDir);
 
 	}
 
-	private static void startVM() {
+	private static void startVM(String rmiVmType) {
+		if (RmiVmType.REMOTE.value().equals(rmiVmType)) {
+			return; // if remote vm can not send start command
+		}
+
 		Runtime rt = Runtime.getRuntime();
 		try {
-			// TODO: check for linux
-			// rt.exec("VBoxManage startvm \"win10-32\"");
-//			rt.exec("\"C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe\" startvm win10_32");
-			rt.exec("VBoxManage startvm win10_32");
+			String command = null;
+			if (RmiVmType.LOCAL_LINUX.value().equals(rmiVmType)) {
+				command = "VBoxManage startvm win10_32";
+			} else if (RmiVmType.LOCAL_WINDOWS.value().equals(rmiVmType)) {
+				command = "\"C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe\" startvm win10_32";
+			} else {
+				System.err.println("invalid VM Type");
+				return;
+			}
+			rt.exec(command);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,7 +84,7 @@ public class Strategy {
 		int num_no_consequent_improvements = 0;
 
 		while (num_iterations < Configurator.MAX_INDIVIDUAL_COUNT - 1
-				&& num_no_consequent_improvements < MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS) {
+				&& num_no_consequent_improvements < gamingPrototypeConfig.getMaxNumNoConsequentImprovements()) {
 			Individual tmpIndividual = bestIndividual.changeOneBit();
 			System.out.println("iteration: " + num_iterations);
 
@@ -98,13 +104,12 @@ public class Strategy {
 
 		if (num_iterations == Configurator.MAX_INDIVIDUAL_COUNT - 1) {
 			System.out.println("reached number of max individual count.");
-		} else if (num_no_consequent_improvements == MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS) {
+		} else if (num_no_consequent_improvements == gamingPrototypeConfig.getMaxNumNoConsequentImprovements()) {
 			System.out.println("no more improvements.");
 		}
 
 		FileUtil.writeToFile(outputsDir + "/score", String.valueOf(bestScore));
 		SerializationUtil.writeIndividual(outputsDir, bestIndividual);
-
 
 	}
 
@@ -117,10 +122,11 @@ public class Strategy {
 	}
 
 	public static Double configureAndEvaluate(String processDir, Individual individual) {
-		GaRmiClient rmiClient = new GaRmiClient(ip, port);
-		
+		GaRmiClient rmiClient = new GaRmiClient(gamingPrototypeConfig.getRmiServerIp(),
+				gamingPrototypeConfig.getRmiServerPort());
+
 		System.out.println("individual: " + individual.toString());
-		
+
 		ConfigurationData config = new ConfigurationData(Configurator.createConfiguration(individual));
 
 		InterviewFillout interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
@@ -142,7 +148,6 @@ public class Strategy {
 		Double score = rmiClient.configureAndEvaluate(config);
 		return score;
 	}
-
 
 	public static void loadCommonGameProp() {
 		commonGameProp = new Properties();

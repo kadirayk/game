@@ -161,6 +161,7 @@ public class Configurator {
 
 	}
 
+	@Deprecated
 	public static void createConfigurationFile(String filePath, Individual individual) {
 		String bitrateGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 0, 3));
 		String fpsGenes = ConvertArrayToString(Arrays.copyOfRange(individual.getBits(), 3, 6));
