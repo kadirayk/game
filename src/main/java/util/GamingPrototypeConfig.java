@@ -18,9 +18,30 @@ public interface GamingPrototypeConfig extends Mutable, Accessible {
 	public static final String RMI_SERVER_PORT = "strategy.rmi_server_port";
 	public static final String RMI_VM_TYPE = "strategy.rmi_vm_type";
 
+	public static final String GA_SERVER_IP = "ga.server_ip";
+	public static final String GA_SERVER_PORT = "ga.server_port";
+
+	public static final String DEPLOYMENT_PORT = "service.deployment_port";
+
+	@Key(DEPLOYMENT_PORT)
+	@DefaultValue("18080")
+	public Integer getDeploymentPort();
+
+	@Key(GA_SERVER_IP)
+	@DefaultValue("192.168.56.101")
+	public String getGaServerIp();
+
+	@Key(GA_SERVER_PORT)
+	@DefaultValue("8554")
+	public String getGaServerPort();
+
 	@Key(MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS)
 	@DefaultValue("3")
 	public Integer getMaxNumNoConsequentImprovements();
+
+	@Key(MAX_SIZE_OF_POPULATION)
+	@DefaultValue("8")
+	public Integer getMaxSizeOfPopulation();
 
 	@Key(RMI_SERVER_IP)
 	@DefaultValue("192.168.56.101") // default ip of VM

@@ -29,7 +29,7 @@ public class Configurator {
 
 	public static final int BIT_LENGTH = 15;
 
-	public static final int MAX_INDIVIDUAL_COUNT = 8;
+//	public static final int MAX_INDIVIDUAL_COUNT = 8;
 
 	static {
 		videoSpecificBitrate.put("000", "250000");
@@ -198,7 +198,7 @@ public class Configurator {
 			props.setProperty("video-renderer", renderer);
 			props.setProperty("video-specific[intra_refresh]", intraRefresh);
 			props.setProperty("video-specific[refs]", refs);
-			props.setProperty("populationSize", String.valueOf(MAX_INDIVIDUAL_COUNT));
+//			props.setProperty("populationSize", String.valueOf(MAX_INDIVIDUAL_COUNT));
 
 			props.store(output, null);
 

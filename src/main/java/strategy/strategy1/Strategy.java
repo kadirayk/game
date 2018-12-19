@@ -83,7 +83,7 @@ public class Strategy {
 		int num_iterations = 0;
 		int num_no_consequent_improvements = 0;
 
-		while (num_iterations < Configurator.MAX_INDIVIDUAL_COUNT - 1
+		while (num_iterations < gamingPrototypeConfig.getMaxSizeOfPopulation() - 1
 				&& num_no_consequent_improvements < gamingPrototypeConfig.getMaxNumNoConsequentImprovements()) {
 			Individual tmpIndividual = bestIndividual.changeOneBit();
 			System.out.println("iteration: " + num_iterations);
@@ -102,7 +102,7 @@ public class Strategy {
 			num_iterations++;
 		}
 
-		if (num_iterations == Configurator.MAX_INDIVIDUAL_COUNT - 1) {
+		if (num_iterations == gamingPrototypeConfig.getMaxSizeOfPopulation() - 1) {
 			System.out.println("reached number of max individual count.");
 		} else if (num_no_consequent_improvements == gamingPrototypeConfig.getMaxNumNoConsequentImprovements()) {
 			System.out.println("no more improvements.");

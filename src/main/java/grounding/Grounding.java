@@ -1,5 +1,7 @@
 package grounding;
 
+import java.io.File;
+
 import rmi.client.GaRmiClient;
 import strategy.strategy1.Individual;
 import util.GamingPrototypeConfig;
@@ -18,8 +20,9 @@ public class Grounding {
 		int port = gamingPrototypeConfig.getRmiServerPort();
 
 		System.out.println("Running grounding.jar");
+		System.out.println("processDir: " + processDir + "\nstrDir: " + strategyDir + "\nfinal: " + outputsFinalDir);
 
-		int index = outputsFinalDir.lastIndexOf("/");
+		int index = outputsFinalDir.lastIndexOf(File.separator);
 
 		outputsFinalDir = outputsFinalDir.substring(0, index);
 
