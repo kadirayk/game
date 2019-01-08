@@ -46,7 +46,7 @@ public class SpringController {
 	}
 	
 	/**
-	 * Stops GA server
+	 * Stops GA server not this server itself
 	 * @param response
 	 * @return
 	 * @throws IOException
@@ -61,7 +61,23 @@ public class SpringController {
 		return "OK";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/**
+	 * Starts GA server not this server itself
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/startServer", method = RequestMethod.GET)
+	@ResponseBody
+	public String startServer(HttpServletResponse response) throws IOException {
+		String ip = gamingPrototypeConfig.getRmiServerIp();
+		int port = gamingPrototypeConfig.getRmiServerPort();
+		GaRmiClient rmiClient = new GaRmiClient(ip, port);
+		rmiClient.startServer();
+		return "OK";
+	}
+	
+	@RequestMapping(value = "/play", method = RequestMethod.GET)
     public String greeting(Model model) {
         return "main";
     }

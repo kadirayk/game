@@ -208,5 +208,11 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 		}
 		return true;
 	}
+	
+	@Override
+	public Boolean startServer() throws RemoteException {
+		configureAndStartUp(finalConfig);
+		return true;
+	}
 
 }

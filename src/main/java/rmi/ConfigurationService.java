@@ -10,5 +10,7 @@ public interface ConfigurationService extends Remote {
 	public String configureAndStartUp(ConfigurationData config) throws RemoteException;
 	
 	public Boolean stopServer() throws RemoteException;
+	
+	public Boolean startServer() throws RemoteException;
 
 }

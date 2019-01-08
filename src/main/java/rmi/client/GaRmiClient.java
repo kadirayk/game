@@ -96,5 +96,31 @@ public class GaRmiClient {
 		}
 		return response;
 	}
+	
+	public Boolean startServer() {
+		ConfigurationService service = null;
+
+		try {
+			registry = LocateRegistry.getRegistry(host, port);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			service = (ConfigurationService) registry.lookup(ConfigurationService.class.getSimpleName());
+		} catch (RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Boolean response = null;
+		try {
+			response = service.stopServer();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response;
+	}
 
 }
