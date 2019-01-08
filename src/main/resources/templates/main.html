@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Gaming Client</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css"
+	href="../webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Gaming</a>
+			</div>
+		</div>
+	</nav>
+	<div class="row nav-row">
+		<div class="col-xs-4 col-xs-offset-4">
+			<a class="btn btn-danger" target="_blank" href="/stopServer">
+				Stop Server </a> <a class="btn btn-success" target="_blank"
+				href="/startServer"> Start Server </a>
+		</div>
+	</div>
+	<br />
+	<div class="row nav-row">
+		<div class="col-xs-4 col-xs-offset-4">
+			<a class="btn btn-primary" target="_blank" href="/downloadClient">
+				Download Game Client </a>
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		src="../webjars/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="../webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+</body>
+</html>

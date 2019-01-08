@@ -32,9 +32,9 @@ public class Configurator {
 //	public static final int MAX_INDIVIDUAL_COUNT = 8;
 
 	static {
-		videoSpecificBitrate.put("000", "250000");
-		videoSpecificBitrate.put("001", "500000");
-		videoSpecificBitrate.put("010", "1000000");
+		videoSpecificBitrate.put("000", "800000");
+		videoSpecificBitrate.put("001", "1000000");
+		videoSpecificBitrate.put("010", "1500000");
 		videoSpecificBitrate.put("011", "2000000");
 		videoSpecificBitrate.put("100", "3000000");
 		videoSpecificBitrate.put("101", "4000000");

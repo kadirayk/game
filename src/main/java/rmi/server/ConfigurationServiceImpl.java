@@ -26,6 +26,8 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 	protected ConfigurationServiceImpl() throws RemoteException {
 		super();
 	}
+	
+	private static ConfigurationData finalConfig;
 
 	/**
 	 * 
@@ -171,6 +173,7 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 
 	@Override
 	public String configureAndStartUp(ConfigurationData config) throws RemoteException {
+		finalConfig = config;
 		configureGA(config);
 		createGameServerStartScriptWithoutClient(config);
 		
@@ -192,6 +195,18 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 		}
 		
 		return "Started final configuration";
+	}
+
+	@Override
+	public Boolean stopServer() throws RemoteException {
+		String gameWindowTitle = finalConfig.getGameWindow();
+		String killcommand = "taskkill /F /FI \"WindowTitle eq " + gameWindowTitle + "\" /T";
+		try {
+			Runtime.getRuntime().exec(killcommand);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 }
