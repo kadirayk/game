@@ -115,7 +115,7 @@ public class GaRmiClient {
 
 		Boolean response = null;
 		try {
-			response = service.stopServer();
+			response = service.startServer();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
