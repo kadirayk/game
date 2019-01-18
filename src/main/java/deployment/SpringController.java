@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 import org.zeroturnaround.zip.ZipUtil;
 
-import rmi.client.GaRmiClient;
+import rmi.client.GaMiniOsServerRmiClient;
 import util.FileUtil;
 import util.GamingPrototypeConfig;
 
@@ -54,9 +54,9 @@ public class SpringController {
 	@RequestMapping(value = "/stopServer", method = RequestMethod.GET)
 	@ResponseBody
 	public String stopServer(HttpServletResponse response) throws IOException {
-		String ip = gamingPrototypeConfig.getRmiServerIp();
+		String ip = gamingPrototypeConfig.getServerVmIp();
 		int port = gamingPrototypeConfig.getRmiServerPort();
-		GaRmiClient rmiClient = new GaRmiClient(ip, port);
+		GaMiniOsServerRmiClient rmiClient = new GaMiniOsServerRmiClient(ip, port);
 		rmiClient.stopServer();
 		return "OK";
 	}
@@ -70,9 +70,9 @@ public class SpringController {
 	@RequestMapping(value = "/startServer", method = RequestMethod.GET)
 	@ResponseBody
 	public String startServer(HttpServletResponse response) throws IOException {
-		String ip = gamingPrototypeConfig.getRmiServerIp();
+		String ip = gamingPrototypeConfig.getServerVmIp();
 		int port = gamingPrototypeConfig.getRmiServerPort();
-		GaRmiClient rmiClient = new GaRmiClient(ip, port);
+		GaMiniOsServerRmiClient rmiClient = new GaMiniOsServerRmiClient(ip, port);
 		rmiClient.startServer();
 		return "OK";
 	}
