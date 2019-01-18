@@ -8,7 +8,8 @@ import java.util.Properties;
 import model.InterviewFillout;
 import model.Question;
 import rmi.ConfigurationData;
-import rmi.client.GaRmiClient;
+import rmi.client.GaMiniOsClientRmiClient;
+import rmi.client.GaMiniOsServerRmiClient;
 import util.FileUtil;
 import util.GamingPrototypeConfig;
 import util.RmiVmType;
@@ -21,6 +22,8 @@ public class Strategy {
 
 	public static Properties commonGameProp;
 
+	private static InterviewFillout interviewFillout;
+
 	public static void main(String[] args) {
 		if (!isValidArgs(args)) {
 			return;
@@ -30,12 +33,13 @@ public class Strategy {
 		String outputsDir = args[2];
 		String timeout = args[3];
 
+		interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
+
 		String rmiVmType = gamingPrototypeConfig.getRmiVmType();
 
 		System.out.format("Running Gaming Strategy with processDir: %s\ninputsDir: %s\noutputsDir:%s\ntimeout:%s\n",
 				processDir, inputsDir, outputsDir, timeout);
-		System.out.format("With %s: %s:%s", args[6], gamingPrototypeConfig.getRmiServerIp(),
-				gamingPrototypeConfig.getRmiServerPort());
+		System.out.format("With %s: %s:%s", args[6], getGaMiniOsServerIp(), gamingPrototypeConfig.getRmiServerPort());
 
 		loadCommonGameProp();
 
@@ -122,7 +126,10 @@ public class Strategy {
 	}
 
 	public static Double configureAndEvaluate(String processDir, Individual individual) {
-		GaRmiClient rmiClient = new GaRmiClient(gamingPrototypeConfig.getRmiServerIp(),
+		GaMiniOsServerRmiClient gaServerRmiClient = new GaMiniOsServerRmiClient(getGaMiniOsServerIp(),
+				gamingPrototypeConfig.getRmiServerPort());
+
+		GaMiniOsClientRmiClient gaClientRmiClient = new GaMiniOsClientRmiClient(getGaMiniOsClientIp(),
 				gamingPrototypeConfig.getRmiServerPort());
 
 		System.out.println("individual: " + individual.toString());
@@ -145,7 +152,13 @@ public class Strategy {
 		config.setGameExe(gameExe);
 		individual.setConfig(config);
 
-		Double score = rmiClient.configureAndEvaluate(config);
+		gaServerRmiClient.configureAndStartup(config);
+
+		Double score = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
+				gamingPrototypeConfig.getRmiServerPort());
+
+		gaServerRmiClient.stopServer();
+
 		return score;
 	}
 
@@ -178,5 +191,19 @@ public class Strategy {
 			return false;
 		}
 		return true;
+	}
+
+	private static String getGaMiniOsServerIp() {
+		Question q = new Question();
+		q.setId("server_entry");
+		String serverIp = interviewFillout.getAnswer(q);
+		return serverIp;
+	}
+
+	private static String getGaMiniOsClientIp() {
+		Question q = new Question();
+		q.setId("client_entry");
+		String clientIp = interviewFillout.getAnswer(q);
+		return clientIp;
 	}
 }
