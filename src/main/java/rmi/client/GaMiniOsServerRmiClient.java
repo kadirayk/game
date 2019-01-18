@@ -6,21 +6,21 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import rmi.ConfigurationData;
-import rmi.ConfigurationService;
+import rmi.GaMiniOsServerConfigurationService;
 
-public class GaRmiClient {
+public class GaMiniOsServerRmiClient {
 
 	private String host;
 	private Integer port;
 	private Registry registry;
 
-	public GaRmiClient(String host, Integer port) {
+	public GaMiniOsServerRmiClient(String host, Integer port) {
 		this.host = host == null ? "localhost" : host; // "131.234.250.145";
 		this.port = port == null ? 1099 : port;
 	}
 
 	public Double configureAndEvaluate(ConfigurationData config) {
-		ConfigurationService service = null;
+		GaMiniOsServerConfigurationService service = null;
 
 		try {
 			registry = LocateRegistry.getRegistry(host, port);
@@ -29,7 +29,7 @@ public class GaRmiClient {
 		}
 
 		try {
-			service = (ConfigurationService) registry.lookup(ConfigurationService.class.getSimpleName());
+			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class GaRmiClient {
 	}
 
 	public String configureAndStartup(ConfigurationData config) {
-		ConfigurationService service = null;
+		GaMiniOsServerConfigurationService service = null;
 
 		try {
 			registry = LocateRegistry.getRegistry(host, port);
@@ -55,7 +55,7 @@ public class GaRmiClient {
 		}
 
 		try {
-			service = (ConfigurationService) registry.lookup(ConfigurationService.class.getSimpleName());
+			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class GaRmiClient {
 	}
 
 	public Boolean stopServer() {
-		ConfigurationService service = null;
+		GaMiniOsServerConfigurationService service = null;
 
 		try {
 			registry = LocateRegistry.getRegistry(host, port);
@@ -81,7 +81,7 @@ public class GaRmiClient {
 		}
 
 		try {
-			service = (ConfigurationService) registry.lookup(ConfigurationService.class.getSimpleName());
+			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,7 +98,7 @@ public class GaRmiClient {
 	}
 	
 	public Boolean startServer() {
-		ConfigurationService service = null;
+		GaMiniOsServerConfigurationService service = null;
 
 		try {
 			registry = LocateRegistry.getRegistry(host, port);
@@ -107,7 +107,7 @@ public class GaRmiClient {
 		}
 
 		try {
-			service = (ConfigurationService) registry.lookup(ConfigurationService.class.getSimpleName());
+			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -12,7 +12,7 @@ import org.ini4j.Wini;
 
 import model.Command;
 import rmi.ConfigurationData;
-import rmi.ConfigurationService;
+import rmi.GaMiniOsServerConfigurationService;
 import util.FileUtil;
 import util.SerializationUtil;
 
@@ -21,9 +21,9 @@ import util.SerializationUtil;
  * @author kadirayk
  *
  */
-public class ConfigurationServiceImpl extends UnicastRemoteObject implements ConfigurationService {
+public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject implements GaMiniOsServerConfigurationService {
 
-	protected ConfigurationServiceImpl() throws RemoteException {
+	protected GaMiniOsServerConfigurationServiceImpl() throws RemoteException {
 		super();
 	}
 	
@@ -33,6 +33,8 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	
 
 	@Override
 	public Double configureAndEvaluate(ConfigurationData config) throws RemoteException {
@@ -66,7 +68,7 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 
 		stopGameServer(config);
 
-		String responseTimeFilePath = "C:/ga/responseTime.json";
+		String responseTimeFilePath = GaMiniOsServerRmiServer.gaFolderPath + "/responseTime.json";
 		score = calculateScore(responseTimeFilePath);
 
 		return score;
@@ -78,7 +80,7 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 		content.append("@echo off\n");
 		content.append("title grounding routine\n");
 		content.append("cd /d %~dp0\n");
-		content.append("cd C:/ga/\n");
+		content.append("cd " + GaMiniOsServerRmiServer.gaFolderPath + "/\n");
 
 		String gameConf = conf.getGameConf();
 		String gameServer = conf.getGameServer();
@@ -104,7 +106,7 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 		content.append("@echo off\n");
 		content.append("title grounding routine\n");
 		content.append("cd /d %~dp0\n");
-		content.append("cd C:/ga/\n");
+		content.append("cd " + GaMiniOsServerRmiServer.gaFolderPath + "/\n");
 
 		String gameConf = conf.getGameConf();
 		String gameServer = conf.getGameServer();
@@ -133,7 +135,7 @@ public class ConfigurationServiceImpl extends UnicastRemoteObject implements Con
 
 	private static void configureGA(ConfigurationData config) {
 		try {
-			File confFile = new File("C:/ga/config/common/video-x264-param.conf");
+			File confFile = new File(GaMiniOsServerRmiServer.gaFolderPath + "/config/common/video-x264-param.conf");
 			Wini ini = new Wini(confFile);
 			for (Map.Entry<String, String> e : config.getConfiguration().entrySet()) {
 				ini.put("video", e.getKey(), e.getValue());
