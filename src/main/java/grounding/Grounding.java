@@ -2,7 +2,7 @@ package grounding;
 
 import java.io.File;
 
-import rmi.client.GaRmiClient;
+import rmi.client.GaMiniOsServerRmiClient;
 import strategy.strategy1.Individual;
 import util.GamingPrototypeConfig;
 import util.SerializationUtil;
@@ -16,7 +16,7 @@ public class Grounding {
 		String processDir = args[0];
 		String strategyDir = args[1];
 		String outputsFinalDir = args[2];
-		String ip = gamingPrototypeConfig.getRmiServerIp();
+		String ip = gamingPrototypeConfig.getServerVmIp();
 		int port = gamingPrototypeConfig.getRmiServerPort();
 
 		System.out.println("Running grounding.jar");
@@ -34,7 +34,7 @@ public class Grounding {
 	}
 
 	public static void configureAndStartup(Individual individual, String ip, int port) {
-		GaRmiClient rmiClient = new GaRmiClient(ip, port);
+		GaMiniOsServerRmiClient rmiClient = new GaMiniOsServerRmiClient(ip, port);
 
 		System.out.println("individual: " + individual.toString());
 
