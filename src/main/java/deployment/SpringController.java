@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 import org.zeroturnaround.zip.ZipUtil;
 
+import model.InterviewFillout;
+import model.Question;
 import rmi.client.GaMiniOsServerRmiClient;
 import strategy.strategy1.Strategy;
 import util.FileUtil;
 import util.GamingPrototypeConfig;
+import util.SerializationUtil;
 
 @Controller
 public class SpringController {
@@ -29,7 +32,7 @@ public class SpringController {
 	@RequestMapping(value = "/downloadClient", method = RequestMethod.GET)
 	public StreamingResponseBody getGameClient(HttpServletResponse response) throws IOException {
 
-		configureClient(Strategy.getGaMiniOsServerIp(), gamingPrototypeConfig.getGaServerPort());
+		configureClient(getGaMiniOsServerIp(), gamingPrototypeConfig.getGaServerPort());
 
 		String clientPath = getGameClient();
 		response.setContentType("text/html;charset=UTF-8");
@@ -46,6 +49,14 @@ public class SpringController {
 		};
 	}
 	
+	public static String getGaMiniOsServerIp() {
+		InterviewFillout interviewFillout = SerializationUtil.readAsJSON("strategies/strategy1/");
+		Question q = new Question();
+		q.setId("server_entry");
+		String serverIp = interviewFillout.getAnswer(q);
+		return serverIp;
+	}
+
 	/**
 	 * Stops GA server not this server itself
 	 * @param response

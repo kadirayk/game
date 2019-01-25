@@ -360,7 +360,7 @@ public class Benchmark {
 		content.append("@echo off\n");
 		content.append("title PROSECO Gaming\n");
 		content.append("cd lib\n");
-		content.append("ga-client client.abs.conf rtsp://127.0.0.1:").append(port).append("/desktop");
+		content.append("ga-client client.rel.conf rtsp://127.0.0.1:").append(port).append("/desktop");
 
 		FileUtil.writeToFile(testbed.getAbsolutePath() + "/client/run_client.bat", content.toString());
 	}
@@ -445,7 +445,7 @@ public class Benchmark {
 		content.append(gameServer).append(" config/").append(gameConf).append(" >> ")
 				.append("../../" + gameSelection + ".log 2>&1").append("\n");
 		content.append("waitfor WaitForServerToBeReady /t 5\n ");
-		content.append("ga-client ").append("config/client.abs.conf ").append("rtsp://localhost:").append(port)
+		content.append("ga-client ").append("config/client.rel.conf ").append("rtsp://localhost:").append(port)
 				.append("/desktop");
 
 		FileUtil.writeToFile(testbed + "/groundingroutine.bat", content.toString());

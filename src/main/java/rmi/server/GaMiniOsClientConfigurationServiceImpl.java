@@ -78,7 +78,7 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		content.append("cd C:/ga/\n");
 
 		content.append("waitfor WaitForServerToBeReady /t 5\n ");
-		content.append("ga-client ").append("config/client.abs.conf ").append("rtsp://" + GaMiniOsServerIp + ":")
+		content.append("ga-client ").append("config/client.rel.conf ").append("rtsp://" + GaMiniOsServerIp + ":")
 				.append("8554").append("/desktop");
 
 		FileUtil.writeToFile("groundingroutine.bat", content.toString());
