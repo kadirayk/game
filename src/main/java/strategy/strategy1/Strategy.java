@@ -193,7 +193,7 @@ public class Strategy {
 		return true;
 	}
 
-	private static String getGaMiniOsServerIp() {
+	public static String getGaMiniOsServerIp() {
 		Question q = new Question();
 		q.setId("server_entry");
 		String serverIp = interviewFillout.getAnswer(q);

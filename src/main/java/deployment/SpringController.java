@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import org.zeroturnaround.zip.ZipUtil;
 
 import rmi.client.GaMiniOsServerRmiClient;
+import strategy.strategy1.Strategy;
 import util.FileUtil;
 import util.GamingPrototypeConfig;
 
@@ -28,7 +29,7 @@ public class SpringController {
 	@RequestMapping(value = "/downloadClient", method = RequestMethod.GET)
 	public StreamingResponseBody getGameClient(HttpServletResponse response) throws IOException {
 
-		configureClient(gamingPrototypeConfig.getGaServerIp(), gamingPrototypeConfig.getGaServerPort());
+		configureClient(Strategy.getGaMiniOsServerIp(), gamingPrototypeConfig.getGaServerPort());
 
 		String clientPath = getGameClient();
 		response.setContentType("text/html;charset=UTF-8");
@@ -87,7 +88,7 @@ public class SpringController {
 		content.append("@echo off\n");
 		content.append("title PROSECO Gaming\n");
 		content.append("cd lib\n");
-		content.append("ga-client client.abs.conf rtsp://").append(ip).append(":").append(port).append("/desktop");
+		content.append("ga-client client.rel.conf rtsp://").append(ip).append(":").append(port).append("/desktop");
 
 		FileUtil.writeToFile("./client/run_client.bat", content.toString());
 	}
