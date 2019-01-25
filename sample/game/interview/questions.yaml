@@ -34,6 +34,21 @@ questions:
       content: Desktop
       attributes:
         value: Desktop
+- id: server_entry
+  content: Please enter GA MiniOS Server IP
+  uiElement:
+    '@type': Input
+    attributes:
+      name: ga_server_ip
+      type: text
+
+- id: client_entry
+  content: Please enter GA MiniOS Client IP
+  uiElement:
+    '@type': Input
+    attributes:
+      name: ga_client_ip
+      type: text
         
 - id: run
   content: Click to run process

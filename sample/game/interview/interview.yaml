@@ -12,4 +12,14 @@ states:
     default: step2
 - name: step2
   questions:
+  - id: server_entry
+  transition:
+    default: step3
+- name: step3
+  questions:
+  - id: client_entry
+  transition:
+    default: step4
+- name: step4
+  questions:
   - id: run
