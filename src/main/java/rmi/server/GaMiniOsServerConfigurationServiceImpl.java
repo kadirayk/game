@@ -112,6 +112,10 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 		String gameServer = conf.getGameServer();
 		String gameExe = conf.getGameExe();
 		String gameSelection = conf.getGameSelection();
+		
+		if(gameSelection.equals("neverball")) {
+			setNeverballResolution(conf);
+		}
 
 		if (gameExe != null && !gameExe.isEmpty()) {
 			content.append(gameExe).append("\n").append("TIMEOUT /T 5\n");
@@ -121,6 +125,27 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 				.append(gameSelection + ".log 2>&1").append("\n");
 
 		FileUtil.writeToFile("groundingroutine.bat", content.toString());
+	}
+
+	private void setNeverballResolution(ConfigurationData conf) {
+		String appDataPath = System.getenv("APPDATA");
+		String rcFile = appDataPath + "/Neverball/neverballrc";
+		String rcFileContent = FileUtil.readFile(rcFile);
+		String[] rcLines = rcFileContent.split("\n");
+		StringBuilder newRcFileContent = new StringBuilder(); 
+		for(String line: rcLines) {
+			if(line.startsWith("width")) {
+				String[] words = line.split("\\s+");
+				words[1] = conf.getScreenWidth();
+				line = words[0] + "                     " + words[1];
+			} else if(line.startsWith("height")) {
+				String[] words = line.split("\\s+");
+				words[1] = conf.getScreenHeight();
+				line = words[0] + "                    " + words[1];
+			}
+			newRcFileContent.append(line).append("\n");
+		}
+		FileUtil.writeToFile(rcFile, newRcFileContent.toString());
 	}
 
 	private static void stopGameServer(ConfigurationData config) {
