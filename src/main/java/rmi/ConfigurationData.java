@@ -23,6 +23,10 @@ public class ConfigurationData implements Serializable {
 
 	private String gameExe; // only required for games which run with ga-server-periodic
 
+	private String screenWidth;
+
+	private String screenHeight;
+
 	private Map<String, String> configuration;
 
 	public ConfigurationData(Map<String, String> configuration) {
@@ -75,6 +79,22 @@ public class ConfigurationData implements Serializable {
 
 	public void setGameExe(String gameExe) {
 		this.gameExe = gameExe;
+	}
+
+	public String getScreenWidth() {
+		return screenWidth;
+	}
+
+	public void setScreenWidth(String screenWidth) {
+		this.screenWidth = screenWidth;
+	}
+
+	public String getScreenHeight() {
+		return screenHeight;
+	}
+
+	public void setScreenHeight(String screenHeight) {
+		this.screenHeight = screenHeight;
 	}
 
 }

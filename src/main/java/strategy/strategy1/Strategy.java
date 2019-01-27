@@ -137,14 +137,24 @@ public class Strategy {
 		ConfigurationData config = new ConfigurationData(Configurator.createConfiguration(individual));
 
 		InterviewFillout interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
-		Question q = new Question();
-		q.setId("game_selection");
-		String gameSelection = interviewFillout.getAnswer(q);
+		Question gameSelectionQuestion = new Question();
+		gameSelectionQuestion.setId("game_selection");
+		String gameSelection = interviewFillout.getAnswer(gameSelectionQuestion);
 		String gameConf = commonGameProp.getProperty(gameSelection + ".conf");
 		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
 		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
 		String gameExe = commonGameProp.getProperty(gameSelection + ".exe");
 
+		Question screenWidthQuestion = new Question();
+		screenWidthQuestion.setId("screen_width");
+		String screenWidth = interviewFillout.getAnswer(screenWidthQuestion);
+		
+		Question screenHeightQuestion = new Question();
+		screenHeightQuestion.setId("screen_height");
+		String screenHeight = interviewFillout.getAnswer(screenHeightQuestion);
+		
+		config.setScreenWidth(screenWidth);
+		config.setScreenHeight(screenHeight);		
 		config.setGameSelection(gameSelection);
 		config.setGameConf(gameConf);
 		config.setGameServer(gameServer);
