@@ -1,6 +1,11 @@
 echo setting up OTF-Gaming Prototype
 
-PROSECO_DIR="/home/kadirayk/work/PROSECO"
+PROSECO_DIR=$1
+echo PROSECO_DIR=$PROSECO_DIR
+
+echo building jars
+mvn clean install
+
 
 mkdir -p $PROSECO_DIR/domains
 

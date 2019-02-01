@@ -113,24 +113,25 @@
 
 				</executions>
 			</plugin>
-			<plugin>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.6.0</version>
-				<groupId>org.codehaus.mojo</groupId>
-				<executions>
-					<execution>
-						<id>Setup prototype</id>
-						<phase>package</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>bash</executable>
-							<commandlineArgs>setup.sh</commandlineArgs>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- execute bash script -->
+<!-- 			<plugin> -->
+<!-- 				<artifactId>exec-maven-plugin</artifactId> -->
+<!-- 				<version>1.6.0</version> -->
+<!-- 				<groupId>org.codehaus.mojo</groupId> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>Setup prototype</id> -->
+<!-- 						<phase>package</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>exec</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<executable>bash</executable> -->
+<!-- 							<commandlineArgs>setup.sh</commandlineArgs> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 
