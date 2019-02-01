@@ -35,7 +35,7 @@ public class Individual {
 	public Individual(int length) {
 		seedIndex=0;
 		seeds = new int[length];
-		for (int i = 0; i < bits.length; i++) {
+		for (int i = 0; i < seeds.length; i++) {
 			seeds[i] = i;
 		}
 
