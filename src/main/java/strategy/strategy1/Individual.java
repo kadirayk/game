@@ -8,6 +8,9 @@ import rmi.ConfigurationData;
 public class Individual {
 	private int[] bits;
 	ConfigurationData config;
+	private int[] seeds;
+	
+	private static int seedIndex;
 
 	public Individual() {
 		// TODO Auto-generated constructor stub
@@ -30,13 +33,15 @@ public class Individual {
 	}
 
 	public Individual(int length) {
+		seedIndex=0;
+		seeds = new int[length];
+		for (int i = 0; i < bits.length; i++) {
+			seeds[i] = i;
+		}
+
 		bits = new int[length];
 		for (int i = 0; i < bits.length; i++) {
-			if (Math.random() >= 0.5) {
-				bits[i] = 1;
-			} else {
-				bits[i] = 0;
-			}
+			bits[i] = new Random(seeds[i]).nextInt(length);
 		}
 	}
 
@@ -49,9 +54,17 @@ public class Individual {
 		return Arrays.toString(this.bits);
 	}
 
+	public static void main(String[] args) {
+		int rbits = new Random(123).nextInt(16);
+		int rbit = new Random(123).nextInt(1);
+		System.out.println("s:" + rbits + "t:" + rbit);
+
+	}
+
 	public Individual changeOneBit() {
 		int length = bits.length;
-		int randomBitIndex = new Random().nextInt(length);
+		int randomBitIndex = new Random(123).nextInt(length);
+		seedIndex = (seedIndex+1) % seeds.length;
 		int currentVal = bits[randomBitIndex];
 		if (currentVal == 0) {
 			currentVal = 1;
