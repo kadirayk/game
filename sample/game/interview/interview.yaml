@@ -25,4 +25,9 @@ states:
     default: step4
 - name: step4
   questions:
+  - id: timeout
+  transition:
+    default: step5
+- name: step5
+  questions:
   - id: run

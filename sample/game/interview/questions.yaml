@@ -10,6 +10,14 @@ questions:
       content: Game
       attributes:
         value: game
+
+- id: timeout
+  content: Please enter a timeout value
+  uiElement:
+    '@type': Input
+    attributes:
+      name: ga_server_ip
+      type: number
        
 - id: game_selection
   content: Which game do you want to play?
