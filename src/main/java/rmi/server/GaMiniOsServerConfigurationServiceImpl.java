@@ -1,5 +1,7 @@
 package rmi.server;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
@@ -14,6 +16,7 @@ import model.Command;
 import rmi.ConfigurationData;
 import rmi.GaMiniOsServerConfigurationService;
 import util.FileUtil;
+import util.GaMiniOsServerConfig;
 import util.SerializationUtil;
 
 /**
@@ -33,6 +36,8 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static GaMiniOsServerConfig config;
 
 	
 
@@ -113,7 +118,7 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 		String gameExe = conf.getGameExe();
 		String gameSelection = conf.getGameSelection();
 		
-		if(gameSelection.equals("neverball")) {
+		if(gameSelection.equalsIgnoreCase("Neverball")) {
 			setNeverballResolution(conf);
 		}
 
@@ -128,6 +133,26 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 	}
 
 	private void setNeverballResolution(ConfigurationData conf) {
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		Double hostWidth = screenSize.getWidth();
+		Double hostHeight = screenSize.getHeight();
+		Double clientWidth = Double.parseDouble(conf.getScreenWidth());
+		Double clientHeight = Double.parseDouble(conf.getScreenHeight());
+		
+		config = GaMiniOsServerConfig.get("./rmi-server.properties");
+		Double scaleFactor = config.getResolutionScaleFactor();
+		
+		String confWidth = null;
+		String confHeight = null;
+		if(hostWidth < clientWidth) {
+			confWidth = String.valueOf(hostWidth*scaleFactor); // full width was problematic so; 0.9
+			Double ratio = clientHeight / clientWidth;
+			confHeight = String.valueOf(hostWidth*ratio*scaleFactor);
+		}
+		
+		
 		String appDataPath = System.getenv("APPDATA");
 		String rcFile = appDataPath + "/Neverball/neverballrc";
 		String rcFileContent = FileUtil.readFile(rcFile);
@@ -136,11 +161,11 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 		for(String line: rcLines) {
 			if(line.startsWith("width")) {
 				String[] words = line.split("\\s+");
-				words[1] = conf.getScreenWidth();
+				words[1] = confWidth;
 				line = words[0] + "                     " + words[1];
 			} else if(line.startsWith("height")) {
 				String[] words = line.split("\\s+");
-				words[1] = conf.getScreenHeight();
+				words[1] = confHeight;
 				line = words[0] + "                    " + words[1];
 			}
 			newRcFileContent.append(line).append("\n");
