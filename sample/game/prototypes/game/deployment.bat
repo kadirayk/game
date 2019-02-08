@@ -1,5 +1,6 @@
-@echo off
-cd /d %~dp0
-title Grounding Gaming
-echo Deploying Gaming Service
-@start /b cmd /c java -jar %~dp0deployment.jar %1 %2 %3
+echo Deploying service %1
+
+docker run -d -p %3:8080 -t %1 %1 %2 8080 
+
+echo waiting 10 seconds for the service to come up
+PING localhost -n 5 > NUL
