@@ -149,12 +149,10 @@ public class Strategy {
 		Question screenWidthQuestion = new Question();
 		screenWidthQuestion.setId("screen_width");
 		String screenWidth = interviewFillout.getAnswer(screenWidthQuestion);
-		System.out.println("width: " + screenWidth);
 		
 		Question screenHeightQuestion = new Question();
 		screenHeightQuestion.setId("screen_height");
 		String screenHeight = interviewFillout.getAnswer(screenHeightQuestion);
-		System.out.println("height: " + screenHeight);
 		
 		config.setScreenWidth(screenWidth);
 		config.setScreenHeight(screenHeight);		
