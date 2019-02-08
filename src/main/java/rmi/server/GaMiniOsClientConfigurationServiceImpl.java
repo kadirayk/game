@@ -26,6 +26,7 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 
 	@Override
 	public Double startGaClientAndEvaluate(String gaMiniOsServerIp, Integer gaMiniOsServerPort) throws RemoteException {
+		System.out.println("gaMiniOsServerIp:" + gaMiniOsServerIp + " gaMiniOsServerPort:" + gaMiniOsServerPort);
 		createGameServerStartScript(gaMiniOsServerIp);
 
 		final ProcessBuilder pb = new ProcessBuilder("groundingroutine.bat").redirectOutput(Redirect.INHERIT)

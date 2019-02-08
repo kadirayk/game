@@ -41,7 +41,7 @@ public class Individual {
 
 		bits = new int[length];
 		for (int i = 0; i < bits.length; i++) {
-			bits[i] = new Random(seeds[i]).nextInt(length);
+			bits[i] = new Random(seeds[i]).nextInt(2);
 		}
 	}
 
