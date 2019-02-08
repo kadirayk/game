@@ -97,6 +97,32 @@ public class GaMiniOsServerRmiClient {
 		return response;
 	}
 	
+	public Boolean stopServerByWindowTitle(String gameWindowTitle) {
+		GaMiniOsServerConfigurationService service = null;
+
+		try {
+			registry = LocateRegistry.getRegistry(host, port);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
+		} catch (RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Boolean response = null;
+		try {
+			response = service.stopServerByWindowTitle(gameWindowTitle);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response;
+	}
+	
 	public Boolean startServer() {
 		GaMiniOsServerConfigurationService service = null;
 

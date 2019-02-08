@@ -11,6 +11,8 @@ public interface GaMiniOsServerConfigurationService extends Remote {
 	
 	public Boolean stopServer() throws RemoteException;
 	
+	public Boolean stopServerByWindowTitle(String gameWindowTitle) throws RemoteException;
+	
 	public Boolean startServer() throws RemoteException;
 
 }

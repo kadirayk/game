@@ -132,13 +132,6 @@ public class Strategy {
 		GaMiniOsClientRmiClient gaClientRmiClient = new GaMiniOsClientRmiClient(getGaMiniOsClientIp(),
 				gamingPrototypeConfig.getRmiServerPort());
 		
-		// stop in any case
-		gaServerRmiClient.stopServer();
-
-		System.out.println("individual: " + individual.toString());
-
-		ConfigurationData config = new ConfigurationData(Configurator.createConfiguration(individual));
-
 		InterviewFillout interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
 		Question gameSelectionQuestion = new Question();
 		gameSelectionQuestion.setId("game_selection");
@@ -148,6 +141,13 @@ public class Strategy {
 		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
 		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
 		String gameExe = commonGameProp.getProperty(gameSelection + ".exe");
+		
+		// stop in any case
+		gaServerRmiClient.stopServerByWindowTitle(gameWindow);
+
+		System.out.println("individual: " + individual.toString());
+
+		ConfigurationData config = new ConfigurationData(Configurator.createConfiguration(individual));
 
 		Question screenWidthQuestion = new Question();
 		screenWidthQuestion.setId("screen_width");

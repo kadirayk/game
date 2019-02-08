@@ -244,6 +244,18 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 
 		return "Started final configuration";
 	}
+	
+	@Override
+	public Boolean stopServerByWindowTitle(String gameWindowTitle) throws RemoteException {
+		String killcommand = "taskkill /F /FI \"WindowTitle eq " + gameWindowTitle + "\" /T";
+		try {
+			Runtime.getRuntime().exec(killcommand);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
 
 	@Override
 	public Boolean stopServer() throws RemoteException {
