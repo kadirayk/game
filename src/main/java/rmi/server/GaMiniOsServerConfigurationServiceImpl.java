@@ -144,9 +144,10 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 
 		String confWidth = null;
 		String confHeight = null;
-		confWidth = String.valueOf(hostWidth * scaleFactor); // full width was problematic so; 0.9
+		
+		confWidth = String.valueOf((int) (hostWidth * scaleFactor)); // full width was problematic so; 0.9
 		Double ratio = clientHeight / clientWidth;
-		confHeight = String.valueOf(hostWidth * ratio * scaleFactor);
+		confHeight = String.valueOf( (int) (hostWidth * ratio * scaleFactor));
 
 		String appDataPath = System.getenv("APPDATA");
 		String rcFile = appDataPath + "/Neverball/neverballrc";
