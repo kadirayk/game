@@ -140,6 +140,7 @@ public class Strategy {
 		Question gameSelectionQuestion = new Question();
 		gameSelectionQuestion.setId("game_selection");
 		String gameSelection = interviewFillout.getAnswer(gameSelectionQuestion);
+		System.out.println("game selection: " + gameSelection);
 		String gameConf = commonGameProp.getProperty(gameSelection + ".conf");
 		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
 		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
@@ -148,10 +149,12 @@ public class Strategy {
 		Question screenWidthQuestion = new Question();
 		screenWidthQuestion.setId("screen_width");
 		String screenWidth = interviewFillout.getAnswer(screenWidthQuestion);
+		System.out.println("width: " + screenWidth);
 		
 		Question screenHeightQuestion = new Question();
 		screenHeightQuestion.setId("screen_height");
 		String screenHeight = interviewFillout.getAnswer(screenHeightQuestion);
+		System.out.println("height: " + screenWidth);
 		
 		config.setScreenWidth(screenWidth);
 		config.setScreenHeight(screenHeight);		
