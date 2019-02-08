@@ -24,26 +24,25 @@ import util.SerializationUtil;
  * @author kadirayk
  *
  */
-public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject implements GaMiniOsServerConfigurationService {
+public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
+		implements GaMiniOsServerConfigurationService {
 
 	protected GaMiniOsServerConfigurationServiceImpl() throws RemoteException {
 		super();
 	}
-	
+
 	private static ConfigurationData finalConfig;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private static GaMiniOsServerConfig config;
 
-	
+	private static GaMiniOsServerConfig config;
 
 	@Override
 	public Double configureAndEvaluate(ConfigurationData config) throws RemoteException {
-		
+
 		Double score = 0.0;
 
 		for (Map.Entry<String, String> entry : config.getConfiguration().entrySet()) {
@@ -104,7 +103,7 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 
 		FileUtil.writeToFile("groundingroutine.bat", content.toString());
 	}
-	
+
 	private void createGameServerStartScriptWithoutClient(ConfigurationData conf) {
 		StringBuilder content = new StringBuilder();
 
@@ -117,8 +116,8 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 		String gameServer = conf.getGameServer();
 		String gameExe = conf.getGameExe();
 		String gameSelection = conf.getGameSelection();
-		
-		if(gameSelection.equalsIgnoreCase("Neverball")) {
+
+		if (gameSelection.equalsIgnoreCase("Neverball")) {
 			setNeverballResolution(conf);
 		}
 
@@ -133,37 +132,33 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 	}
 
 	private void setNeverballResolution(ConfigurationData conf) {
-		
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
+
 		Double hostWidth = screenSize.getWidth();
-		Double hostHeight = screenSize.getHeight();
 		Double clientWidth = Double.parseDouble(conf.getScreenWidth());
 		Double clientHeight = Double.parseDouble(conf.getScreenHeight());
-		
+
 		config = GaMiniOsServerConfig.get("./rmi-server.properties");
 		Double scaleFactor = config.getResolutionScaleFactor();
-		
+
 		String confWidth = null;
 		String confHeight = null;
-		if(hostWidth < clientWidth) {
-			confWidth = String.valueOf(hostWidth*scaleFactor); // full width was problematic so; 0.9
-			Double ratio = clientHeight / clientWidth;
-			confHeight = String.valueOf(hostWidth*ratio*scaleFactor);
-		}
-		
-		
+		confWidth = String.valueOf(hostWidth * scaleFactor); // full width was problematic so; 0.9
+		Double ratio = clientHeight / clientWidth;
+		confHeight = String.valueOf(hostWidth * ratio * scaleFactor);
+
 		String appDataPath = System.getenv("APPDATA");
 		String rcFile = appDataPath + "/Neverball/neverballrc";
 		String rcFileContent = FileUtil.readFile(rcFile);
 		String[] rcLines = rcFileContent.split("\n");
-		StringBuilder newRcFileContent = new StringBuilder(); 
-		for(String line: rcLines) {
-			if(line.startsWith("width")) {
+		StringBuilder newRcFileContent = new StringBuilder();
+		for (String line : rcLines) {
+			if (line.startsWith("width")) {
 				String[] words = line.split("\\s+");
 				words[1] = confWidth;
 				line = words[0] + "                     " + words[1];
-			} else if(line.startsWith("height")) {
+			} else if (line.startsWith("height")) {
 				String[] words = line.split("\\s+");
 				words[1] = confHeight;
 				line = words[0] + "                    " + words[1];
@@ -228,7 +223,7 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 		finalConfig = config;
 		configureGA(config);
 		createGameServerStartScriptWithoutClient(config);
-		
+
 		final ProcessBuilder pb = new ProcessBuilder("groundingroutine.bat").redirectOutput(Redirect.INHERIT)
 				.redirectError(Redirect.INHERIT);
 		System.out.print("Execute grounding process...");
@@ -245,7 +240,7 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 		} catch (final IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		return "Started final configuration";
 	}
 
@@ -260,7 +255,7 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject 
 		}
 		return true;
 	}
-	
+
 	@Override
 	public Boolean startServer() throws RemoteException {
 		configureAndStartUp(finalConfig);
