@@ -1,6 +1,13 @@
 package rmi.server;
 
+import java.awt.AWTException;
 import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Robot;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
@@ -121,6 +128,8 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 			setNeverballResolution(conf);
 		}
 
+		moveMouse();
+
 		if (gameExe != null && !gameExe.isEmpty()) {
 			content.append(gameExe).append("\n").append("TIMEOUT /T 5\n");
 		}
@@ -144,10 +153,10 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 
 		String confWidth = null;
 		String confHeight = null;
-		
+
 		confWidth = String.valueOf((int) (hostWidth * scaleFactor)); // full width was problematic so; 0.9
 		Double ratio = clientHeight / clientWidth;
-		confHeight = String.valueOf( (int) (hostWidth * ratio * scaleFactor));
+		confHeight = String.valueOf((int) (hostWidth * ratio * scaleFactor));
 
 		String appDataPath = System.getenv("APPDATA");
 		String rcFile = appDataPath + "/Neverball/neverballrc";
@@ -219,11 +228,39 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 		return totalDelay / numberOfCommandsWithReceiveTime;
 	}
 
+	public static void main(String args[]) {
+		moveMouse();
+	}
+
+	public static void moveMouse() {
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] gs = ge.getScreenDevices();
+
+		// Search the devices for the one that draws the specified point.
+		for (GraphicsDevice device : gs) {
+			GraphicsConfiguration[] configurations = device.getConfigurations();
+			for (GraphicsConfiguration config : configurations) {
+				Rectangle bounds = config.getBounds();
+
+				Point s = new Point(bounds.width, 0);
+
+				try {
+					Robot r = new Robot(device);
+					r.mouseMove(s.x, s.y);
+				} catch (AWTException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+	}
+
 	@Override
 	public String configureAndStartUp(ConfigurationData config) throws RemoteException {
 		finalConfig = config;
 		configureGA(config);
 		createGameServerStartScriptWithoutClient(config);
+		Robot a;
 
 		final ProcessBuilder pb = new ProcessBuilder("groundingroutine.bat").redirectOutput(Redirect.INHERIT)
 				.redirectError(Redirect.INHERIT);
@@ -244,7 +281,7 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 
 		return "Started final configuration";
 	}
-	
+
 	@Override
 	public Boolean stopServerByWindowTitle(String gameWindowTitle) throws RemoteException {
 		String killcommand = "taskkill /F /FI \"WindowTitle eq " + gameWindowTitle + "\" /T";
@@ -255,7 +292,6 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 		}
 		return true;
 	}
-
 
 	@Override
 	public Boolean stopServer() throws RemoteException {
