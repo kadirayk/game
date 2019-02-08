@@ -149,13 +149,13 @@ public class Strategy {
 		Question screenWidthQuestion = new Question();
 		screenWidthQuestion.setId("screen_width");
 		String screenWidth = interviewFillout.getAnswer(screenWidthQuestion);
-		
+
 		Question screenHeightQuestion = new Question();
 		screenHeightQuestion.setId("screen_height");
 		String screenHeight = interviewFillout.getAnswer(screenHeightQuestion);
-		
+
 		config.setScreenWidth(screenWidth);
-		config.setScreenHeight(screenHeight);		
+		config.setScreenHeight(screenHeight);
 		config.setGameSelection(gameSelection);
 		config.setGameConf(gameConf);
 		config.setGameServer(gameServer);
@@ -168,7 +168,19 @@ public class Strategy {
 		Double score = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
 				gamingPrototypeConfig.getRmiServerPort());
 
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
+
 		gaServerRmiClient.stopServer();
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
 
 		return score;
 	}
