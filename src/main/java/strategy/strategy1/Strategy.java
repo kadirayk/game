@@ -131,6 +131,9 @@ public class Strategy {
 
 		GaMiniOsClientRmiClient gaClientRmiClient = new GaMiniOsClientRmiClient(getGaMiniOsClientIp(),
 				gamingPrototypeConfig.getRmiServerPort());
+		
+		// stop in any case
+		gaServerRmiClient.stopServer();
 
 		System.out.println("individual: " + individual.toString());
 
