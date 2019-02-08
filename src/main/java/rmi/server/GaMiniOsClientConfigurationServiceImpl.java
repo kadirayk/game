@@ -50,7 +50,7 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		GaMiniOsServerRmiClient rmiClient = new GaMiniOsServerRmiClient(gaMiniOsServerIp, gaMiniOsServerPort);
 		rmiClient.stopServer();
 
-		String responseTimeFilePath = "C:/ga/responseTime.json";
+		String responseTimeFilePath = GaMiniOsClientRmiServer.GADir + "/responseTime.json";
 		score = calculateScore(responseTimeFilePath);
 
 		return score;
@@ -76,7 +76,7 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		content.append("@echo off\n");
 		content.append("title starting ga client \n");
 		content.append("cd /d %~dp0\n");
-		content.append("cd C:/ga/\n");
+		content.append("cd "+ GaMiniOsClientRmiServer.GADir +"/\n");
 
 		content.append("waitfor WaitForServerToBeReady /t 5\n ");
 		content.append("ga-client ").append("config/client.rel.conf ").append("rtsp://" + GaMiniOsServerIp + ":")

@@ -11,6 +11,7 @@ import rmi.GaMiniOsClientConfigurationService;
 public class GaMiniOsClientRmiServer {
 	private static int PORT = 1099;
 	private static Registry registry;
+	public static String GADir;
 
 	public static void startRegistry() throws RemoteException {
 		// Create server registry
@@ -27,7 +28,9 @@ public class GaMiniOsClientRmiServer {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("Server starting...");
+		GADir = args[0];
+		
+		System.out.println("Server starting with ga dir:" + GADir);
 		startRegistry();
 		registerObject(GaMiniOsClientConfigurationService.class.getSimpleName(),
 				new GaMiniOsClientConfigurationServiceImpl());
