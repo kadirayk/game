@@ -107,6 +107,8 @@ public class SerializationUtil {
 		return interview;
 	}
 
+	//TODO: write winningConfig
+	
 	public static void writeIndividual(String path, Individual bestIndividual) {
 		String filePath = path + "/winning_individual.json";
 		ObjectMapper mapper = new ObjectMapper();

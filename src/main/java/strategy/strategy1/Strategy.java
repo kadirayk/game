@@ -3,7 +3,11 @@ package strategy.strategy1;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
+
+import org.moeaframework.Executor;
+import org.moeaframework.core.NondominatedPopulation;
 
 import model.InterviewFillout;
 import model.Question;
@@ -26,11 +30,14 @@ public class Strategy {
 
 	private static InterviewFillout interviewFillout;
 
+	public static String processDir;
+
 	public static void main(String[] args) {
 		if (!isValidArgs(args)) {
 			return;
 		}
 		String processDir = args[0];
+		Strategy.processDir = processDir;
 		String inputsDir = args[1];
 		String outputsDir = args[2];
 		String timeout = args[3];
@@ -48,6 +55,12 @@ public class Strategy {
 		startVM(rmiVmType);
 
 		runHillClimb(outputsDir, processDir);
+
+	}
+
+	private static void runNSGAII() {
+		NondominatedPopulation result = new Executor().withProblemClass(GaEvaluationProblem.class)
+				.withAlgorithm("NSGAII").withMaxEvaluations(2).run();
 
 	}
 
@@ -128,6 +141,68 @@ public class Strategy {
 		Double score = evaluation.getResponseDelay();
 
 		return score;
+	}
+
+	public static GaEvaluation configureAndEvaluate(String processDir, Map<String, String> configuration) {
+		GaMiniOsServerRmiClient gaServerRmiClient = new GaMiniOsServerRmiClient(getGaMiniOsServerIp(),
+				gamingPrototypeConfig.getRmiServerPort());
+
+		GaMiniOsClientRmiClient gaClientRmiClient = new GaMiniOsClientRmiClient(getGaMiniOsClientIp(),
+				gamingPrototypeConfig.getRmiServerPort());
+
+		InterviewFillout interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
+		Question gameSelectionQuestion = new Question();
+		gameSelectionQuestion.setId("game_selection");
+		String gameSelection = interviewFillout.getAnswer(gameSelectionQuestion);
+		System.out.println("game selection: " + gameSelection);
+		String gameConf = commonGameProp.getProperty(gameSelection + ".conf");
+		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
+		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
+		String gameExe = commonGameProp.getProperty(gameSelection + ".exe");
+
+		// stop in any case
+		gaServerRmiClient.stopServerByWindowTitle(gameWindow);
+
+		ConfigurationData config = new ConfigurationData(configuration);
+
+		Question screenWidthQuestion = new Question();
+		screenWidthQuestion.setId("screen_width");
+		String screenWidth = interviewFillout.getAnswer(screenWidthQuestion);
+
+		Question screenHeightQuestion = new Question();
+		screenHeightQuestion.setId("screen_height");
+		String screenHeight = interviewFillout.getAnswer(screenHeightQuestion);
+
+		config.setScreenWidth(screenWidth);
+		config.setScreenHeight(screenHeight);
+		config.setGameSelection(gameSelection);
+		config.setGameConf(gameConf);
+		config.setGameServer(gameServer);
+		config.setGameWindow(gameWindow);
+		config.setGameExe(gameExe);
+
+		Double encodingError = gaServerRmiClient.configureAndStartup(config);
+
+		GaMiniOsClientEvaluation clientEvaluation = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
+				gamingPrototypeConfig.getRmiServerPort());
+		GaEvaluation evaluation = new GaEvaluation(clientEvaluation.getFps(), clientEvaluation.getResponseDelay(),
+				encodingError);
+
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
+
+		gaServerRmiClient.stopServer();
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
+
+		return evaluation;
 	}
 
 	public static GaEvaluation configureAndEvaluate(String processDir, Individual individual) {
