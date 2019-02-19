@@ -6,6 +6,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import rmi.GaMiniOsClientConfigurationService;
+import rmi.GaMiniOsClientEvaluation;
 
 public class GaMiniOsClientRmiClient {
 
@@ -18,7 +19,7 @@ public class GaMiniOsClientRmiClient {
 		this.port = port == null ? 1099 : port;
 	}
 
-	public Double startGaClientAndEvaluate(String gaMiniOsServerIp, Integer gaMiniOsServerPort) {
+	public GaMiniOsClientEvaluation startGaClientAndEvaluate(String gaMiniOsServerIp, Integer gaMiniOsServerPort) {
 		GaMiniOsClientConfigurationService service = null;
 
 		try {
@@ -35,14 +36,14 @@ public class GaMiniOsClientRmiClient {
 			e.printStackTrace();
 		}
 
-		Double score = 0.0;
+		GaMiniOsClientEvaluation evaluation = null;
 		try {
-			score = service.startGaClientAndEvaluate(gaMiniOsServerIp, gaMiniOsServerPort);
+			evaluation = service.startGaClientAndEvaluate(gaMiniOsServerIp, gaMiniOsServerPort);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return score;
+		return evaluation;
 	}
 
 }

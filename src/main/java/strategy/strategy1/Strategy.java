@@ -8,6 +8,7 @@ import java.util.Properties;
 import model.InterviewFillout;
 import model.Question;
 import rmi.ConfigurationData;
+import rmi.GaMiniOsClientEvaluation;
 import rmi.client.GaMiniOsClientRmiClient;
 import rmi.client.GaMiniOsServerRmiClient;
 import util.FileUtil;
@@ -168,7 +169,7 @@ public class Strategy {
 
 		gaServerRmiClient.configureAndStartup(config);
 
-		Double score = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
+		GaMiniOsClientEvaluation evaluation = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
 				gamingPrototypeConfig.getRmiServerPort());
 
 		try {
@@ -185,7 +186,7 @@ public class Strategy {
 			Thread.currentThread().interrupt();
 		}
 
-		return score;
+		return 0.0;
 	}
 
 	public static void loadCommonGameProp() {

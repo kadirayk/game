@@ -8,6 +8,7 @@ import java.util.List;
 
 import model.Command;
 import rmi.GaMiniOsClientConfigurationService;
+import rmi.GaMiniOsClientEvaluation;
 import rmi.client.GaMiniOsServerRmiClient;
 import util.FileUtil;
 import util.SerializationUtil;
@@ -25,14 +26,16 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 	}
 
 	@Override
-	public Double startGaClientAndEvaluate(String gaMiniOsServerIp, Integer gaMiniOsServerPort) throws RemoteException {
+	public GaMiniOsClientEvaluation startGaClientAndEvaluate(String gaMiniOsServerIp, Integer gaMiniOsServerPort)
+			throws RemoteException {
 		System.out.println("gaMiniOsServerIp:" + gaMiniOsServerIp + " gaMiniOsServerPort:" + gaMiniOsServerPort);
 		createGameServerStartScript(gaMiniOsServerIp);
 
 		final ProcessBuilder pb = new ProcessBuilder("groundingroutine.bat").redirectOutput(Redirect.INHERIT)
 				.redirectError(Redirect.INHERIT);
 		System.out.print("evaluating...");
-		Double score = 0.0;
+		Double responseDelay = 0.0;
+		Double fps = 0.0;
 		Process p;
 		try {
 			p = pb.start();
@@ -51,12 +54,32 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		rmiClient.stopServer();
 
 		String responseTimeFilePath = GaMiniOsClientRmiServer.GADir + "/responseTime.json";
-		score = calculateScore(responseTimeFilePath);
+		responseDelay = calculateResponseDelay(responseTimeFilePath);
+		String fpsFilePath = GaMiniOsClientRmiServer.GADir + "/fps.log";
+		fps = calculateAverageFps(fpsFilePath);
+		
+		GaMiniOsClientEvaluation evaluation = new GaMiniOsClientEvaluation();
+		evaluation.setResponseDelay(responseDelay);
+		evaluation.setFps(fps);
 
-		return score;
+		return evaluation;
 	}
 
-	private static Double calculateScore(String responseTimeFilePath) {
+	private static Double calculateAverageFps(String fpsFilePath) {
+		String fileContent = FileUtil.readFile(fpsFilePath);
+		Double total = 0.0;
+		int numRecords = 0;
+		String[] values = fileContent.split("\n");
+
+		for (String val : values) {
+			total += Double.valueOf(val);
+			numRecords++;
+		}
+
+		return total / numRecords;
+	}
+
+	private static Double calculateResponseDelay(String responseTimeFilePath) {
 		List<Command> commandList = SerializationUtil.readResponseTimes(responseTimeFilePath);
 		Double totalDelay = 0.0;
 		int numberOfCommandsWithReceiveTime = 0;
@@ -76,7 +99,7 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		content.append("@echo off\n");
 		content.append("title starting ga client \n");
 		content.append("cd /d %~dp0\n");
-		content.append("cd "+ GaMiniOsClientRmiServer.GADir +"/\n");
+		content.append("cd " + GaMiniOsClientRmiServer.GADir + "/\n");
 
 		content.append("waitfor WaitForServerToBeReady /t 5\n ");
 		content.append("ga-client ").append("config/client.rel.conf ").append("rtsp://" + GaMiniOsServerIp + ":")
