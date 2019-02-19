@@ -202,18 +202,6 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 
 	}
 
-//	private static List<Command> readResponseTimes(String path) {
-//		List<Command> commandList = null;
-//		ObjectMapper mapper = new ObjectMapper();
-//		try {
-//			Command[] commands = mapper.readValue(new File(path), Command[].class);
-//			commandList = Arrays.asList(commands);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return commandList;
-//	}
-
 	private static Double calculateScore(String responseTimeFilePath) {
 		List<Command> commandList = SerializationUtil.readResponseTimes(responseTimeFilePath);
 		Double totalDelay = 0.0;
@@ -260,7 +248,6 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 		finalConfig = config;
 		configureGA(config);
 		createGameServerStartScriptWithoutClient(config);
-		Robot a;
 
 		final ProcessBuilder pb = new ProcessBuilder("groundingroutine.bat").redirectOutput(Redirect.INHERIT)
 				.redirectError(Redirect.INHERIT);
