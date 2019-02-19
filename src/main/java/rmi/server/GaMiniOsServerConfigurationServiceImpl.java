@@ -47,43 +47,43 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 
 	private static GaMiniOsServerConfig config;
 
-	@Override
-	public Double configureAndEvaluate(ConfigurationData config) throws RemoteException {
-
-		Double score = 0.0;
-
-		for (Map.Entry<String, String> entry : config.getConfiguration().entrySet()) {
-			System.out.println(entry.getKey() + ": " + entry.getValue());
-		}
-
-		configureGA(config);
-
-		createGameServerStartScript(config);
-
-		final ProcessBuilder pb = new ProcessBuilder("groundingroutine.bat").redirectOutput(Redirect.INHERIT)
-				.redirectError(Redirect.INHERIT);
-		System.out.print("Execute grounding process...");
-		Process p;
-		try {
-			p = pb.start();
-			while (p.isAlive()) {
-				try {
-					Thread.sleep(1000);
-				} catch (final InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		} catch (final IOException e1) {
-			e1.printStackTrace();
-		}
-
-		stopGameServer(config);
-
-		String responseTimeFilePath = GaMiniOsServerRmiServer.gaFolderPath + "/responseTime.json";
-		score = calculateScore(responseTimeFilePath);
-
-		return score;
-	}
+//	@Override
+//	public Double configureAndEvaluate(ConfigurationData config) throws RemoteException {
+//
+//		Double score = 0.0;
+//
+//		for (Map.Entry<String, String> entry : config.getConfiguration().entrySet()) {
+//			System.out.println(entry.getKey() + ": " + entry.getValue());
+//		}
+//
+//		configureGA(config);
+//
+//		createGameServerStartScript(config);
+//
+//		final ProcessBuilder pb = new ProcessBuilder("groundingroutine.bat").redirectOutput(Redirect.INHERIT)
+//				.redirectError(Redirect.INHERIT);
+//		System.out.print("Execute grounding process...");
+//		Process p;
+//		try {
+//			p = pb.start();
+//			while (p.isAlive()) {
+//				try {
+//					Thread.sleep(1000);
+//				} catch (final InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		} catch (final IOException e1) {
+//			e1.printStackTrace();
+//		}
+//
+//		stopGameServer(config);
+//
+//		String responseTimeFilePath = GaMiniOsServerRmiServer.gaFolderPath + "/responseTime.json";
+//		score = calculateScore(responseTimeFilePath);
+//
+//		return score;
+//	}
 
 	private void createGameServerStartScript(ConfigurationData conf) {
 		StringBuilder content = new StringBuilder();
@@ -244,7 +244,7 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 	}
 
 	@Override
-	public String configureAndStartUp(ConfigurationData config) throws RemoteException {
+	public Double configureAndStartUp(ConfigurationData config) throws RemoteException {
 		finalConfig = config;
 		configureGA(config);
 		createGameServerStartScriptWithoutClient(config);
@@ -266,7 +266,31 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 			e1.printStackTrace();
 		}
 
-		return "Started final configuration";
+		String encodingErrorFilePath = null;
+		if (config.getGameSelection().equalsIgnoreCase("Neverball")) {
+			encodingErrorFilePath = GaMiniOsServerRmiServer.gaFolderPath
+					+ "../NeverballPortable/App/Neverball/avg_encoding_error.txt";
+		} else {
+			System.err.println("Game folder not defined");
+			throw new RemoteException("Define game folder");
+		}
+		Double encodingError = calculateEncodingError(encodingErrorFilePath);
+
+		return encodingError;
+	}
+
+	private static Double calculateEncodingError(String encodingErrorFilePath) {
+		String fileContent = FileUtil.readFile(encodingErrorFilePath);
+		Double total = 0.0;
+		int numRecords = 0;
+		String[] values = fileContent.split("\n");
+
+		for (String val : values) {
+			total += Double.valueOf(val);
+			numRecords++;
+		}
+
+		return total / numRecords;
 	}
 
 	@Override

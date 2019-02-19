@@ -8,6 +8,7 @@ import java.util.Properties;
 import model.InterviewFillout;
 import model.Question;
 import rmi.ConfigurationData;
+import rmi.GaEvaluation;
 import rmi.GaMiniOsClientEvaluation;
 import rmi.client.GaMiniOsClientRmiClient;
 import rmi.client.GaMiniOsServerRmiClient;
@@ -93,7 +94,8 @@ public class Strategy {
 			Individual tmpIndividual = bestIndividual.changeOneBit();
 			System.out.println("iteration: " + num_iterations);
 
-			Double tmpScore = configureAndEvaluate(processDir, tmpIndividual);
+			GaEvaluation evaluation = configureAndEvaluate(processDir, tmpIndividual);
+			Double tmpScore = evaluation.getResponseDelay();
 
 			if (tmpScore < bestScore) {
 				bestScore = tmpScore;
@@ -121,18 +123,20 @@ public class Strategy {
 	private static Double calculateInitialScore(String outputsDir, String processDir, Individual individual) {
 		System.out.println("Calculating score for initial:" + individual.toString());
 
-		Double score = configureAndEvaluate(processDir, individual);
+		GaEvaluation evaluation = configureAndEvaluate(processDir, individual);
+
+		Double score = evaluation.getResponseDelay();
 
 		return score;
 	}
 
-	public static Double configureAndEvaluate(String processDir, Individual individual) {
+	public static GaEvaluation configureAndEvaluate(String processDir, Individual individual) {
 		GaMiniOsServerRmiClient gaServerRmiClient = new GaMiniOsServerRmiClient(getGaMiniOsServerIp(),
 				gamingPrototypeConfig.getRmiServerPort());
 
 		GaMiniOsClientRmiClient gaClientRmiClient = new GaMiniOsClientRmiClient(getGaMiniOsClientIp(),
 				gamingPrototypeConfig.getRmiServerPort());
-		
+
 		InterviewFillout interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
 		Question gameSelectionQuestion = new Question();
 		gameSelectionQuestion.setId("game_selection");
@@ -142,7 +146,7 @@ public class Strategy {
 		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
 		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
 		String gameExe = commonGameProp.getProperty(gameSelection + ".exe");
-		
+
 		// stop in any case
 		gaServerRmiClient.stopServerByWindowTitle(gameWindow);
 
@@ -167,10 +171,12 @@ public class Strategy {
 		config.setGameExe(gameExe);
 		individual.setConfig(config);
 
-		gaServerRmiClient.configureAndStartup(config);
+		Double encodingError = gaServerRmiClient.configureAndStartup(config);
 
-		GaMiniOsClientEvaluation evaluation = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
+		GaMiniOsClientEvaluation clientEvaluation = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
 				gamingPrototypeConfig.getRmiServerPort());
+		GaEvaluation evaluation = new GaEvaluation(clientEvaluation.getFps(), clientEvaluation.getResponseDelay(),
+				encodingError);
 
 		try {
 			Thread.sleep(500);
@@ -186,7 +192,7 @@ public class Strategy {
 			Thread.currentThread().interrupt();
 		}
 
-		return 0.0;
+		return evaluation;
 	}
 
 	public static void loadCommonGameProp() {
