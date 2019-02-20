@@ -54,13 +54,17 @@ public class Strategy {
 
 		startVM(rmiVmType);
 
-		runHillClimb(outputsDir, processDir);
+		// runHillClimb(outputsDir, processDir);
+
+		runNSGAII();
 
 	}
 
 	private static void runNSGAII() {
 		NondominatedPopulation result = new Executor().withProblemClass(GaEvaluationProblem.class)
 				.withAlgorithm("NSGAII").withMaxEvaluations(2).run();
+
+		Map<String, String> config = GaEvaluationProblem.createConfiguration(result.get(0));
 
 	}
 
