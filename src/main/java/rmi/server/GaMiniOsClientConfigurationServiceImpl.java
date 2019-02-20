@@ -69,6 +69,12 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		String fileContent = FileUtil.readFile(fpsFilePath);
 		Double total = 0.0;
 		int numRecords = 0;
+		
+		if(fileContent.length() < 2) {
+			// dummy value
+			return 22.10;
+		}
+		
 		String[] values = fileContent.split("\n");
 
 		for (String val : values) {

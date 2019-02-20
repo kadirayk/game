@@ -21,6 +21,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 	public static Map<String, String> videoSpecificIntraRefresh = new HashMap<>();
 	public static Map<String, String> videoDecoder = new HashMap<>();
 	public static Map<String, String> videoSpecificRefs = new HashMap<>();
+	public static Map<String, String> scalingFactor = new HashMap<>();
 
 	static {
 		videoSpecificBitrate.put("000", "800000");
@@ -75,6 +76,11 @@ public class GaEvaluationProblem extends AbstractProblem {
 		videoSpecificRefs.put("0", "0");
 		videoSpecificRefs.put("1", "1");
 
+		scalingFactor.put("00", "100");
+		scalingFactor.put("01", "125");
+		scalingFactor.put("10", "150");
+		scalingFactor.put("11", "200");
+
 	}
 
 	public GaEvaluationProblem(int numberOfVariables, int numberOfObjectives) {
@@ -90,6 +96,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 		String videoSpecificIntraRefresh = getActualVideoSpecificIntraRefresh(
 				EncodingUtils.getBinary(solution.getVariable(4)));
 		String videoSpecificRefs = getActualVideoSpecificRefs(EncodingUtils.getBinary(solution.getVariable(5)));
+		String scalingFactor = getActualScalingFactor(EncodingUtils.getBinary(solution.getVariable(6)));
 		Map<String, String> configuration = new HashMap<>();
 		configuration.put("video-specific[b]", videoSpecificBitrate);
 		configuration.put("video-specific[me_method]", videoSpecificMethod);
@@ -97,6 +104,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 		configuration.put("video-renderer", videoRenderer);
 		configuration.put("video-specific[intra_refresh]", videoSpecificIntraRefresh);
 		configuration.put("video-specific[refs]", videoSpecificRefs);
+		configuration.put("scaling-factor", scalingFactor);
 		return configuration;
 	}
 
@@ -105,32 +113,13 @@ public class GaEvaluationProblem extends AbstractProblem {
 
 		double[] f = new double[numberOfObjectives];
 
-		int k = numberOfVariables - numberOfObjectives + 1;
-
 		Map<String, String> configuration = createConfiguration(solution);
 
 		GaEvaluation evaluation = Strategy.configureAndEvaluate(Strategy.processDir, configuration);
-		
-		f[0] = evaluation.getResponseDelay(); // minimize
-		f[1] = - evaluation.getFps(); //maximize
-		f[2] = evaluation.getEncodingError(); // minimize
 
-//		double g = 0.0;
-//		for (int i = numberOfVariables - k; i < numberOfVariables; i++) {
-//			g += Math.pow(x[i] - 0.5, 2.0);
-//		}
-//
-//		for (int i = 0; i < numberOfObjectives; i++) {
-//			f[i] = 1.0 + g;
-//
-//			for (int j = 0; j < numberOfObjectives - i - 1; j++) {
-//				f[i] *= Math.cos(0.5 * Math.PI * x[j]);
-//			}
-//
-//			if (i != 0) {
-//				f[i] *= Math.sin(0.5 * Math.PI * x[numberOfObjectives - i - 1]);
-//			}
-//		}
+		f[0] = evaluation.getResponseDelay(); // minimize
+		f[1] = -evaluation.getFps(); // maximize
+		f[2] = evaluation.getEncodingError(); // minimize
 
 		solution.setObjectives(f);
 	}
@@ -145,6 +134,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 		solution.setVariable(3, new BinaryVariable(1)); // videoRenderer
 		solution.setVariable(4, new BinaryVariable(1)); // videoSpecificIntraRefresh;
 		solution.setVariable(5, new BinaryVariable(1)); // videoSpecificRefs;
+		solution.setVariable(6, new BinaryVariable(2)); // scaling factor
 
 		return solution;
 	}
@@ -190,6 +180,11 @@ public class GaEvaluationProblem extends AbstractProblem {
 	private static String getActualVideoSpecificRefs(boolean[] bits) {
 		String val = toBinaryString(bits);
 		return videoSpecificRefs.get(val);
+	}
+
+	private static String getActualScalingFactor(boolean[] bits) {
+		String val = toBinaryString(bits);
+		return scalingFactor.get(val);
 	}
 
 	public static void main(String[] args) {

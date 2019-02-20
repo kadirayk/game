@@ -19,33 +19,34 @@ public class GaMiniOsServerRmiClient {
 		this.port = port == null ? 1099 : port;
 	}
 
-//	public Double configureAndEvaluate(ConfigurationData config) {
-//		GaMiniOsServerConfigurationService service = null;
-//
-//		try {
-//			registry = LocateRegistry.getRegistry(host, port);
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
-//
-//		try {
-//			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
-//		} catch (RemoteException | NotBoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		Double score = 0.0;
-//		try {
-//			score = service.configureAndEvaluate(config);
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return score;
-//	}
+	// public Double configureAndEvaluate(ConfigurationData config) {
+	// GaMiniOsServerConfigurationService service = null;
+	//
+	// try {
+	// registry = LocateRegistry.getRegistry(host, port);
+	// } catch (RemoteException e) {
+	// e.printStackTrace();
+	// }
+	//
+	// try {
+	// service = (GaMiniOsServerConfigurationService)
+	// registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
+	// } catch (RemoteException | NotBoundException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	//
+	// Double score = 0.0;
+	// try {
+	// score = service.configureAndEvaluate(config);
+	// } catch (RemoteException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// return score;
+	// }
 
-	public Double configureAndStartup(ConfigurationData config) {
+	public void configureAndStartup(ConfigurationData config) {
 		GaMiniOsServerConfigurationService service = null;
 
 		try {
@@ -55,15 +56,41 @@ public class GaMiniOsServerRmiClient {
 		}
 
 		try {
-			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
+			service = (GaMiniOsServerConfigurationService) registry
+					.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		Double encodingError = 0.0;
 		try {
-			encodingError = service.configureAndStartUp(config);
+			service.configureAndStartUp(config);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public Double stopServer() {
+		GaMiniOsServerConfigurationService service = null;
+
+		try {
+			registry = LocateRegistry.getRegistry(host, port);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			service = (GaMiniOsServerConfigurationService) registry
+					.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
+		} catch (RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Double encodingError = null;
+		try {
+			encodingError = service.stopServer();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,32 +98,6 @@ public class GaMiniOsServerRmiClient {
 		return encodingError;
 	}
 
-	public Boolean stopServer() {
-		GaMiniOsServerConfigurationService service = null;
-
-		try {
-			registry = LocateRegistry.getRegistry(host, port);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
-		} catch (RemoteException | NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Boolean response = null;
-		try {
-			response = service.stopServer();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return response;
-	}
-	
 	public Boolean stopServerByWindowTitle(String gameWindowTitle) {
 		GaMiniOsServerConfigurationService service = null;
 
@@ -107,7 +108,8 @@ public class GaMiniOsServerRmiClient {
 		}
 
 		try {
-			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
+			service = (GaMiniOsServerConfigurationService) registry
+					.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,7 +124,7 @@ public class GaMiniOsServerRmiClient {
 		}
 		return response;
 	}
-	
+
 	public Boolean startServer() {
 		GaMiniOsServerConfigurationService service = null;
 
@@ -133,7 +135,8 @@ public class GaMiniOsServerRmiClient {
 		}
 
 		try {
-			service = (GaMiniOsServerConfigurationService) registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
+			service = (GaMiniOsServerConfigurationService) registry
+					.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

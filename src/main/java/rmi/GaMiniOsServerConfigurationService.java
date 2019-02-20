@@ -7,9 +7,9 @@ public interface GaMiniOsServerConfigurationService extends Remote {
 
 //	public Double configureAndEvaluate(ConfigurationData config) throws RemoteException;
 
-	public Double configureAndStartUp(ConfigurationData config) throws RemoteException;
+	public void configureAndStartUp(ConfigurationData config) throws RemoteException;
 	
-	public Boolean stopServer() throws RemoteException;
+	public Double stopServer() throws RemoteException;
 	
 	public Boolean stopServerByWindowTitle(String gameWindowTitle) throws RemoteException;
 	

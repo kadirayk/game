@@ -1,7 +1,13 @@
 package rmi;
 
-public class GaMiniOsClientEvaluation {
+import java.io.Serializable;
 
+public class GaMiniOsClientEvaluation implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1527038062829928502L;
 	private Double responseDelay;
 	private Double fps;
 
