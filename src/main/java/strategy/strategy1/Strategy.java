@@ -61,9 +61,9 @@ public class Strategy {
 	}
 
 	private static void runNSGAII() {
-		GaEvaluationProblem problem =  new GaEvaluationProblem(7, 3);
+		GaEvaluationProblem problem =  new GaEvaluationProblem();
 		NondominatedPopulation result = new Executor().withProblem(problem)
-				.withAlgorithm("NSGAII").withMaxEvaluations(2).run();
+				.withAlgorithm("NSGAII").withProperty("populationSize", 2).withMaxEvaluations(4).run();
 
 		Map<String, String> configuration = GaEvaluationProblem.createConfiguration(result.get(0));
 
