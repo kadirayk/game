@@ -96,7 +96,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 		String videoSpecificIntraRefresh = getActualVideoSpecificIntraRefresh(
 				EncodingUtils.getBinary(solution.getVariable(4)));
 		String videoSpecificRefs = getActualVideoSpecificRefs(EncodingUtils.getBinary(solution.getVariable(5)));
-		String scalingFactor = EncodingUtils.getInt(solution.getVariable(6))+"";
+		String scalingFactor = getActualScalingFactor(EncodingUtils.getBinary(solution.getVariable(6)));
 		Map<String, String> configuration = new HashMap<>();
 		configuration.put("video-specific[b]", videoSpecificBitrate);
 		configuration.put("video-specific[me_method]", videoSpecificMethod);
@@ -134,7 +134,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 		solution.setVariable(3, new BinaryVariable(1)); // videoRenderer
 		solution.setVariable(4, new BinaryVariable(1)); // videoSpecificIntraRefresh;
 		solution.setVariable(5, new BinaryVariable(1)); // videoSpecificRefs;
-		solution.setVariable(6, EncodingUtils.newInt(100, 200)); // scaling factor
+		solution.setVariable(6, new BinaryVariable(2)); // scaling factor
 
 		return solution;
 	}

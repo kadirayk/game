@@ -16,7 +16,6 @@ import rmi.GaEvaluation;
 import rmi.GaMiniOsClientEvaluation;
 import rmi.client.GaMiniOsClientRmiClient;
 import rmi.client.GaMiniOsServerRmiClient;
-import util.FileUtil;
 import util.GamingPrototypeConfig;
 import util.RmiVmType;
 import util.SerializationUtil;
@@ -61,9 +60,9 @@ public class Strategy {
 	}
 
 	private static void runNSGAII() {
-		GaEvaluationProblem problem =  new GaEvaluationProblem();
-		NondominatedPopulation result = new Executor().withProblem(problem)
-				.withAlgorithm("NSGAII").withProperty("populationSize", 2).withMaxEvaluations(4).run();
+		GaEvaluationProblem problem = new GaEvaluationProblem();
+		NondominatedPopulation result = new Executor().withProblem(problem).withAlgorithm("NSGAII")
+				.withProperty("populationSize", 2).withMaxEvaluations(4).run();
 
 		Map<String, String> configuration = GaEvaluationProblem.createConfiguration(result.get(0));
 
@@ -71,7 +70,6 @@ public class Strategy {
 		Question gameSelectionQuestion = new Question();
 		gameSelectionQuestion.setId("game_selection");
 		String gameSelection = interviewFillout.getAnswer(gameSelectionQuestion);
-		System.out.println("game selection: " + gameSelection);
 		String gameConf = commonGameProp.getProperty(gameSelection + ".conf");
 		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
 		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
@@ -166,7 +164,7 @@ public class Strategy {
 			System.out.println("no more improvements.");
 		}
 
-		FileUtil.writeToFile(outputsDir + "/score", String.valueOf(bestScore));
+		// FileUtil.writeToFile(outputsDir + "/score", String.valueOf(bestScore));
 		SerializationUtil.writeIndividual(outputsDir, bestIndividual);
 
 	}
@@ -223,7 +221,6 @@ public class Strategy {
 
 		GaMiniOsClientEvaluation clientEvaluation = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
 				gamingPrototypeConfig.getRmiServerPort());
-		
 
 		try {
 			Thread.sleep(500);
@@ -232,7 +229,7 @@ public class Strategy {
 		}
 
 		Double encodingError = gaServerRmiClient.stopServer();
-		
+
 		GaEvaluation evaluation = new GaEvaluation(clientEvaluation.getFps(), clientEvaluation.getResponseDelay(),
 				encodingError);
 
@@ -293,7 +290,7 @@ public class Strategy {
 
 		GaMiniOsClientEvaluation clientEvaluation = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
 				gamingPrototypeConfig.getRmiServerPort());
-		
+
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException ex) {
@@ -303,7 +300,6 @@ public class Strategy {
 		Double encodingError = gaServerRmiClient.stopServer();
 		GaEvaluation evaluation = new GaEvaluation(clientEvaluation.getFps(), clientEvaluation.getResponseDelay(),
 				encodingError);
-
 
 		try {
 			Thread.sleep(1000);
