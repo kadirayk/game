@@ -190,7 +190,7 @@ public class Strategy {
 		Question gameSelectionQuestion = new Question();
 		gameSelectionQuestion.setId("game_selection");
 		String gameSelection = interviewFillout.getAnswer(gameSelectionQuestion);
-		System.out.println("game selection: " + gameSelection);
+//		System.out.println("game selection: " + gameSelection);
 		String gameConf = commonGameProp.getProperty(gameSelection + ".conf");
 		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
 		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
@@ -238,6 +238,7 @@ public class Strategy {
 		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}
+		System.out.println("Result:");
 		System.out.println("delay:" + evaluation.getResponseDelay());
 		System.out.println("fps:" + evaluation.getFps());
 		System.out.println("encodingError:" + evaluation.getEncodingError());

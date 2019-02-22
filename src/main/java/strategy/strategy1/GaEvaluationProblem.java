@@ -114,7 +114,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 		double[] f = new double[numberOfObjectives];
 
 		Map<String, String> configuration = createConfiguration(solution);
-
+		
 		GaEvaluation evaluation = Strategy.configureAndEvaluate(Strategy.processDir, configuration);
 
 		f[0] = evaluation.getResponseDelay(); // minimize
@@ -148,43 +148,56 @@ public class GaEvaluationProblem extends AbstractProblem {
 		for (int i = 0; i < bits.length; i++) {
 			bitSetInt += toDigit(bits[i]);
 		}
-		System.out.println(bitSetInt);
 		return bitSetInt;
 	}
 
 	private static String getActualVideoSpecificBitrate(boolean[] bits) {
 		String val = toBinaryString(bits);
-		return videoSpecificBitrate.get(val);
+		String actual = videoSpecificBitrate.get(val);
+		System.out.println("videoSpecificBitrate: bits: " + val + " actual: " + actual);
+		return actual;
 	}
 
 	private static String getActualVideoSpecificMethod(boolean[] bits) {
 		String val = toBinaryString(bits);
-		return videoSpecificMethod.get(val);
+		String actual= videoSpecificMethod.get(val);
+		System.out.println("videoSpecificMethod: bits: " + val + " actual: " + actual);
+		return actual;
 	}
 
 	private static String getActualVideoSpecificRange(boolean[] bits) {
 		String val = toBinaryString(bits);
-		return videoSpecificRange.get(val);
+		String actual =  videoSpecificRange.get(val);
+		System.out.println("videoSpecificRange: bits: " + val + " actual: " + actual);
+		return actual;
 	}
 
 	private static String getActualVideoRenderer(boolean[] bits) {
 		String val = toBinaryString(bits);
-		return videoRenderer.get(val);
+		String actual = videoRenderer.get(val);
+		System.out.println("videoRenderer: bits: " + val + " actual: " + actual);
+		return actual;
 	}
 
 	private static String getActualVideoSpecificIntraRefresh(boolean[] bits) {
 		String val = toBinaryString(bits);
-		return videoSpecificIntraRefresh.get(val);
+		String actual =  videoSpecificIntraRefresh.get(val);
+		System.out.println("videoSpecificIntraRefresh: bits: " + val + " actual: " + actual);
+		return actual;
 	}
 
 	private static String getActualVideoSpecificRefs(boolean[] bits) {
 		String val = toBinaryString(bits);
-		return videoSpecificRefs.get(val);
+		String actual = videoSpecificRefs.get(val);
+		System.out.println("videoSpecificRefs: bits: " + val + " actual: " + actual);
+		return actual;
 	}
 
 	private static String getActualScalingFactor(boolean[] bits) {
 		String val = toBinaryString(bits);
-		return scalingFactor.get(val);
+		String actual = scalingFactor.get(val);
+		System.out.println("ScalingFactor: bits: " + val + " actual: " + actual);
+		return actual;
 	}
 
 	public static void main(String[] args) {
