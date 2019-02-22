@@ -65,10 +65,12 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		return evaluation;
 	}
 
+	public static void main(String[] args) {
+		System.out.println(calculateAverageFps("C:/Users/Kadiray/work_ga/gaminganywhere/ga/vs2010/Debug/fps.log"));
+	}
+	
 	private static Double calculateAverageFps(String fpsFilePath) {
 		String fileContent = FileUtil.readFile(fpsFilePath);
-		Double total = 0.0;
-		int numRecords = 0;
 		
 		if(fileContent.length() < 2) {
 			// dummy value
@@ -76,13 +78,15 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		}
 		
 		String[] values = fileContent.split("\n");
+		
+		int lastIndex = values.length-1;
+		
+		Double firstTimeStamp = Double.valueOf(values[0]);
+		Double lastTimeStamp = Double.valueOf(values[lastIndex]);
 
-		for (String val : values) {
-			total += Double.valueOf(val);
-			numRecords++;
-		}
+		Double diff = lastTimeStamp - firstTimeStamp;
 
-		return total / numRecords;
+		return values.length / diff;
 	}
 
 	private static Double calculateResponseDelay(String responseTimeFilePath) {
