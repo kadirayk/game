@@ -16,6 +16,7 @@ import rmi.GaEvaluation;
 import rmi.GaMiniOsClientEvaluation;
 import rmi.client.GaMiniOsClientRmiClient;
 import rmi.client.GaMiniOsServerRmiClient;
+import util.FileUtil;
 import util.GamingPrototypeConfig;
 import util.RmiVmType;
 import util.SerializationUtil;
@@ -62,7 +63,8 @@ public class Strategy {
 	private static void runNSGAII() {
 		GaEvaluationProblem problem = new GaEvaluationProblem();
 		NondominatedPopulation result = new Executor().withProblem(problem).withAlgorithm("NSGAII")
-				.withProperty("populationSize", 2).withMaxEvaluations(4).run();
+				.withProperty("populationSize", gamingPrototypeConfig.getMaxSizeOfPopulation())
+				.withMaxEvaluations(gamingPrototypeConfig.getMaxEvaluations()).run();
 
 		Map<String, String> configuration = GaEvaluationProblem.createConfiguration(result.get(0));
 
@@ -96,6 +98,7 @@ public class Strategy {
 		Individual bestIndividual = new Individual();
 		bestIndividual.setConfig(config);
 
+		FileUtil.writeToFile(outputsDir + "/score", String.valueOf(result.get(0).getObjectives()[0]));
 		SerializationUtil.writeIndividual(outputsDir, bestIndividual);
 
 	}
@@ -190,7 +193,7 @@ public class Strategy {
 		Question gameSelectionQuestion = new Question();
 		gameSelectionQuestion.setId("game_selection");
 		String gameSelection = interviewFillout.getAnswer(gameSelectionQuestion);
-//		System.out.println("game selection: " + gameSelection);
+		// System.out.println("game selection: " + gameSelection);
 		String gameConf = commonGameProp.getProperty(gameSelection + ".conf");
 		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
 		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
