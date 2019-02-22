@@ -13,7 +13,8 @@ import org.aeonbits.owner.Mutable;
 public interface GamingPrototypeConfig extends Mutable, Accessible {
 	public static final String MAX_NUM_NO_CONSEQUENT_IMPROVEMENTS = "strategy.max_num_no_consequent_improvements";
 	public static final String MAX_SIZE_OF_POPULATION = "strategy.max_size_of_population";
-
+	public static final String MAX_EVALUATIONS = "strategy.max_evaluations";
+	
 	public static final String SERVER_VM_IP = "strategy.server_vm_ip";
 	public static final String CLIENT_VM_IP = "strategy.client_vm_ip";
 	public static final String RMI_SERVER_PORT = "strategy.rmi_server_port";
@@ -43,6 +44,10 @@ public interface GamingPrototypeConfig extends Mutable, Accessible {
 	@Key(MAX_SIZE_OF_POPULATION)
 	@DefaultValue("8")
 	public Integer getMaxSizeOfPopulation();
+	
+	@Key(MAX_EVALUATIONS)
+	@DefaultValue("4")
+	public Integer getMaxEvaluations();
 
 	@Key(SERVER_VM_IP)
 	@DefaultValue("192.168.56.101") // default ip of VM
