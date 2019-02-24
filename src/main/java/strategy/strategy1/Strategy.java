@@ -160,10 +160,11 @@ public class Strategy {
 		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}
-		System.out.println("Result:");
-		System.out.println("delay:" + evaluation.getResponseDelay());
-		System.out.println("fps:" + evaluation.getFps());
-		System.out.println("encodingError:" + evaluation.getEncodingError());
+
+		System.out.println(" Result:");
+		System.out.printf("|%-20s | %-20s | %-20s|\n","Response Delay", "FPS", "Encoding Error");
+		System.out.println("--------------------------------------------------------------------");
+		System.out.printf("|%-20s | %-20s | %-20s|\n",evaluation.getResponseDelay(), evaluation.getFps(), evaluation.getEncodingError());
 
 		return evaluation;
 	}

@@ -150,58 +150,68 @@ public class GaEvaluationProblem extends AbstractProblem {
 		}
 		return bitSetInt;
 	}
-
+	
 	private static String getActualVideoSpecificBitrate(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual = videoSpecificBitrate.get(val);
-		System.out.println("videoSpecificBitrate: bits: " + val + " actual: " + actual);
+		System.out.printf("\n|%-25s | %4s | %10s|\n","Configuration Parameter", "Bits", "Actual");
+		System.out.println("-----------------------------------------------");
+		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificBitrate", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoSpecificMethod(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual= videoSpecificMethod.get(val);
-		System.out.println("videoSpecificMethod: bits: " + val + " actual: " + actual);
+		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificMethod", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoSpecificRange(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual =  videoSpecificRange.get(val);
-		System.out.println("videoSpecificRange: bits: " + val + " actual: " + actual);
+		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificRange", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoRenderer(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual = videoRenderer.get(val);
-		System.out.println("videoRenderer: bits: " + val + " actual: " + actual);
+		System.out.printf("|%-25s | %4s | %10s|\n","videoRenderer", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoSpecificIntraRefresh(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual =  videoSpecificIntraRefresh.get(val);
-		System.out.println("videoSpecificIntraRefresh: bits: " + val + " actual: " + actual);
+		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificIntraRefresh", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoSpecificRefs(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual = videoSpecificRefs.get(val);
-		System.out.println("videoSpecificRefs: bits: " + val + " actual: " + actual);
+		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificRefs", val, actual);
 		return actual;
 	}
 
 	private static String getActualScalingFactor(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual = scalingFactor.get(val);
-		System.out.println("ScalingFactor: bits: " + val + " actual: " + actual);
+		System.out.printf("|%-25s | %4s | %10s|\n","scalingFactor", val, actual);
 		return actual;
 	}
 
 	public static void main(String[] args) {
-		boolean[] bit = { false, true, false };
-		getActualVideoSpecificBitrate(bit);
+		System.out.printf("|%-25s | %4s | %10s|\n","Configuration Parameter", "Bits", "Actual");
+		System.out.println("-----------------------------------------------");
+		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificBitrate", "1001", "software");
+		System.out.printf("|%-25s | %4s | %10s|\n","scalingFactor", "01", "200");
+		System.out.println("Result:");
+		System.out.printf("|%-20s | %-20s | %-20s|\n","Response Delay", "FPS", "Encoding Error");
+		System.out.println("--------------------------------------------------------------------");
+		System.out.printf("|%-20s | %-20s | %-20s|\n","1.4661182105263162", "16.315656359177673", "0.065478375771812");
+//		boolean[] bit = { false, true, false };
+//		getActualVideoSpecificBitrate(bit);
 	}
 }
