@@ -35,8 +35,8 @@ public class GaMiniOsServerRmiServer {
 		System.out.println("Server starting...");
 		gaFolderPath = "./ga";
 		config = GaMiniOsServerConfig.get("./rmi-server.properties");
-		IP = config.getRmiServerIp();
-		PORT = config.getRmiServerPort();
+		IP = config.getServerRmiServerIp();
+		PORT = config.getServerRmiServerPort();
 		System.setProperty("java.rmi.server.hostname", IP);
 		startRegistry();
 		registerObject(GaMiniOsServerConfigurationService.class.getSimpleName(),

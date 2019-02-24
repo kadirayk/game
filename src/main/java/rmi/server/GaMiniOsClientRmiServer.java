@@ -7,11 +7,15 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import rmi.GaMiniOsClientConfigurationService;
+import util.GaMiniOsServerConfig;
 
 public class GaMiniOsClientRmiServer {
-	private static int PORT = 1099;
+	private static int PORT;
+	private static String IP;
 	private static Registry registry;
 	public static String GADir;
+	
+	private static GaMiniOsServerConfig config;
 
 	public static void startRegistry() throws RemoteException {
 		// Create server registry
@@ -29,8 +33,11 @@ public class GaMiniOsClientRmiServer {
 
 	public static void main(String[] args) throws Exception {
 		GADir = args[0];
-		
+		config = GaMiniOsServerConfig.get("./rmi-server.properties");
+		IP = config.getClientRmiServerIp();
+		PORT = config.getClientRmiServerPort();
 		System.out.println("Server starting with ga dir:" + GADir);
+		System.setProperty("java.rmi.server.hostname", IP);
 		startRegistry();
 		registerObject(GaMiniOsClientConfigurationService.class.getSimpleName(),
 				new GaMiniOsClientConfigurationServiceImpl());
