@@ -48,7 +48,7 @@ public class Strategy {
 
 		System.out.format("Running Gaming Strategy with processDir: %s\ninputsDir: %s\noutputsDir:%s\ntimeout:%s\n",
 				processDir, inputsDir, outputsDir, timeout);
-		System.out.format("With %s: %s:%s", args[6], getGaMiniOsServerIp(), gamingPrototypeConfig.getClientRmiServerPort());
+		System.out.format("With %s: %s:%s", args[6], getGaMiniOsServerIp(), gamingPrototypeConfig.getServerRmiServerPort());
 
 		loadCommonGameProp();
 
@@ -103,7 +103,7 @@ public class Strategy {
 
 	public static GaEvaluation configureAndEvaluate(String processDir, Map<String, String> configuration) {
 		GaMiniOsServerRmiClient gaServerRmiClient = new GaMiniOsServerRmiClient(getGaMiniOsServerIp(),
-				gamingPrototypeConfig.getClientRmiServerPort());
+				gamingPrototypeConfig.getServerRmiServerPort());
 
 		GaMiniOsClientRmiClient gaClientRmiClient = new GaMiniOsClientRmiClient(getGaMiniOsClientIp(),
 				gamingPrototypeConfig.getClientRmiServerPort());

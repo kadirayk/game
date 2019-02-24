@@ -66,8 +66,8 @@ public class SpringController {
 	@RequestMapping(value = "/stopServer", method = RequestMethod.GET)
 	@ResponseBody
 	public String stopServer(HttpServletResponse response) throws IOException {
-		String ip = Strategy.getGaMiniOsServerIp(); //gamingPrototypeConfig.getServerVmIp();
-		int port = gamingPrototypeConfig.getClientRmiServerPort();
+		String ip = getGaMiniOsServerIp(); //gamingPrototypeConfig.getServerVmIp();
+		int port = gamingPrototypeConfig.getServerRmiServerPort();
 		GaMiniOsServerRmiClient rmiClient = new GaMiniOsServerRmiClient(ip, port);
 		rmiClient.stopServer();
 		return "OK";
@@ -82,8 +82,8 @@ public class SpringController {
 	@RequestMapping(value = "/startServer", method = RequestMethod.GET)
 	@ResponseBody
 	public String startServer(HttpServletResponse response) throws IOException {
-		String ip = Strategy.getGaMiniOsServerIp(); //gamingPrototypeConfig.getServerVmIp();
-		int port = gamingPrototypeConfig.getClientRmiServerPort();
+		String ip = getGaMiniOsServerIp(); //gamingPrototypeConfig.getServerVmIp();
+		int port = gamingPrototypeConfig.getServerRmiServerPort();
 		GaMiniOsServerRmiClient rmiClient = new GaMiniOsServerRmiClient(ip, port);
 		rmiClient.startServer();
 		return "OK";
