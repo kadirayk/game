@@ -77,7 +77,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 		videoSpecificRefs.put("1", "1");
 
 		scalingFactor.put("00", "100");
-		scalingFactor.put("01", "125");
+		scalingFactor.put("01", "120");
 		scalingFactor.put("10", "150");
 		scalingFactor.put("11", "200");
 
