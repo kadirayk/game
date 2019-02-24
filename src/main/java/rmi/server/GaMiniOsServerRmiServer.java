@@ -32,8 +32,12 @@ public class GaMiniOsServerRmiServer {
 	}
 
 	public static void main(String[] args) throws Exception {
+		if (args.length < 1) {
+			System.out.println("give ga path as arg");
+			return;
+		}
+		gaFolderPath = args[0];
 		System.out.println("Server starting...");
-		gaFolderPath = "./ga";
 		config = GaMiniOsServerConfig.get("./rmi-server.properties");
 		IP = config.getServerRmiServerIp();
 		PORT = config.getServerRmiServerPort();

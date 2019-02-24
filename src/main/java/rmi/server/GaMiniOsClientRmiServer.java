@@ -14,7 +14,7 @@ public class GaMiniOsClientRmiServer {
 	private static String IP;
 	private static Registry registry;
 	public static String GADir;
-	
+
 	private static GaMiniOsServerConfig config;
 
 	public static void startRegistry() throws RemoteException {
@@ -32,6 +32,10 @@ public class GaMiniOsClientRmiServer {
 	}
 
 	public static void main(String[] args) throws Exception {
+		if (args.length < 1) {
+			System.out.println("give ga path as arg");
+			return;
+		}
 		GADir = args[0];
 		config = GaMiniOsServerConfig.get("./rmi-server.properties");
 		IP = config.getClientRmiServerIp();
