@@ -19,32 +19,6 @@ public class GaMiniOsServerRmiClient {
 		this.port = port == null ? 1099 : port;
 	}
 
-	// public Double configureAndEvaluate(ConfigurationData config) {
-	// GaMiniOsServerConfigurationService service = null;
-	//
-	// try {
-	// registry = LocateRegistry.getRegistry(host, port);
-	// } catch (RemoteException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// try {
-	// service = (GaMiniOsServerConfigurationService)
-	// registry.lookup(GaMiniOsServerConfigurationService.class.getSimpleName());
-	// } catch (RemoteException | NotBoundException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// Double score = 0.0;
-	// try {
-	// score = service.configureAndEvaluate(config);
-	// } catch (RemoteException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// return score;
-	// }
 
 	public void configureAndStartup(ConfigurationData config) {
 		GaMiniOsServerConfigurationService service = null;

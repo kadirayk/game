@@ -19,7 +19,7 @@ public class Grounding {
 		String strategyDir = args[1];
 		String outputsFinalDir = args[2];
 		String ip = getGaMiniOsServerIp(processDir);
-		int port = gamingPrototypeConfig.getRmiServerPort();
+		int port = gamingPrototypeConfig.getClientRmiServerPort();
 
 		System.out.println("Running grounding.jar");
 		System.out.println("processDir: " + processDir + "\nstrDir: " + strategyDir + "\nfinal: " + outputsFinalDir);

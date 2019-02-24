@@ -15,12 +15,10 @@ public interface GamingPrototypeConfig extends Mutable, Accessible {
 	public static final String MAX_SIZE_OF_POPULATION = "strategy.max_size_of_population";
 	public static final String MAX_EVALUATIONS = "strategy.max_evaluations";
 	
-	public static final String SERVER_VM_IP = "strategy.server_vm_ip";
-	public static final String CLIENT_VM_IP = "strategy.client_vm_ip";
-	public static final String RMI_SERVER_PORT = "strategy.rmi_server_port";
+	public static final String CLIENT_RMI_SERVER_PORT = "strategy.client_rmi_server_port";
+	public static final String SERVER_RMI_SERVER_PORT = "strategy.server_rmi_server_port";
 	public static final String RMI_VM_TYPE = "strategy.rmi_vm_type";
 
-	public static final String GA_SERVER_IP = "ga.server_ip";
 	public static final String GA_SERVER_PORT = "ga.server_port";
 
 	public static final String DEPLOYMENT_PORT = "service.deployment_port";
@@ -28,10 +26,6 @@ public interface GamingPrototypeConfig extends Mutable, Accessible {
 	@Key(DEPLOYMENT_PORT)
 	@DefaultValue("18080")
 	public Integer getDeploymentPort();
-
-	@Key(GA_SERVER_IP)
-	@DefaultValue("192.168.56.101")
-	public String getGaServerIp();
 
 	@Key(GA_SERVER_PORT)
 	@DefaultValue("8554")
@@ -49,18 +43,15 @@ public interface GamingPrototypeConfig extends Mutable, Accessible {
 	@DefaultValue("4")
 	public Integer getMaxEvaluations();
 
-	@Key(SERVER_VM_IP)
-	@DefaultValue("192.168.56.101") // default ip of VM
-	public String getServerVmIp();
-	
-	@Key(CLIENT_VM_IP)
-	@DefaultValue("192.168.56.101") // default ip of VM
-	public String getClientVmIp();
 	
 
-	@Key(RMI_SERVER_PORT)
+	@Key(CLIENT_RMI_SERVER_PORT)
 	@DefaultValue("1099")
-	public Integer getRmiServerPort();
+	public Integer getClientRmiServerPort();
+	
+	@Key(SERVER_RMI_SERVER_PORT)
+	@DefaultValue("1099")
+	public Integer getServerRmiServerPort();
 
 	/**
 	 * possible values: - LOCAL_LINUX - LOCAL_WINDOWS - REMOTE

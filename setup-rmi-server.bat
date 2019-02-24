@@ -30,7 +30,7 @@ echo server-num-token-to-fill = 1
 echo server-max-tokens = 2
 ) > .\ga\config\server.neverball.conf
 
-echo building client-rmi-server.jar
+echo building server-rmi-server.jar
 call mvn clean install -P server
 
 echo f | xcopy /Y .\target\server-rmi-server.jar .
