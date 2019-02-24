@@ -16,7 +16,7 @@ public interface GaMiniOsServerConfig extends Mutable, Accessible {
 	public static final String SERVER_RMI_SERVER_PORT = "server.rmi_server_port";
 	public static final String CLIENT_RMI_SERVER_IP = "client.rmi_server_ip";
 	public static final String CLIENT_RMI_SERVER_PORT = "client.rmi_server_port";
-	public static final String RESOLUTION_SCALE_FACTOR = "resolution_scale_factor";
+	public static final String SCREEN_SIZE = "screen_size";
 
 	@Key(SERVER_RMI_SERVER_IP)
 	@DefaultValue("localhost")
@@ -34,9 +34,9 @@ public interface GaMiniOsServerConfig extends Mutable, Accessible {
 	@DefaultValue("1099")
 	public Integer getClientRmiServerPort();
 
-	@Key(RESOLUTION_SCALE_FACTOR)
-	@DefaultValue("0.9")
-	public Double getResolutionScaleFactor();
+	@Key(SCREEN_SIZE)
+	@DefaultValue("100")
+	public Double getScreenSize();
 
 	public static GaMiniOsServerConfig get(String file) {
 		return get(new File(file));
