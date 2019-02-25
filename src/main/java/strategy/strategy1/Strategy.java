@@ -72,7 +72,7 @@ public class Strategy {
 		GaEvaluationProblem problem = new GaEvaluationProblem();
 		NondominatedPopulation result = new Executor().withProblem(problem).withAlgorithm("NSGAII")
 				.withProperty("populationSize", gamingPrototypeConfig.getMaxSizeOfPopulation())
-				.withMaxEvaluations(generationSize).run();
+				.withMaxEvaluations(generationSize*gamingPrototypeConfig.getMaxSizeOfPopulation()).run();
 
 		Map<String, String> configuration = GaEvaluationProblem.createConfiguration(result.get(0));
 
