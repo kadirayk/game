@@ -22,7 +22,13 @@ public interface GamingPrototypeConfig extends Mutable, Accessible {
 	public static final String GA_SERVER_PORT = "ga.server_port";
 
 	public static final String DEPLOYMENT_PORT = "service.deployment_port";
+	
+	public static final String INDIVIDUAL_DURATION = "individual.duration";
 
+	@Key(INDIVIDUAL_DURATION)
+	@DefaultValue("30")
+	public Integer getIndividualDuration();
+	
 	@Key(DEPLOYMENT_PORT)
 	@DefaultValue("18080")
 	public Integer getDeploymentPort();

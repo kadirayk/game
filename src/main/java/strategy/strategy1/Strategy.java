@@ -48,7 +48,8 @@ public class Strategy {
 
 		System.out.format("Running Gaming Strategy with processDir: %s\ninputsDir: %s\noutputsDir:%s\ntimeout:%s\n",
 				processDir, inputsDir, outputsDir, timeout);
-		System.out.format("With %s: %s:%s", args[6], getGaMiniOsServerIp(), gamingPrototypeConfig.getServerRmiServerPort());
+		System.out.format("With %s: %s:%s", args[6], getGaMiniOsServerIp(),
+				gamingPrototypeConfig.getServerRmiServerPort());
 
 		loadCommonGameProp();
 
@@ -58,10 +59,26 @@ public class Strategy {
 
 	}
 
+	private static Double getTimeoutFromInterview() {
+		InterviewFillout interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
+		Question timeoutQuestion = new Question();
+		timeoutQuestion.setId("timeout");
+		String timeout = interviewFillout.getAnswer(timeoutQuestion);
+		return Double.valueOf(timeout);
+	}
+
 	private static void runNSGAII() {
+
+		Double timeout = getTimeoutFromInterview();
+		Double val = (timeout / gamingPrototypeConfig.getMaxEvaluations())
+				/ gamingPrototypeConfig.getIndividualDuration();
+		System.out.println("timeout:" + timeout + " maxEvaluations:" + gamingPrototypeConfig.getMaxEvaluations()
+				+ " individualDuration:" + gamingPrototypeConfig.getIndividualDuration());
+		Integer populationSize = val.intValue();
+
 		GaEvaluationProblem problem = new GaEvaluationProblem();
 		NondominatedPopulation result = new Executor().withProblem(problem).withAlgorithm("NSGAII")
-				.withProperty("populationSize", gamingPrototypeConfig.getMaxSizeOfPopulation())
+				.withProperty("populationSize", populationSize)
 				.withMaxEvaluations(gamingPrototypeConfig.getMaxEvaluations()).run();
 
 		Map<String, String> configuration = GaEvaluationProblem.createConfiguration(result.get(0));
@@ -162,9 +179,10 @@ public class Strategy {
 		}
 
 		System.out.println(" Result:");
-		System.out.printf("|%-20s | %-20s | %-20s|\n","Response Delay", "FPS", "Encoding Error");
+		System.out.printf("|%-20s | %-20s | %-20s|\n", "Response Delay", "FPS", "Encoding Error");
 		System.out.println("--------------------------------------------------------------------");
-		System.out.printf("|%-20s | %-20s | %-20s|\n",evaluation.getResponseDelay(), evaluation.getFps(), evaluation.getEncodingError());
+		System.out.printf("|%-20s | %-20s | %-20s|\n", evaluation.getResponseDelay(), evaluation.getFps(),
+				evaluation.getEncodingError());
 
 		return evaluation;
 	}
