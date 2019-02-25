@@ -42,7 +42,7 @@ public interface GamingPrototypeConfig extends Mutable, Accessible {
 	public Integer getMaxNumNoConsequentImprovements();
 
 	@Key(MAX_SIZE_OF_POPULATION)
-	@DefaultValue("8")
+	@DefaultValue("3")
 	public Integer getMaxSizeOfPopulation();
 	
 	@Key(MAX_EVALUATIONS)
