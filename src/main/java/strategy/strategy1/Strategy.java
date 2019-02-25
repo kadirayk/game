@@ -32,6 +32,7 @@ public class Strategy {
 
 	public static String processDir;
 	public static String outputsDir;
+	public static String timeout;
 
 	public static void main(String[] args) {
 		if (!isValidArgs(args)) {
@@ -40,7 +41,7 @@ public class Strategy {
 		processDir = args[0];
 		String inputsDir = args[1];
 		outputsDir = args[2];
-		String timeout = args[3];
+		timeout = args[3];
 
 		interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
 
@@ -59,22 +60,14 @@ public class Strategy {
 
 	}
 
-	private static Double getTimeoutFromInterview() {
-		InterviewFillout interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
-		Question timeoutQuestion = new Question();
-		timeoutQuestion.setId("timeout");
-		String timeout = interviewFillout.getAnswer(timeoutQuestion);
-		return Double.valueOf(timeout);
-	}
-
 	private static void runNSGAII() {
-
-		Double timeout = getTimeoutFromInterview();
-		Double val = (timeout / gamingPrototypeConfig.getMaxEvaluations())
+		Double timeoutVal = Double.valueOf(timeout);
+		Double val = (timeoutVal / gamingPrototypeConfig.getMaxEvaluations())
 				/ gamingPrototypeConfig.getIndividualDuration();
-		System.out.println("timeout:" + timeout + " maxEvaluations:" + gamingPrototypeConfig.getMaxEvaluations()
-				+ " individualDuration:" + gamingPrototypeConfig.getIndividualDuration());
 		Integer populationSize = val.intValue();
+		System.out.println("timeout:" + timeout + " maxEvaluations:" + gamingPrototypeConfig.getMaxEvaluations()
+				+ " individualDuration:" + gamingPrototypeConfig.getIndividualDuration() + " populationSize:"
+				+ populationSize);
 
 		GaEvaluationProblem problem = new GaEvaluationProblem();
 		NondominatedPopulation result = new Executor().withProblem(problem).withAlgorithm("NSGAII")
@@ -113,6 +106,7 @@ public class Strategy {
 		Individual bestIndividual = new Individual();
 		bestIndividual.setConfig(config);
 
+		System.out.println("Done evaluating...");
 		FileUtil.writeToFile(outputsDir + "/score", String.valueOf(result.get(0).getObjectives()[0]));
 		SerializationUtil.writeIndividual(outputsDir, bestIndividual);
 

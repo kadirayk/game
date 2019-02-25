@@ -57,7 +57,7 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 		responseDelay = calculateResponseDelay(responseTimeFilePath);
 		String fpsFilePath = GaMiniOsClientRmiServer.GADir + "/fps.log";
 		fps = calculateAverageFps(fpsFilePath);
-		
+
 		GaMiniOsClientEvaluation evaluation = new GaMiniOsClientEvaluation();
 		evaluation.setResponseDelay(responseDelay);
 		evaluation.setFps(fps);
@@ -68,19 +68,19 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 	public static void main(String[] args) {
 		System.out.println(calculateAverageFps("C:/Users/Kadiray/work_ga/gaminganywhere/ga/vs2010/Debug/fps.log"));
 	}
-	
+
 	private static Double calculateAverageFps(String fpsFilePath) {
 		String fileContent = FileUtil.readFile(fpsFilePath);
-		
-		if(fileContent.length() < 2) {
+
+		if (fileContent.length() < 2) {
 			// dummy value
 			return 22.10;
 		}
-		
+
 		String[] values = fileContent.split("\n");
-		
-		int lastIndex = values.length-1;
-		
+
+		int lastIndex = values.length - 1;
+
 		Double firstTimeStamp = Double.valueOf(values[0]);
 		Double lastTimeStamp = Double.valueOf(values[lastIndex]);
 
@@ -100,7 +100,7 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 			}
 		}
 
-		return totalDelay / numberOfCommandsWithReceiveTime;
+		return (totalDelay / numberOfCommandsWithReceiveTime) - 1.0;
 	}
 
 	private void createGameServerStartScript(String GaMiniOsServerIp) {
