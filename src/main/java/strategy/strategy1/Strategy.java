@@ -62,17 +62,17 @@ public class Strategy {
 
 	private static void runNSGAII() {
 		Double timeoutVal = Double.valueOf(timeout);
-		Double val = (timeoutVal / gamingPrototypeConfig.getMaxEvaluations())
+		Double val = (timeoutVal / gamingPrototypeConfig.getMaxSizeOfPopulation())
 				/ gamingPrototypeConfig.getIndividualDuration();
-		Integer populationSize = val.intValue();
-		System.out.println("timeout:" + timeout + " maxEvaluations:" + gamingPrototypeConfig.getMaxEvaluations()
-				+ " individualDuration:" + gamingPrototypeConfig.getIndividualDuration() + " populationSize:"
-				+ populationSize);
+		Integer generationSize = val.intValue();
+		System.out.println("timeout:" + timeout + " maxEvaluations:" + generationSize + " individualDuration:"
+				+ gamingPrototypeConfig.getIndividualDuration() + " populationSize:"
+				+ gamingPrototypeConfig.getMaxSizeOfPopulation());
 
 		GaEvaluationProblem problem = new GaEvaluationProblem();
 		NondominatedPopulation result = new Executor().withProblem(problem).withAlgorithm("NSGAII")
-				.withProperty("populationSize", populationSize)
-				.withMaxEvaluations(gamingPrototypeConfig.getMaxEvaluations()).run();
+				.withProperty("populationSize", gamingPrototypeConfig.getMaxSizeOfPopulation())
+				.withMaxEvaluations(generationSize).run();
 
 		Map<String, String> configuration = GaEvaluationProblem.createConfiguration(result.get(0));
 

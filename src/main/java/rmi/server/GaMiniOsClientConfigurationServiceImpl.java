@@ -100,7 +100,13 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 			}
 		}
 
-		return (totalDelay / numberOfCommandsWithReceiveTime) - 1.0;
+		Double val = (totalDelay / numberOfCommandsWithReceiveTime);
+
+		if (val > 1.0) {
+			return val - 1.0;
+		}
+
+		return val;
 	}
 
 	private void createGameServerStartScript(String GaMiniOsServerIp) {
