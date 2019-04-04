@@ -1,0 +1,275 @@
+# [43376] 1554397205.334927 # include: config\common\server-common.conf
+# [43376] 1554397205.334927 # include: config\common\controller.conf
+# [43376] 1554397205.335927 # include: config\common\video-x264.conf
+# [43376] 1554397205.335927 # include: config\common\video-x264-param.conf
+# [43376] 1554397205.336927 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=43436).
+# [45748] 1554397775.354401 # include: config\common\server-common.conf
+# [45748] 1554397775.354401 # include: config\common\controller.conf
+# [45748] 1554397775.354401 # include: config\common\video-x264.conf
+# [45748] 1554397775.355402 # include: config\common\video-x264-param.conf
+# [45748] 1554397775.355402 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=45808).
+# [46908] 1554398111.345655 # include: config\common\server-common.conf
+# [46908] 1554398111.346656 # include: config\common\controller.conf
+# [46908] 1554398111.346656 # include: config\common\video-x264.conf
+# [46908] 1554398111.346656 # include: config\common\video-x264-param.conf
+# [46908] 1554398111.347655 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=46992).
+# [53044] 1554400149.509704 # include: config\common\server-common.conf
+# [53044] 1554400149.510704 # include: config\common\controller.conf
+# [53044] 1554400149.510704 # include: config\common\video-x264.conf
+# [53044] 1554400149.510704 # include: config\common\video-x264-param.conf
+# [53044] 1554400149.511704 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=52788).
+# [9988] 1554400198.481837 # include: config\common\server-common.conf
+# [9988] 1554400198.481837 # include: config\common\controller.conf
+# [9988] 1554400198.482834 # include: config\common\video-x264.conf
+# [9988] 1554400198.482834 # include: config\common\video-x264-param.conf
+# [9988] 1554400198.482834 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=47684).
+# [11732] 1554400247.197569 # include: config\common\server-common.conf
+# [11732] 1554400247.197569 # include: config\common\controller.conf
+# [11732] 1554400247.197569 # include: config\common\video-x264.conf
+# [11732] 1554400247.198570 # include: config\common\video-x264-param.conf
+# [11732] 1554400247.198570 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=44800).
+# [54604] 1554400714.997352 # include: config\common\server-common.conf
+# [54604] 1554400714.997352 # include: config\common\controller.conf
+# [54604] 1554400714.997352 # include: config\common\video-x264.conf
+# [54604] 1554400714.998340 # include: config\common\video-x264-param.conf
+# [54604] 1554400714.998340 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=54644).
+# [54508] 1554400763.643348 # include: config\common\server-common.conf
+# [54508] 1554400763.644347 # include: config\common\controller.conf
+# [54508] 1554400763.644347 # include: config\common\video-x264.conf
+# [54508] 1554400763.644347 # include: config\common\video-x264-param.conf
+# [54508] 1554400763.645349 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=54472).
+# [54576] 1554400796.238494 # include: config\common\server-common.conf
+# [54576] 1554400796.238494 # include: config\common\controller.conf
+# [54576] 1554400796.238494 # include: config\common\video-x264.conf
+# [54576] 1554400796.238494 # include: config\common\video-x264-param.conf
+# [54576] 1554400796.239494 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=54584).
+# [13636] 1554401546.244270 # include: config\common\server-common.conf
+# [13636] 1554401546.244270 # include: config\common\controller.conf
+# [13636] 1554401546.245271 # include: config\common\video-x264.conf
+# [13636] 1554401546.245271 # include: config\common\video-x264-param.conf
+# [13636] 1554401546.246271 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=55172).
+# [55324] 1554401595.236330 # include: config\common\server-common.conf
+# [55324] 1554401595.237330 # include: config\common\controller.conf
+# [55324] 1554401595.237330 # include: config\common\video-x264.conf
+# [55324] 1554401595.237330 # include: config\common\video-x264-param.conf
+# [55324] 1554401595.238331 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=56028).
+# [56300] 1554401643.840828 # include: config\common\server-common.conf
+# [56300] 1554401643.841831 # include: config\common\controller.conf
+# [56300] 1554401643.841831 # include: config\common\video-x264.conf
+# [56300] 1554401643.841831 # include: config\common\video-x264-param.conf
+# [56300] 1554401643.842829 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=57096).
+# [52656] 1554401693.296430 # include: config\common\server-common.conf
+# [52656] 1554401693.296430 # include: config\common\controller.conf
+# [52656] 1554401693.296430 # include: config\common\video-x264.conf
+# [52656] 1554401693.296430 # include: config\common\video-x264-param.conf
+# [52656] 1554401693.297437 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=57176).
+# [103820] 1554413309.943413 # include: config\common\server-common.conf
+# [103820] 1554413309.943413 # include: config\common\controller.conf
+# [103820] 1554413309.944413 # include: config\common\video-x264.conf
+# [103820] 1554413309.945415 # include: config\common\video-x264-param.conf
+# [103820] 1554413309.946416 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=103876).
+# [104268] 1554413358.549330 # include: config\common\server-common.conf
+# [104268] 1554413358.549330 # include: config\common\controller.conf
+# [104268] 1554413358.550326 # include: config\common\video-x264.conf
+# [104268] 1554413358.550326 # include: config\common\video-x264-param.conf
+# [104268] 1554413358.551328 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=92096).
+# [100796] 1554413407.172800 # include: config\common\server-common.conf
+# [100796] 1554413407.172800 # include: config\common\controller.conf
+# [100796] 1554413407.172800 # include: config\common\video-x264.conf
+# [100796] 1554413407.173799 # include: config\common\video-x264-param.conf
+# [100796] 1554413407.173799 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=104396).
+# [102604] 1554413456.670590 # include: config\common\server-common.conf
+# [102604] 1554413456.671589 # include: config\common\controller.conf
+# [102604] 1554413456.671589 # include: config\common\video-x264.conf
+# [102604] 1554413456.671589 # include: config\common\video-x264-param.conf
+# [102604] 1554413456.672559 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=104216).
+# [117388] 1554416387.121839 # include: config\common\server-common.conf
+# [117388] 1554416387.122841 # include: config\common\controller.conf
+# [117388] 1554416387.122841 # include: config\common\video-x264.conf
+# [117388] 1554416387.122841 # include: config\common\video-x264-param.conf
+# [117388] 1554416387.123841 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=119860).
+# [120744] 1554416435.770333 # include: config\common\server-common.conf
+# [120744] 1554416435.771368 # include: config\common\controller.conf
+# [120744] 1554416435.771368 # include: config\common\video-x264.conf
+# [120744] 1554416435.771368 # include: config\common\video-x264-param.conf
+# [120744] 1554416435.772370 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=120776).
+# [113576] 1554416445.358292 # include: config\common\server-common.conf
+# [113576] 1554416445.358292 # include: config\common\controller.conf
+# [113576] 1554416445.358292 # include: config\common\video-x264.conf
+# [113576] 1554416445.358292 # include: config\common\video-x264-param.conf
+# [113576] 1554416445.359289 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=115172).
+# [111004] 1554416455.021914 # include: config\common\server-common.conf
+# [111004] 1554416455.021914 # include: config\common\controller.conf
+# [111004] 1554416455.022912 # include: config\common\video-x264.conf
+# [111004] 1554416455.022912 # include: config\common\video-x264-param.conf
+# [111004] 1554416455.023913 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=120560).
+# [114384] 1554416711.948910 # include: config\common\server-common.conf
+# [114384] 1554416711.949909 # include: config\common\controller.conf
+# [114384] 1554416711.949909 # include: config\common\video-x264.conf
+# [114384] 1554416711.949909 # include: config\common\video-x264-param.conf
+# [114384] 1554416711.950911 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=123460).
+# [124584] 1554416743.478260 # include: config\common\server-common.conf
+# [124584] 1554416743.478260 # include: config\common\controller.conf
+# [124584] 1554416743.479259 # include: config\common\video-x264.conf
+# [124584] 1554416743.479259 # include: config\common\video-x264-param.conf
+# [124584] 1554416743.480258 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=124616).
+# [124108] 1554416753.059891 # include: config\common\server-common.conf
+# [124108] 1554416753.059891 # include: config\common\controller.conf
+# [124108] 1554416753.059891 # include: config\common\video-x264.conf
+# [124108] 1554416753.059891 # include: config\common\video-x264-param.conf
+# [124108] 1554416753.060877 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=120096).
+# [103752] 1554416763.658130 # include: config\common\server-common.conf
+# [103752] 1554416763.658130 # include: config\common\controller.conf
+# [103752] 1554416763.659129 # include: config\common\video-x264.conf
+# [103752] 1554416763.659129 # include: config\common\video-x264-param.conf
+# [103752] 1554416763.660128 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe (in C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.kobo.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\KoboDeluxePortable\App\kobo\kobodl.exe
+launch success (pid=120608).

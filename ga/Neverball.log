@@ -1,0 +1,561 @@
+# [215736] 1551036564.950380 # include: config\common\server-common.conf
+# [215736] 1551036564.951379 # include: config\common\controller.conf
+# [215736] 1551036564.951379 # include: config\common\video-x264.conf
+# [215736] 1551036564.952759 # include: config\common\video-x264-param.conf
+# [215736] 1551036564.953789 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=216332).
+# [215736] 1551036609.325836 # include: config\common\server-common.conf
+# [215736] 1551036609.326856 # include: config\common\controller.conf
+# [215736] 1551036609.327807 # include: config\common\video-x264.conf
+# [215736] 1551036609.328845 # include: config\common\video-x264-param.conf
+# [215736] 1551036609.331792 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=201540).
+# [216452] 1551036653.262088 # include: config\common\server-common.conf
+# [216452] 1551036653.263131 # include: config\common\controller.conf
+# [216452] 1551036653.264668 # include: config\common\video-x264.conf
+# [216452] 1551036653.265858 # include: config\common\video-x264-param.conf
+# [216452] 1551036653.268590 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=216276).
+# [215160] 1551036695.881984 # include: config\common\server-common.conf
+# [215160] 1551036695.883390 # include: config\common\controller.conf
+# [215160] 1551036695.883390 # include: config\common\video-x264.conf
+# [215160] 1551036695.885357 # include: config\common\video-x264-param.conf
+# [215160] 1551036695.887605 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=216728).
+# [17124] 1551037931.458766 # include: config\common\server-common.conf
+# [17124] 1551037931.458766 # include: config\common\controller.conf
+# [17124] 1551037931.475727 # include: config\common\video-x264.conf
+# [17124] 1551037931.475727 # include: config\common\video-x264-param.conf
+# [17124] 1551037931.486194 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=14832).
+# [16572] 1551037976.441949 # include: config\common\server-common.conf
+# [16572] 1551037976.443234 # include: config\common\controller.conf
+# [16572] 1551037976.444263 # include: config\common\video-x264.conf
+# [16572] 1551037976.446230 # include: config\common\video-x264-param.conf
+# [16572] 1551037976.449433 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=17400).
+# [16244] 1551037993.298110 # include: config\common\server-common.conf
+# [16244] 1551037993.299443 # include: config\common\controller.conf
+# [16244] 1551037993.300440 # include: config\common\video-x264.conf
+# [16244] 1551037993.301446 # include: config\common\video-x264-param.conf
+# [16244] 1551037993.304432 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=15972).
+# [17232] 1551038044.916672 # include: config\common\server-common.conf
+# [17232] 1551038044.917664 # include: config\common\controller.conf
+# [17232] 1551038044.918663 # include: config\common\video-x264.conf
+# [17232] 1551038044.920655 # include: config\common\video-x264-param.conf
+# [17232] 1551038044.923650 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=13292).
+# [17216] 1551038091.247424 # include: config\common\server-common.conf
+# [17216] 1551038091.249417 # include: config\common\controller.conf
+# [17216] 1551038091.250405 # include: config\common\video-x264.conf
+# [17216] 1551038091.251409 # include: config\common\video-x264-param.conf
+# [17216] 1551038091.254401 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=16992).
+# [49964] 1552465954.481611 # include: config\common\server-common.conf
+# [49964] 1552465954.486605 # include: config\common\controller.conf
+# [49964] 1552465954.490606 # include: config\common\video-x264.conf
+# [49964] 1552465954.493607 # include: config\common\video-x264-param.conf
+# [49964] 1552465954.494608 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=49972).
+# [49488] 1552466098.060009 # include: config\common\server-common.conf
+# [49488] 1552466098.060009 # include: config\common\controller.conf
+# [49488] 1552466098.061008 # include: config\common\video-x264.conf
+# [49488] 1552466098.061008 # include: config\common\video-x264-param.conf
+# [49488] 1552466098.062043 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=50720).
+# [51332] 1552466309.145918 # include: config\common\server-common.conf
+# [51332] 1552466309.145918 # include: config\common\controller.conf
+# [51332] 1552466309.146918 # include: config\common\video-x264.conf
+# [51332] 1552466309.146918 # include: config\common\video-x264-param.conf
+# [51332] 1552466309.147918 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=51396).
+# [52608] 1552466492.402709 # include: config\common\server-common.conf
+# [52608] 1552466492.403711 # include: config\common\controller.conf
+# [52608] 1552466492.403711 # include: config\common\video-x264.conf
+# [52608] 1552466492.403711 # include: config\common\video-x264-param.conf
+# [52608] 1552466492.404711 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=52676).
+# [58216] 1552467650.559513 # include: config\common\server-common.conf
+# [58216] 1552467650.559513 # include: config\common\controller.conf
+# [58216] 1552467650.560513 # include: config\common\video-x264.conf
+# [58216] 1552467650.560513 # include: config\common\video-x264-param.conf
+# [58216] 1552467650.561513 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=55096).
+# [104468] 1552475348.356198 # include: config\common\server-common.conf
+# [104468] 1552475348.357194 # include: config\common\controller.conf
+# [104468] 1552475348.357194 # include: config\common\video-x264.conf
+# [104468] 1552475348.357194 # include: config\common\video-x264-param.conf
+# [104468] 1552475348.358195 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=104540).
+# [686236] 1554279544.389486 # include: config\common\server-common.conf
+# [686236] 1554279544.395468 # include: config\common\controller.conf
+# [686236] 1554279544.398462 # include: config\common\video-x264.conf
+# [686236] 1554279544.402451 # include: config\common\video-x264-param.conf
+# [686236] 1554279544.403448 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=699448).
+# [701524] 1554279765.234378 # include: config\common\server-common.conf
+# [701524] 1554279765.235376 # include: config\common\controller.conf
+# [701524] 1554279765.235376 # include: config\common\video-x264.conf
+# [701524] 1554279765.236373 # include: config\common\video-x264-param.conf
+# [701524] 1554279765.236373 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=701556).
+# [701824] 1554279893.704454 # include: config\common\server-common.conf
+# [701824] 1554279893.704454 # include: config\common\controller.conf
+# [701824] 1554279893.705451 # include: config\common\video-x264.conf
+# [701824] 1554279893.705451 # include: config\common\video-x264-param.conf
+# [701824] 1554279893.706447 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=701412).
+# [706280] 1554285500.602416 # include: config\common\server-common.conf
+# [706280] 1554285500.614554 # include: config\common\controller.conf
+# [706280] 1554285500.623991 # include: config\common\video-x264.conf
+# [706280] 1554285500.631957 # include: config\common\video-x264-param.conf
+# [706280] 1554285500.639935 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=710400).
+# [764072] 1554388593.839049 # include: config\common\server-common.conf
+# [764072] 1554388593.853024 # include: config\common\controller.conf
+# [764072] 1554388593.853024 # include: config\common\video-x264.conf
+# [764072] 1554388593.854007 # include: config\common\video-x264-param.conf
+# [764072] 1554388593.855004 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=764092).
+# [764240] 1554388885.339499 # include: config\common\server-common.conf
+# [764240] 1554388885.339499 # include: config\common\controller.conf
+# [764240] 1554388885.340496 # include: config\common\video-x264.conf
+# [764240] 1554388885.340496 # include: config\common\video-x264-param.conf
+# [764240] 1554388885.341495 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=764092).
+# [766652] 1554389044.537574 # include: config\common\server-common.conf
+# [766652] 1554389044.537574 # include: config\common\controller.conf
+# [766652] 1554389044.537574 # include: config\common\video-x264.conf
+# [766652] 1554389044.538570 # include: config\common\video-x264-param.conf
+# [766652] 1554389044.538570 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=766720).
+# [769020] 1554389441.544085 # include: config\common\server-common.conf
+# [769020] 1554389441.545082 # include: config\common\controller.conf
+# [769020] 1554389441.546080 # include: config\common\video-x264.conf
+# [769020] 1554389441.546080 # include: config\common\video-x264-param.conf
+# [769020] 1554389441.547077 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=768968).
+# [769768] 1554389564.694522 # include: config\common\server-common.conf
+# [769768] 1554389564.694522 # include: config\common\controller.conf
+# [769768] 1554389564.695519 # include: config\common\video-x264.conf
+# [769768] 1554389564.695519 # include: config\common\video-x264-param.conf
+# [769768] 1554389564.696516 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=769900).
+# [769960] 1554389574.574910 # include: config\common\server-common.conf
+# [769960] 1554389574.575912 # include: config\common\controller.conf
+# [769960] 1554389574.575912 # include: config\common\video-x264.conf
+# [769960] 1554389574.576910 # include: config\common\video-x264-param.conf
+# [769960] 1554389574.577902 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=766760).
+# [770776] 1554389618.176436 # include: config\common\server-common.conf
+# [770776] 1554389618.177432 # include: config\common\controller.conf
+# [770776] 1554389618.177432 # include: config\common\video-x264.conf
+# [770776] 1554389618.177432 # include: config\common\video-x264-param.conf
+# [770776] 1554389618.178430 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=770824).
+# [765576] 1554389662.761023 # include: config\common\server-common.conf
+# [765576] 1554389662.762021 # include: config\common\controller.conf
+# [765576] 1554389662.762021 # include: config\common\video-x264.conf
+# [765576] 1554389662.762021 # include: config\common\video-x264-param.conf
+# [765576] 1554389662.763018 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=770712).
+# [4596] 1554390591.940792 # include: config\common\server-common.conf
+# [4596] 1554390591.943760 # include: config\common\controller.conf
+# [4596] 1554390591.945785 # include: config\common\video-x264.conf
+# [4596] 1554390591.949782 # include: config\common\video-x264-param.conf
+# [4596] 1554390591.950781 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=6124).
+# [15092] 1554390635.707068 # include: config\common\server-common.conf
+# [15092] 1554390635.707068 # include: config\common\controller.conf
+# [15092] 1554390635.707068 # include: config\common\video-x264.conf
+# [15092] 1554390635.708067 # include: config\common\video-x264-param.conf
+# [15092] 1554390635.708067 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=15112).
+# [14184] 1554390679.433317 # include: config\common\server-common.conf
+# [14184] 1554390679.434328 # include: config\common\controller.conf
+# [14184] 1554390679.434328 # include: config\common\video-x264.conf
+# [14184] 1554390679.435318 # include: config\common\video-x264-param.conf
+# [14184] 1554390679.435318 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=14564).
+# [14700] 1554390723.872636 # include: config\common\server-common.conf
+# [14700] 1554390723.873633 # include: config\common\controller.conf
+# [14700] 1554390723.873633 # include: config\common\video-x264.conf
+# [14700] 1554390723.873633 # include: config\common\video-x264-param.conf
+# [14700] 1554390723.874633 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=6912).
+# [49712] 1554400431.157557 # include: config\common\server-common.conf
+# [49712] 1554400431.157557 # include: config\common\controller.conf
+# [49712] 1554400431.158551 # include: config\common\video-x264.conf
+# [49712] 1554400431.158551 # include: config\common\video-x264-param.conf
+# [49712] 1554400431.159553 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=50956).
+# [54168] 1554400474.781506 # include: config\common\server-common.conf
+# [54168] 1554400474.781506 # include: config\common\controller.conf
+# [54168] 1554400474.781506 # include: config\common\video-x264.conf
+# [54168] 1554400474.781506 # include: config\common\video-x264-param.conf
+# [54168] 1554400474.782506 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=54188).
+# [49432] 1554400518.376216 # include: config\common\server-common.conf
+# [49432] 1554400518.376216 # include: config\common\controller.conf
+# [49432] 1554400518.376216 # include: config\common\video-x264.conf
+# [49432] 1554400518.377176 # include: config\common\video-x264-param.conf
+# [49432] 1554400518.377176 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=48624).
+# [53260] 1554400563.002901 # include: config\common\server-common.conf
+# [53260] 1554400563.002901 # include: config\common\controller.conf
+# [53260] 1554400563.002901 # include: config\common\video-x264.conf
+# [53260] 1554400563.003901 # include: config\common\video-x264-param.conf
+# [53260] 1554400563.003901 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=43228).
+# [53580] 1554400652.734281 # include: config\common\server-common.conf
+# [53580] 1554400652.735275 # include: config\common\controller.conf
+# [53580] 1554400652.735275 # include: config\common\video-x264.conf
+# [53580] 1554400652.735275 # include: config\common\video-x264-param.conf
+# [53580] 1554400652.736275 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=53552).
+# [48952] 1554400666.356626 # include: config\common\server-common.conf
+# [48952] 1554400666.357628 # include: config\common\controller.conf
+# [48952] 1554400666.357628 # include: config\common\video-x264.conf
+# [48952] 1554400666.357628 # include: config\common\video-x264-param.conf
+# [48952] 1554400666.358627 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=53016).
+# [47684] 1554400677.951071 # include: config\common\server-common.conf
+# [47684] 1554400677.952067 # include: config\common\controller.conf
+# [47684] 1554400677.952067 # include: config\common\video-x264.conf
+# [47684] 1554400677.952067 # include: config\common\video-x264-param.conf
+# [47684] 1554400677.953068 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=54268).
+# [53888] 1554400688.433538 # include: config\common\server-common.conf
+# [53888] 1554400688.433538 # include: config\common\controller.conf
+# [53888] 1554400688.434538 # include: config\common\video-x264.conf
+# [53888] 1554400688.434538 # include: config\common\video-x264-param.conf
+# [53888] 1554400688.435538 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=49264).
+# [103356] 1554413139.356231 # include: config\common\server-common.conf
+# [103356] 1554413139.356231 # include: config\common\controller.conf
+# [103356] 1554413139.357230 # include: config\common\video-x264.conf
+# [103356] 1554413139.357230 # include: config\common\video-x264-param.conf
+# [103356] 1554413139.358230 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=89384).
+# [102872] 1554413183.333560 # include: config\common\server-common.conf
+# [102872] 1554413183.333560 # include: config\common\controller.conf
+# [102872] 1554413183.334557 # include: config\common\video-x264.conf
+# [102872] 1554413183.334557 # include: config\common\video-x264-param.conf
+# [102872] 1554413183.335560 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=101448).
+# [100564] 1554413211.950537 # include: config\common\server-common.conf
+# [100564] 1554413211.951538 # include: config\common\controller.conf
+# [100564] 1554413211.951538 # include: config\common\video-x264.conf
+# [100564] 1554413211.952538 # include: config\common\video-x264-param.conf
+# [100564] 1554413211.953537 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=99000).
+# [100864] 1554413223.399424 # include: config\common\server-common.conf
+# [100864] 1554413223.399424 # include: config\common\controller.conf
+# [100864] 1554413223.399424 # include: config\common\video-x264.conf
+# [100864] 1554413223.399424 # include: config\common\video-x264-param.conf
+# [100864] 1554413223.400429 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=67896).
+# [118380] 1554416211.832232 # include: config\common\server-common.conf
+# [118380] 1554416211.833228 # include: config\common\controller.conf
+# [118380] 1554416211.833228 # include: config\common\video-x264.conf
+# [118380] 1554416211.833228 # include: config\common\video-x264-param.conf
+# [118380] 1554416211.834228 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=118440).
+# [118336] 1554416221.456182 # include: config\common\server-common.conf
+# [118336] 1554416221.457185 # include: config\common\controller.conf
+# [118336] 1554416221.457185 # include: config\common\video-x264.conf
+# [118336] 1554416221.457185 # include: config\common\video-x264-param.conf
+# [118336] 1554416221.458180 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=118300).
+# [118760] 1554416233.158496 # include: config\common\server-common.conf
+# [118760] 1554416233.158496 # include: config\common\controller.conf
+# [118760] 1554416233.159496 # include: config\common\video-x264.conf
+# [118760] 1554416233.159496 # include: config\common\video-x264-param.conf
+# [118760] 1554416233.161496 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=96392).
+# [118280] 1554416243.617911 # include: config\common\server-common.conf
+# [118280] 1554416243.618910 # include: config\common\controller.conf
+# [118280] 1554416243.618910 # include: config\common\video-x264.conf
+# [118280] 1554416243.618910 # include: config\common\video-x264-param.conf
+# [118280] 1554416243.619911 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=118624).
+# [123284] 1554416626.632240 # include: config\common\server-common.conf
+# [123284] 1554416626.632240 # include: config\common\controller.conf
+# [123284] 1554416626.632240 # include: config\common\video-x264.conf
+# [123284] 1554416626.633239 # include: config\common\video-x264-param.conf
+# [123284] 1554416626.633239 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=123348).
+# [120756] 1554416639.233683 # include: config\common\server-common.conf
+# [120756] 1554416639.233683 # include: config\common\controller.conf
+# [120756] 1554416639.234682 # include: config\common\video-x264.conf
+# [120756] 1554416639.234682 # include: config\common\video-x264-param.conf
+# [120756] 1554416639.234682 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=118680).
+# [123200] 1554416651.834008 # include: config\common\server-common.conf
+# [123200] 1554416651.834008 # include: config\common\controller.conf
+# [123200] 1554416651.834008 # include: config\common\video-x264.conf
+# [123200] 1554416651.835007 # include: config\common\video-x264-param.conf
+# [123200] 1554416651.835007 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=123536).
+# [122828] 1554416663.422689 # include: config\common\server-common.conf
+# [122828] 1554416663.423689 # include: config\common\controller.conf
+# [122828] 1554416663.423689 # include: config\common\video-x264.conf
+# [122828] 1554416663.423689 # include: config\common\video-x264-param.conf
+# [122828] 1554416663.424691 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe (in C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.neverball.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\NeverballPortable\App\Neverball\neverball.exe
+launch success (pid=123876).

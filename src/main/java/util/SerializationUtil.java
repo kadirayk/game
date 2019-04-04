@@ -10,14 +10,13 @@ import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.ArrayUtils;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Command;
+import model.GameConfig;
 import model.Interview;
 import model.InterviewFillout;
+import strategy.strategy1.GaEvaluationProblem;
 import strategy.strategy1.Individual;
 
 /**
@@ -107,8 +106,8 @@ public class SerializationUtil {
 		return interview;
 	}
 
-	//TODO: write winningConfig
-	
+	// TODO: write winningConfig
+
 	public static void writeIndividual(String path, Individual bestIndividual) {
 		String filePath = path + "/winning_individual.json";
 		ObjectMapper mapper = new ObjectMapper();
@@ -124,6 +123,26 @@ public class SerializationUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static GameConfig readGameConfig(String path, String gameSelection) {
+		if(!path.substring(path.length()-1, path.length()).equals("/")) {
+			path += "/";
+		}
+		String filePath = path + gameSelection + ".json";
+		GameConfig config = null;
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			config = mapper.readValue(new File(filePath), GameConfig.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return config;
+	}
+	
+	public static void main(String[] args) {
+		GameConfig config = readGameConfig("gameconfigs", "Neverball");
+		System.out.println(config.getName());
 	}
 
 }

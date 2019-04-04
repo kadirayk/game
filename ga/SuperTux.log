@@ -1,0 +1,11 @@
+# [65220] 1552468291.803287 # include: config\common\server-common.conf
+# [65220] 1552468291.804287 # include: config\common\controller.conf
+# [65220] 1552468291.804287 # include: config\common\video-x264.conf
+# [65220] 1552468291.804287 # include: config\common\video-x264-param.conf
+# [65220] 1552468291.805288 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\SuperTuxPortable\App\SuperTux\bin\supertux2.exe (in C:\Users\Kadiray\work_proseco_int\game\SuperTuxPortable\App\SuperTux\bin\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.supertux.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\SuperTuxPortable\App\SuperTux\bin\supertux2.exe
+launch success (pid=62820).

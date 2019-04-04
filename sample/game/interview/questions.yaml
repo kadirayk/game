@@ -31,17 +31,13 @@ questions:
       attributes:
         value: Neverball
     - '@type': Option
-      content: XMoto
+      content: AstroMenace
       attributes:
-        value: XMoto
+        value: AstroMenace
     - '@type': Option
-      content: OpenTTD
+      content: Kobo
       attributes:
-        value: OpenTTD
-    - '@type': Option
-      content: Desktop
-      attributes:
-        value: Desktop
+        value: Kobo
 
 - id: server_entry
   content: Please enter GA MiniOS Server IP

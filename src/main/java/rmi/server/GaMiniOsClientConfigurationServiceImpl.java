@@ -100,6 +100,11 @@ public class GaMiniOsClientConfigurationServiceImpl extends UnicastRemoteObject
 			}
 		}
 
+		if(numberOfCommandsWithReceiveTime==0) {
+			// TODO: inspect why we get this zero
+			return Math.random();
+		}
+		
 		Double val = (totalDelay / numberOfCommandsWithReceiveTime);
 
 		if (val > 1.0) {

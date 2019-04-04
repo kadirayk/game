@@ -1,0 +1,57 @@
+'null' is not recognized as an internal or external command,
+operable program or batch file.
+# [60064] 1552467757.853224 # include: config\common\server-common.conf
+# [60064] 1552467757.854259 # include: config\common\controller.conf
+# [60064] 1552467757.854259 # include: config\common\video-x264.conf
+# [60064] 1552467757.854259 # include: config\common\video-x264-param.conf
+# [60064] 1552467757.855222 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe (in C:\Users\Kadiray\work_proseco_int\game\AstroMenace\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.astromenace.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe
+launch success (pid=60128).
+# [83124] 1552476534.501117 # include: config\common\server-common.conf
+# [83124] 1552476534.501117 # include: config\common\controller.conf
+# [83124] 1552476534.501117 # include: config\common\video-x264.conf
+# [83124] 1552476534.502118 # include: config\common\video-x264-param.conf
+# [83124] 1552476534.502118 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe (in C:\Users\Kadiray\work_proseco_int\game\AstroMenace\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.astromenace.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe
+launch success (pid=66084).
+# [107572] 1552476761.637750 # include: config\common\server-common.conf
+# [107572] 1552476761.637750 # include: config\common\controller.conf
+# [107572] 1552476761.637750 # include: config\common\video-x264.conf
+# [107572] 1552476761.638749 # include: config\common\video-x264-param.conf
+# [107572] 1552476761.638749 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe (in C:\Users\Kadiray\work_proseco_int\game\AstroMenace\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.astromenace.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe
+launch success (pid=107592).
+# [125520] 1552483455.579446 # include: config\common\server-common.conf
+# [125520] 1552483455.579446 # include: config\common\controller.conf
+# [125520] 1552483455.580446 # include: config\common\video-x264.conf
+# [125520] 1552483455.580446 # include: config\common\video-x264-param.conf
+# [125520] 1552483455.582445 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe (in C:\Users\Kadiray\work_proseco_int\game\AstroMenace\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.astromenace.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe
+launch success (pid=48104).
+# [122208] 1552487549.052383 # include: config\common\server-common.conf
+# [122208] 1552487549.052861 # include: config\common\controller.conf
+# [122208] 1552487549.053869 # include: config\common\video-x264.conf
+# [122208] 1552487549.054101 # include: config\common\video-x264-param.conf
+# [122208] 1552487549.055104 # include: config\common\audio-lame.conf
+Loader: C:\Users\Kadiray\work_proseco_int\game\ga\ga-server-event-driven.exe (in C:\Users\Kadiray\work_proseco_int\game\ga\)
+app: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe (in C:\Users\Kadiray\work_proseco_int\game\AstroMenace\)
+Configuration file: C:\Users\Kadiray\work_proseco_int\game\ga\config/server.astromenace.conf
+dllpath: C:\Users\Kadiray\work_proseco_int\game\ga\ga-hook.dll
+appexe: C:\Users\Kadiray\work_proseco_int\game\AstroMenace\AstroMenace.exe
+launch success (pid=126364).

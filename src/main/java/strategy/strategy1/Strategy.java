@@ -61,21 +61,6 @@ public class Strategy {
 	}
 
 	private static void runNSGAII() {
-		Double timeoutVal = Double.valueOf(timeout);
-		Double val = (timeoutVal / gamingPrototypeConfig.getMaxSizeOfPopulation())
-				/ gamingPrototypeConfig.getIndividualDuration();
-		Integer generationSize = val.intValue();
-		System.out.println("timeout:" + timeout + " maxEvaluations:" + generationSize + " individualDuration:"
-				+ gamingPrototypeConfig.getIndividualDuration() + " populationSize:"
-				+ gamingPrototypeConfig.getMaxSizeOfPopulation());
-
-		GaEvaluationProblem problem = new GaEvaluationProblem();
-		NondominatedPopulation result = new Executor().withProblem(problem).withAlgorithm("NSGAII")
-				.withProperty("populationSize", gamingPrototypeConfig.getMaxSizeOfPopulation())
-				.withMaxEvaluations(generationSize*gamingPrototypeConfig.getMaxSizeOfPopulation()).run();
-
-		Map<String, String> configuration = GaEvaluationProblem.createConfiguration(result.get(0));
-
 		InterviewFillout interviewFillout = SerializationUtil.readAsJSON(processDir + "/interview/");
 		Question gameSelectionQuestion = new Question();
 		gameSelectionQuestion.setId("game_selection");
@@ -84,6 +69,22 @@ public class Strategy {
 		String gameServer = commonGameProp.getProperty(gameSelection + ".server");
 		String gameWindow = commonGameProp.getProperty(gameSelection + ".window");
 		String gameExe = commonGameProp.getProperty(gameSelection + ".exe");
+
+		
+		Double timeoutVal = Double.valueOf(timeout);
+		Double val = (timeoutVal / gamingPrototypeConfig.getMaxSizeOfPopulation())
+				/ gamingPrototypeConfig.getIndividualDuration();
+		Integer generationSize = val.intValue();
+		System.out.println("timeout:" + timeout + " maxEvaluations:" + generationSize + " individualDuration:"
+				+ gamingPrototypeConfig.getIndividualDuration() + " populationSize:"
+				+ gamingPrototypeConfig.getMaxSizeOfPopulation());
+
+		GaEvaluationProblem problem = new GaEvaluationProblem(gameSelection);
+		NondominatedPopulation result = new Executor().withProblem(problem).withAlgorithm("NSGAII")
+				.withProperty("populationSize", gamingPrototypeConfig.getMaxSizeOfPopulation())
+				.withMaxEvaluations(generationSize*gamingPrototypeConfig.getMaxSizeOfPopulation()).run();
+
+		Map<String, String> configuration = GaEvaluationProblem.createConfiguration(result.get(0));
 
 		ConfigurationData config = new ConfigurationData(configuration);
 
@@ -153,7 +154,7 @@ public class Strategy {
 		gaServerRmiClient.configureAndStartup(config);
 
 		GaMiniOsClientEvaluation clientEvaluation = gaClientRmiClient.startGaClientAndEvaluate(getGaMiniOsServerIp(),
-				gamingPrototypeConfig.getClientRmiServerPort());
+				gamingPrototypeConfig.getServerRmiServerPort());
 
 		try {
 			Thread.sleep(500);

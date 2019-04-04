@@ -17,6 +17,7 @@ public class GaMiniOsServerRmiClient {
 	public GaMiniOsServerRmiClient(String host, Integer port) {
 		this.host = host == null ? "localhost" : host; // "131.234.250.145";
 		this.port = port == null ? 1099 : port;
+		System.out.println("rmi server client: " + this.host + ":" + this.port);
 	}
 
 
@@ -124,6 +125,11 @@ public class GaMiniOsServerRmiClient {
 			e.printStackTrace();
 		}
 		return response;
+	}
+	
+	public static void main(String[] args) {
+		GaMiniOsServerRmiClient rmiClient = new GaMiniOsServerRmiClient("127.0.0.1", 1099);
+		rmiClient.stopServer();
 	}
 
 }

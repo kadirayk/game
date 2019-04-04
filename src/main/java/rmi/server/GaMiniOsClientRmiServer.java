@@ -23,7 +23,7 @@ public class GaMiniOsClientRmiServer {
 	}
 
 	public static void registerObject(String name, Remote remoteObj) throws RemoteException, AlreadyBoundException {
-		System.setProperty("java.rmi.server.hostname", "localhost");
+		//System.setProperty("java.rmi.server.hostname", "localhost");
 		// Bind the object in the registry.
 		// It is bind with certain name.
 		// Client will lookup on the registration of the name to get object.

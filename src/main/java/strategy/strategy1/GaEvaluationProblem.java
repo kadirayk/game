@@ -8,7 +8,10 @@ import org.moeaframework.core.variable.BinaryVariable;
 import org.moeaframework.core.variable.EncodingUtils;
 import org.moeaframework.problem.AbstractProblem;
 
+import model.GameConfig;
+import model.Parameter;
 import rmi.GaEvaluation;
+import util.SerializationUtil;
 
 public class GaEvaluationProblem extends AbstractProblem {
 
@@ -22,6 +25,8 @@ public class GaEvaluationProblem extends AbstractProblem {
 	public static Map<String, String> videoDecoder = new HashMap<>();
 	public static Map<String, String> videoSpecificRefs = new HashMap<>();
 	public static Map<String, String> scalingFactor = new HashMap<>();
+	public static Map<String, Map<String, String>> gameSpecificConf = new HashMap<>();
+	private String gameSelection;
 
 	static {
 		videoSpecificBitrate.put("000", "800000");
@@ -83,9 +88,57 @@ public class GaEvaluationProblem extends AbstractProblem {
 
 	}
 
-	public GaEvaluationProblem() {
+	public GaEvaluationProblem(String gameSelection) {
 		super(7, 3);
-		// TODO Auto-generated constructor stub
+		this.gameSelection = gameSelection;
+		setGameSpecificConf(gameSelection);
+	}
+
+	private static void setGameSpecificConf(String gameSelection) {
+		GameConfig gameConfig = SerializationUtil.readGameConfig("gameconfigs", gameSelection);
+		System.out.println(gameConfig.getName());
+		for (Parameter param : gameConfig.getParameters()) {
+			Map<String, String> valueByBit = new HashMap<>();
+			int valueCount = param.getValues().length;
+			String[] bitArray = getBitArray(valueCount);
+			int i = 0;
+			for (String val : param.getValues()) {
+				valueByBit.put(bitArray[i], val);
+				System.out.println(val);
+				i++;
+			}
+			gameSpecificConf.put(param.getName(), valueByBit);
+		}
+	}
+
+	public static String[] getBitArray(int valueCount) {
+		String[] arr = new String[valueCount];
+		int numBits = (int) (Math.log(valueCount) / Math.log(2));
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < numBits; i++) {
+			str.append("0");
+		}
+		arr[0] = str.toString();
+		for (int i = 1; i < valueCount; i++) {
+			if (str.substring(str.length() - 1).equals("0")) {
+				str.replace(str.length() - 1, str.length(), "1");
+			} else if (str.substring(str.length() - 1).equals("1")) {
+				int cursor = str.length() - 1;
+				while (cursor > 0) {
+					if (str.substring(cursor - 1, cursor).equals("1")) {
+						str.replace(cursor, cursor + 1, "0");
+						str.replace(cursor - 1, cursor, "0");
+					} else if (str.substring(cursor - 1, cursor).equals("0")) {
+						str.replace(cursor - 1, cursor, "1");
+						str.replace(cursor, cursor + 1, "0");
+						break;
+					}
+					cursor--;
+				}
+			}
+			arr[i] = str.toString();
+		}
+		return arr;
 	}
 
 	public static Map<String, String> createConfiguration(Solution solution) {
@@ -96,7 +149,6 @@ public class GaEvaluationProblem extends AbstractProblem {
 		String videoSpecificIntraRefresh = getActualVideoSpecificIntraRefresh(
 				EncodingUtils.getBinary(solution.getVariable(4)));
 		String videoSpecificRefs = getActualVideoSpecificRefs(EncodingUtils.getBinary(solution.getVariable(5)));
-		String scalingFactor = getActualScalingFactor(EncodingUtils.getBinary(solution.getVariable(6)));
 		Map<String, String> configuration = new HashMap<>();
 		configuration.put("video-specific[b]", videoSpecificBitrate);
 		configuration.put("video-specific[me_method]", videoSpecificMethod);
@@ -104,7 +156,13 @@ public class GaEvaluationProblem extends AbstractProblem {
 		configuration.put("video-renderer", videoRenderer);
 		configuration.put("video-specific[intra_refresh]", videoSpecificIntraRefresh);
 		configuration.put("video-specific[refs]", videoSpecificRefs);
-		configuration.put("scaling-factor", scalingFactor);
+		int i = 6;
+		for (Map.Entry<String, Map<String, String>> entry : gameSpecificConf.entrySet()) {
+			configuration.put(entry.getKey(),
+					getActualGameSpecificConf(entry.getKey(), EncodingUtils.getBinary(solution.getVariable(i))));
+			System.out.println(entry.getKey() + " " + getActualGameSpecificConf(entry.getKey(), EncodingUtils.getBinary(solution.getVariable(i))));
+			i++;
+		}
 		return configuration;
 	}
 
@@ -114,7 +172,7 @@ public class GaEvaluationProblem extends AbstractProblem {
 		double[] f = new double[numberOfObjectives];
 
 		Map<String, String> configuration = createConfiguration(solution);
-		
+
 		GaEvaluation evaluation = Strategy.configureAndEvaluate(Strategy.processDir, configuration);
 
 		f[0] = evaluation.getResponseDelay(); // minimize
@@ -150,67 +208,74 @@ public class GaEvaluationProblem extends AbstractProblem {
 		}
 		return bitSetInt;
 	}
-	
+
 	private static String getActualVideoSpecificBitrate(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual = videoSpecificBitrate.get(val);
-		System.out.printf("\n|%-25s | %4s | %10s|\n","Configuration Parameter", "Bits", "Actual");
+		System.out.printf("\n|%-25s | %4s | %10s|\n", "Configuration Parameter", "Bits", "Actual");
 		System.out.println("-----------------------------------------------");
-		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificBitrate", val, actual);
+		System.out.printf("|%-25s | %4s | %10s|\n", "videoSpecificBitrate", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoSpecificMethod(boolean[] bits) {
 		String val = toBinaryString(bits);
-		String actual= videoSpecificMethod.get(val);
-		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificMethod", val, actual);
+		String actual = videoSpecificMethod.get(val);
+		System.out.printf("|%-25s | %4s | %10s|\n", "videoSpecificMethod", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoSpecificRange(boolean[] bits) {
 		String val = toBinaryString(bits);
-		String actual =  videoSpecificRange.get(val);
-		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificRange", val, actual);
+		String actual = videoSpecificRange.get(val);
+		System.out.printf("|%-25s | %4s | %10s|\n", "videoSpecificRange", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoRenderer(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual = videoRenderer.get(val);
-		System.out.printf("|%-25s | %4s | %10s|\n","videoRenderer", val, actual);
+		System.out.printf("|%-25s | %4s | %10s|\n", "videoRenderer", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoSpecificIntraRefresh(boolean[] bits) {
 		String val = toBinaryString(bits);
-		String actual =  videoSpecificIntraRefresh.get(val);
-		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificIntraRefresh", val, actual);
+		String actual = videoSpecificIntraRefresh.get(val);
+		System.out.printf("|%-25s | %4s | %10s|\n", "videoSpecificIntraRefresh", val, actual);
 		return actual;
 	}
 
 	private static String getActualVideoSpecificRefs(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual = videoSpecificRefs.get(val);
-		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificRefs", val, actual);
+		System.out.printf("|%-25s | %4s | %10s|\n", "videoSpecificRefs", val, actual);
 		return actual;
 	}
 
 	private static String getActualScalingFactor(boolean[] bits) {
 		String val = toBinaryString(bits);
 		String actual = scalingFactor.get(val);
-		System.out.printf("|%-25s | %4s | %10s|\n","scalingFactor", val, actual);
+		System.out.printf("|%-25s | %4s | %10s|\n", "scalingFactor", val, actual);
+		return actual;
+	}
+
+	private static String getActualGameSpecificConf(String confName, boolean[] bits) {
+		String val = toBinaryString(bits);
+		String actual = gameSpecificConf.get(confName).get(val);
+		System.out.printf("|%-25s | %4s | %10s|\n", confName, val, actual);
 		return actual;
 	}
 
 	public static void main(String[] args) {
-		System.out.printf("|%-25s | %4s | %10s|\n","Configuration Parameter", "Bits", "Actual");
+		System.out.printf("|%-25s | %4s | %10s|\n", "Configuration Parameter", "Bits", "Actual");
 		System.out.println("-----------------------------------------------");
-		System.out.printf("|%-25s | %4s | %10s|\n","videoSpecificBitrate", "1001", "software");
-		System.out.printf("|%-25s | %4s | %10s|\n","scalingFactor", "01", "200");
+		System.out.printf("|%-25s | %4s | %10s|\n", "videoSpecificBitrate", "1001", "software");
+		System.out.printf("|%-25s | %4s | %10s|\n", "scalingFactor", "01", "200");
 		System.out.println("Result:");
-		System.out.printf("|%-20s | %-20s | %-20s|\n","Response Delay", "FPS", "Encoding Error");
+		System.out.printf("|%-20s | %-20s | %-20s|\n", "Response Delay", "FPS", "Encoding Error");
 		System.out.println("--------------------------------------------------------------------");
-		System.out.printf("|%-20s | %-20s | %-20s|\n","1.4661182105263162", "16.315656359177673", "0.065478375771812");
+		System.out.printf("|%-20s | %-20s | %-20s|\n", "1.4661182105263162", "16.315656359177673", "0.065478375771812");
 //		boolean[] bit = { false, true, false };
 //		getActualVideoSpecificBitrate(bit);
 	}

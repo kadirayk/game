@@ -10,8 +10,13 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
@@ -60,6 +65,7 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 		}
 
 		moveMouse();
+		setReplayFile(gameSelection);
 
 		if (gameExe != null && !gameExe.isEmpty()) {
 			content.append(gameExe).append("\n").append("TIMEOUT /T 5\n");
@@ -69,6 +75,30 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 				.append(gameSelection + ".log 2>&1").append("\n");
 
 		FileUtil.writeToFile("groundingroutine.bat", content.toString());
+	}
+
+	private void setReplayFile(String gameSelection) {
+		if (gameSelection.equalsIgnoreCase("Neverball")) {
+			try {
+				copy(GaMiniOsServerRmiServer.gaFolderPath + "/keyPress_neverball.json",
+						GaMiniOsServerRmiServer.gaFolderPath + "/keyPress.json");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (gameSelection.equalsIgnoreCase("Kobo")) {
+			try {
+				copy(GaMiniOsServerRmiServer.gaFolderPath + "/keyPress_kobo.json",
+						GaMiniOsServerRmiServer.gaFolderPath + "/keyPress.json");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void copy(String sourcePath, String destinationPath) throws IOException {
+		Files.copy(Paths.get(sourcePath), new FileOutputStream(destinationPath));
 	}
 
 	private void setNeverballResolution(ConfigurationData conf) {
@@ -231,6 +261,9 @@ public class GaMiniOsServerConfigurationServiceImpl extends UnicastRemoteObject
 		if (finalConfig.getGameSelection().equalsIgnoreCase("Neverball")) {
 			encodingErrorFilePath = GaMiniOsServerRmiServer.gaFolderPath
 					+ "/../NeverballPortable/App/Neverball/avg_encoding_error.txt";
+		} else if (finalConfig.getGameSelection().equalsIgnoreCase("Kobo")) {
+			encodingErrorFilePath = GaMiniOsServerRmiServer.gaFolderPath
+					+ "/../KoboDeluxePortable/App/kobo/avg_encoding_error.txt";
 		} else {
 			System.err.println("Game folder not defined");
 			throw new RemoteException("Define game folder");
